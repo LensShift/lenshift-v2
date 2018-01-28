@@ -12,6 +12,8 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+    config.action_mailer.default_url_options = { host: 'lensshift01.herokuapp.com' }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -40,8 +42,8 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  # Do fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 

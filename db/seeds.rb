@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user1 = LensShifter.create(email: 'weihsi.hu@gmail.com', password: 'password', admin: true)
+
+LensShifterProfile.create(first_name: 'WeiHsi', last_name: 'Hu', lens_shifter_id: user1.id, location: 'UK' )
