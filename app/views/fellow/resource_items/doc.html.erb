@@ -27,14 +27,14 @@
 			    	<%= f.input :feature %>
 			    </div>
 			</div>
-			<%= f.input :tag_list, input_html: {value: @parsed_file['Updated-tags']} %>
+			<%= f.input :tag_list, input_html: {value: @parsed_file['Updated-tags'].to_str} %>
 		    <%= f.input :short_summary, input_html: {value: @parsed_file['Short-Summary'], class: 'short-summary-text'} %>
-		   			    <%= f.input :key_takeaways, input_html: {value: @parsed_file['Key-Takeaways'], class: 'short-summary-text'} %>
+		   	<%= f.input :key_takeaways, input_html: {value: @parsed_file['Key-Takeaways'], class: 'short-summary-text'} %>
 		    <%= f.input :analysis_content, input_html: {value: @parsed_file['Analysis-Content'], class: 'long-summary-text'} %>
 		    <%= f.input :image, as: :image_preview, input_html: {preview_version: :thumb} %>
 		    <%= f.input :remote_image_url, input_htm: {value: @parsed_file['image']} %>
 		    <div class="button-group">
-		    	<%= link_to 'Cancel', import_fellow_resource_items_path, class: 'warning button' %>
+		    	<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>
 		    	<%= f.button :submit, input_html: {class: 'button'} %>
 			</div>
 		<% end %>

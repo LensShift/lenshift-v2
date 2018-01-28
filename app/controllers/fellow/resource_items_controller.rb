@@ -10,15 +10,14 @@ class Fellow::ResourceItemsController < ApplicationController
 
 	def export_csv
 		@resource_items = ResourceItem.all
-		
+
 		respond_to do |format|
 			format.csv { send_data @resource_items.to_csv, filename: "resource-items-#{Date.today}.csv"}
 		end
 	end
 
 	def import_google
-		session = GoogleDrive::Session.from_service_account_key(
-    	"LensShift-Test-4b07dfa64787.json")
+		session = GoogleDrive::Session.from_service_account_key("./config/LensShift-Test-4b07dfa64787.json")
 		
 		@files = session.files
 	end
@@ -30,8 +29,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	end
 
 	def doc
-		session = GoogleDrive::Session.from_service_account_key(
-    	"LensShift-Test-4b07dfa64787.json")
+		session = GoogleDrive::Session.from_service_account_key("./config/LensShift-Test-4b07dfa64787.json")
     	@resource_item = ResourceItem.new
 
     	@file = session.file_by_id(params[:file_id])
@@ -51,10 +49,10 @@ class Fellow::ResourceItemsController < ApplicationController
 	  # POST /resource_items
 	  # POST /resource_items.json
 	def create
-	    @resource_item = ResourceItem.new(resource_item_params)
+	    @resource_item = ResourceItem.create(resource_item_params)
 
 	    respond_to do |format|
-	      if @resource_item.save
+	      if @resource_item.valid?
 	        format.html { redirect_to @resource_item, notice: 'Resource item was successfully created.' }
 	        format.json { render :show, status: :created, location: @resource_item }
 	      else
@@ -99,6 +97,6 @@ class Fellow::ResourceItemsController < ApplicationController
     def resource_item_params
       params.require(:resource_item).permit(:title, :author, :source_url, :estimated_reading_time, 
       	:short_summary, :tags, :analysis_content, :key_takeaways, :image, :resource_type, :lens_shifter_id, 
-      	:google_doc_id, :published_at, :slug, :tag_list, :file_id, :remote_image_url)
+      	:google_doc_id, :published_at, :slug, :tag_list, :file_id, :remote_image_url, :feature)
     end
 end

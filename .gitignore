@@ -24,4 +24,5 @@
 # Ignore application configuration
 /config/application.yml
 
-# lensShift-Test-4b07dfa64787.json
+/config/lensShift-Test-4b07dfa64787.json
+/config/LensShift-Drive-9e638265ad1d.json
