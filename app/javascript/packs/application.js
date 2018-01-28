@@ -9,13 +9,22 @@
 
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
+import navbar from '../components/navbar'
+import footer from '../components/footer'
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.appendChild(document.createElement('app'))
+  // document.body.appendChild(document.createElement('app'))
+  
+  // Vue.component('app-navbar', navbar)
+  // Vue.component('app-footer', footer)
+
   const app = new Vue({
-  	el: 'app',
-  	template: '<App/>',
-  	components: { App }
+  	el: '#app',
+  	components: {
+  		'app-navbar': navbar,
+  		'app-footer': footer
+  	}
+  	// render: h => h(App)
   })
 
   console.log(app)

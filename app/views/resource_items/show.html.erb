@@ -1,0 +1,71 @@
+<div class="grid-x grid-padding-x">
+  <div class="small-12 cell show-for-small-only">
+    <h2><%= @resource_item.title %>
+  </div>
+  <div class="small-12 medium-8 large-8 cell">
+     <p>
+      <h2 class="hide-for-small-only"><%= @resource_item.title %></h2>
+    </p>
+    <p><%= @resource_item.published_at %></p>
+    <p>
+      <%= @resource_item.short_summary %>
+    </p>
+
+    <p>
+      <% @resource_item.tag_list.each do |tag| %>
+        <span class="label secondary"><%= tag %></span>
+      <% end %>
+    </p>
+    <table class="unstriped">
+      <thead>
+        <tr>
+          <td><small>Type</small></td>
+          <td><small>Time</small></td>
+          <td><small>Author</small></td>
+          <td><small>Date published</small></td>
+          <td><small>Source</small></td>
+        </tr>
+      </thead>
+      <tr>
+        <td><small><%= @resource_item.resource_type %><small></td>
+        <td><small><%= @resource_item.estimated_reading_time %> minutes<small></td>
+        <td><small><%= @resource_item.author %><small></td>
+        <td><small><%= @resource_item.published_at %><small></td>
+        <td><small><%= @resource_item.source_url.match("((.*?\/.*?){2})\/") %><small></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="small-12 medium-4 large-4 cell">
+    <p>
+    <%= image_tag @resource_item.image_url %>
+    </p>
+  </div>
+
+  <div class="small-12 medium-12 large-12 cell">
+    <table>
+        <thead><tr><th>Key Takeaways:</th></tr></thead>
+        <tbody>
+          <tr><td><%= @resource_item.key_takeaways.html_safe if @resource_item.key_takeaways%></td></tr>
+        </tbody>
+    </table>
+  </div>
+
+  <div class="small-12 medium-12 large-12 cell">
+    <p>
+      <%= @resource_item.analysis_content.html_safe if @resource_item.analysis_content %>
+    </p>
+  </div>
+  <iframe class="small-10 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell resource-iframe" src="<%= @resource_item.source_url %>"></iframe>
+
+
+
+</div>
+  <br class="clr"/>
+    <% if current_lens_shifter.try(:admin?) %>
+    <%= link_to 'edit', edit_fellow_resource_item_path(@resource_item), class: 'button' %>
+  <% end %>
+
+
+
+

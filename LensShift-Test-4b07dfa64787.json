@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lensshift-test",
+  "private_key_id": "4b07dfa647879b09ddb24f0523d02874a569ae19",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDjNi2jShjtpRkW\nXHOjpSUkVFWeM8bB4YcnvuxfYRfTpJ6v34DAzSC3dK/Lt7piU6VymxLrISgQZHXD\nrHPaMGMwQ6xHtANEVOYv2aH6uGsXzxZiW5Xu2bfcPBV5NqXmq01Srv4w0PMZ6dY7\nanKf8JDcifAourrYkUjSR78/ammPlIXd8Z7conavNONejwU/yIESDc7orumANY25\n/fAGqAgoyAK0w0lpgxn0s0eRMH+bKnvwtEz9WXjzCGrBAKzbl0pV5AdfUczUn0Y+\nOKJtJG4TlizJHsx2tsqtCeikbt5K+2blrZalH2R8EhkQdmmspuGxMIRmLn2BEFZU\n+54W4ldPAgMBAAECggEAK18GKytTwtlHBquzL0Ow6VRn24EKqavBPucE+9fu0mmU\nGQJS83q0ihBuFjcGDwrkhBHx9Iwpt6dVi3p5yuZ9qJLiafWEwiBqqCuk7dUSLENN\nhIzy+9r3a8TUXIT/+h4s7mGVCAB6xzGJwWG6a6liHZb/DudGD1z8R5eGfDZ13AAj\nuu6v/4QQIzo55eVHz+2XVwqdyxxKYe92w7P6FyQXe80EMnZxlgAP5PnNPVe4ConF\nRlC0EckcDxSlNbhBIR8tj9YTK384ihF4VnIhvhBpLAKodXQhzR4sBPZ9nR9ieuNe\nLUDTPGEfec+tuySsQWAiKv1S+mxjsifJwatMCl7qsQKBgQD8KR7CoidpFRxjTuE5\nxoRkyT3/XIoKb7cZ2/itqf29Ysa8cZcDFaorWffGWcTZsqP4Zzw34iLWGCg7aOor\nT+LcID5rmRQx5yxJrT/T94Pqv2uxWUNRgeYz+hxRQrF6C9sgUnHJST03w+TtHk6+\nkVQzrweNefJ25eEFuB/ubKl8cwKBgQDmq8+mHlJL8twHE+lEonN6cfHN4ACUSSPy\nt8eBFKEnC9EP6/Gf/XUH4FCjp2C7rSTTBBZsERSMA4CIMJAqV64SonBh6XiUo6g5\ngjp9qkGeSo0wajz7+XCsPo+7u61wJp0fehVxflY/Un1RDNTNkQWVBROE8g8gTB+5\nMWcMqJC+tQKBgBqmBdgv5tZWIs/j8C1461jzY5fvIa+EqucSti80Pdqb68DSiFEN\nIxS9x0+xAPq4xFdmIZkOTvwtRWMx7T1yjdkRl0crwFSdx7Jpmss95zUR0cHGWzTr\n83Yewotb7wGk6x15WQkasluIWlMs1smQ9kMYBkZPUu550NQX51f9J9Q9AoGBAKKF\nxT0Wugc26p22ArHP/6ry41qZi+7uhXx6zf79aPnY0oj0RX7jFnThMA/OW1KAEKT4\niU/EzQRFZ2cNSFX9BvGsL6Bc3g9kK5+xSMLHlYoQnt/Qyn0CZ8eEIMM13WJaYnQO\nEVOwntXoqdDUSI85sYQoWnNeFRg9alCSJTf/AFTNAoGABVyDnaNQaWBB4euRObsz\nwhvIIWYIydtXpCDDNZ+ZRcWq0BXzd3QflAxwTBDtgZvWCRVvMQlSMOY++U69AMSb\nSYIoXLBp9pGBh2XiAMX87g1HohRg2s5gY5/Cv1kaxgnNUpu/YfL7sMYNvB6tcm5i\n5xDAGsQMfWI42GCiiSkiyj0=\n-----END PRIVATE KEY-----\n",
+  "client_email": "lensshift@lensshift-test.iam.gserviceaccount.com",
+  "client_id": "114754633793438627796",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/lensshift%40lensshift-test.iam.gserviceaccount.com"
+}

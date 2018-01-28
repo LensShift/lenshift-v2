@@ -1,0 +1,31 @@
+<div class="grid-x grid-margin-x">
+    <div class="cell small-12 medium-10 large-10 medium-offset-1 large-offset-1">
+
+      <h1>My Dashboard</h1>
+      <p>
+        <h1>My Profile</h1>
+        <p><b>Name:</b> <%= @lens_shifter_profile.first_name %>
+        <%= @lens_shifter_profile.last_name %></p>
+        <p><b>Birthday: </b><%= @lens_shifter_profile.birthdate %></p>
+        <p><b>Ethnicity: </b><%= @lens_shifter_profile.ethnicity %></p>
+        <p><b>Location: </b><%= @lens_shifter_profile.location %></p>
+        <p><b>Sector: </b><%= @lens_shifter_profile.sector %></p>
+        <p><b>Referral: </b><%= @lens_shifter_profile.referral %></p>
+        <p><b>Comments: </b><%= @lens_shifter_profile.comment %></p>
+        <p><%= @lens_shifter_profile.contact_consent ? 'Do ' : 'Do Not ' %>contact me</p>
+      </p>
+
+      <%= link_to 'Edit', edit_lens_shifter_profile_path(@lens_shifter_profile) %> |
+      <%= link_to 'Back', lens_shifter_profiles_path %> |
+      <%= link_to 'Add Resource', new_fellow_resource_item_path %> |
+      <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> |
+      <%= link_to 'Export CSV', export_csv_fellow_resource_items_path(format: 'csv') %> |
+      <div class="inline-form">
+        <%= form_tag import_csv_fellow_resource_items_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import Resources", class: 'button small' %>
+        <% end %>
+      </div>
+
+  </div>
+</div>

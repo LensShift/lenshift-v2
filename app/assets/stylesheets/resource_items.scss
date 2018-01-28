@@ -1,0 +1,19 @@
+// Place all the styles related to the resource_items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.resource-iframe {
+	min-height: 750px;
+	border: 1px solid grey;
+}
+
+.library-body {
+	border-right: 1px solid grey;
+}
+
+.card-section p {
+	font-size: 14px;
+}
+
+.resource-card a {
+	color: #000000 !important;
+}

@@ -1,0 +1,22 @@
+<div class="grid-container">
+	<div class="grid-x grid-margin-x">
+    	<div class="cell small-12 medium-8 large-6 medium-offset-2 large-offset-3">
+	    	<h2>Resend confirmation instructions</h2>
+
+			<%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+			  <%= f.error_notification %>
+			  <%= f.full_error :confirmation_token %>
+
+			  <div class="form-inputs">
+			    <%= f.input :email, required: true, autofocus: true %>
+			  </div>
+
+			  <div class="form-actions">
+			    <%= f.button :submit, "Resend confirmation instructions" %>
+			  </div>
+			<% end %>
+
+			<%= render "devise/shared/links" %>
+		</div>	
+	</div>
+</div>

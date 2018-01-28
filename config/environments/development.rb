@@ -1,5 +1,7 @@
 Rails.application.configure do
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  
   # Make javascript_pack_tag load assets from webpack-dev-server.
   config.x.webpacker[:dev_server_host] = 'http://localhost:8080'
   

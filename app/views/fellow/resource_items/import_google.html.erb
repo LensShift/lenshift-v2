@@ -1,0 +1,26 @@
+<div class="grid-x grid-margin-x">
+<div class="cell small-12 medium-10 large-10 medium-offset-1 large-offset-1">
+	
+	<h1>Google Drive Docs</h1>
+
+		<table>
+	        <thead>
+	          <tr>
+	            <th>File Name</th>
+	            <th>ID</th>
+	            <th></th>
+	          </tr>
+	        </thead>
+
+	        <tbody>
+				<% @files.each do |file| %>
+					<tr>
+					<td><%= file.title %></td>
+					<td><%= file.id %></td>
+					<td><%= link_to 'Show', doc_fellow_resource_items_path(file_id: file.id) %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

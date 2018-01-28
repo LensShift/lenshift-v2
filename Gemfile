@@ -33,9 +33,41 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'jquery-rails'
+
 gem 'webpacker'
 
 gem 'foreman'
+
+gem 'foundation-rails', '~>6.4.1.2'
+
+gem 'simple_form'
+
+gem 'gon'
+
+gem 'devise'
+
+gem 'acts-as-taggable-on', '~> 5.0'
+
+gem 'figaro'
+
+gem 'geocoder'
+
+gem 'kaminari'
+
+gem 'friendly_id', '~> 5.1.0'
+
+gem 'google_drive'
+
+gem 'archieml'
+
+gem 'carrierwave-aws'
+
+gem "mini_magick"
+
+gem 'simple_form_fancy_uploads'
+
+gem 'font-awesome-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

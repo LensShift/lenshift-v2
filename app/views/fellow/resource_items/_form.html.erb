@@ -1,0 +1,32 @@
+
+          <%= f.input :title, input_html: {} %>
+          <%= f.input :author, input_html: {} %>
+          <%= f.input :source_url, input_html: {} %>
+          <div class="grid-x grid-margin-x">
+            <div class="cell small-12 medium-6 large-4">
+              <%= f.input :estimated_reading_time, input_html: {} %>
+            </div>
+            <div class="cell small-12 medium-6 large-4">
+              <%= f.input :resource_type, input_html: {} %>
+            </div>
+            <div class="cell small-12 medium-6 large-4">
+              <%= f.input :google_doc_id, input_html: {} %>
+            </div>
+            <div class="cell small-12 medium-6 large-4">
+              <%= f.input :published_at, as: :date, html5: true, input_html: {} %>
+            </div>
+            <div class="cell small-12 medium-6 large-4">
+              <%= f.association :lens_shifter, label_method: :full_name, value_method: :id, include_blank: true, input_html: {} %>
+          </div>
+            <div class="cell small-12 medium-6 large-4">
+              <%= f.input :feature %>
+            </div>
+        </div>
+          <%= f.input :tag_list, input_html: {value: f.object.tag_list.to_s} %>
+          <%= f.input :short_summary, input_html: {class: 'short-summary-text'} %>
+          <%= f.input :key_takeaways, input_html: { class: 'short-summary-text'} %>
+          <%= f.input :analysis_content, input_html: {class: 'long-summary-text'} %>
+          <%= f.input :image, as: :image_preview, input_html: {preview_version: :thumb} %>
+          <%= f.input :remote_image_url, input_htm: {} %>
+          
+

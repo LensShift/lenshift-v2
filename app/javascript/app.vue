@@ -1,10 +1,13 @@
 <template>
-  <div id="app">
+  <div>
+    <app-navbar></app-navbar>
     <p>{{ message }}</p>
+    test app
   </div>
 </template>
 
 <script>
+
 export default {
   data: function () {
     return {

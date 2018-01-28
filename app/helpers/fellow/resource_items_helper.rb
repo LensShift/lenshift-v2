@@ -1,0 +1,2 @@
+module Fellow::ResourceItemsHelper
+end

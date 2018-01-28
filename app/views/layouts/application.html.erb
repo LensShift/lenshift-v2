@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Lensshift2</title>
-    <%= csrf_meta_tags %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title><%= content_for?(:title) ? yield(:title) : "Resource Hub Responsible Social Impact - LensShift" %></title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= javascript_pack_tag 'application' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= yield %>
+   
+    <div id="app">
+       <%= render partial: "layouts/navbar" %>
+       <div class='grid-container' id='main-container'>
+          <% if notice.present? %>
+          <p class="callout primary" data-closable><%= notice %></p>
+          <% end %>
+
+          <% if alert.present? || flash[:error] %>
+          <div class="callout alert" data-closable><%= alert || flash[:error] %></div>
+        <% end %>
+
+        <%= yield %>
+       <div class='push'></div>
+       </div>
+       <%= render partial: 'layouts/footer' %>
+    </div>
+    
+
   </body>
 </html>

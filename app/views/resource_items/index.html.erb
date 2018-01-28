@@ -1,0 +1,63 @@
+<div class='grid-x grid-padding-x'>
+  <div class="small-12 medium-12 large-12 cell">
+    <h1>Library</h1>
+    <p>Welcome to our pool of resources</p>
+  </div>
+</div>
+  <div class="grid-x grid-padding-x align-right">
+      <div class="small-3 large-1 cell">
+        <label for="sort_by" class="text-right middle">Sort by: </label>
+      </div>
+      <div class="small-4 large-2 cell">
+        <select id="sort_by" onchange="if(this.value) window.location.href=this.value">
+          <option value=""></option>
+          <option value="<%= resource_items_path(sort_by: 'title') %>">title</option>
+          <option value="<%= resource_items_path(sort_by: 'published_at') %>">published at</option>
+          <option value="<%= resource_items_path(sort_by: 'estimated_reading_time') %>">reading time</option>
+        </select>
+      </div>
+  </div>
+
+<div class='grid-x grid-padding-x'>
+  <div class="small-12 medium-12 large-12 cell">
+    <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">
+      <% @resource_items.each do |resource_item| %>
+        <div class="cell">
+          <div class='card resource-card'>
+            <%= image_tag resource_item.image_url(:thumb).to_s %>
+            <%= link_to resource_item_path(resource_item) do %>
+            <div class='card-section'>
+              <h6><strong><%= resource_item.title %></strong></h6>
+              <small><%= truncate(resource_item.short_summary, length: 399) {link_to 'open', resource_item_path(resource_item)} %></small>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= paginate @resource_items, class: "pagination"  %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+    var sort = getUrlParameter('sort_by');
+    console.log("/library?sort_by="+sort)
+    $("#sort_by").val("/library?sort_by="+sort)
+  })
+</script>

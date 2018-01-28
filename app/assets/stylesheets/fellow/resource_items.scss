@@ -1,0 +1,21 @@
+// Place all the styles related to the fellow/resource_items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.article-preview {
+	border: 1px solid #8e8e8e;
+	padding: 25px 25px;
+}
+
+.short-summary-text {
+	height: 250px;
+}
+
+.long-summary-text {
+	height: 500px;
+}
+
+.image_preview {
+	max-width: 500px;
+	width: 500px;
+}

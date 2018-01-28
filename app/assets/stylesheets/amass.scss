@@ -1,0 +1,83 @@
+html, body {
+	height: 100%;
+	overflow-x: hidden;
+}
+
+#main-container {
+	height: 100%;
+	min-height: 800px;
+	padding: 25px 25px;
+	margin-bottom: -200px;
+}
+
+.hero {
+	background: #e6e6e6;
+	height: 250px;
+	margin-bottom: 25px;
+	padding: 50px;
+}
+
+.hero-content {
+	margin: auto;
+}
+
+a {
+	color: #8a8a8a !important;
+}
+
+a.button {
+	color: white !important;
+}
+
+img {
+	width: 100%;
+}
+
+.menu {
+	align-items: center;
+}
+
+.menu a {
+	color: white !important;
+}
+
+.menu a:hover {
+	color: white !important;
+}
+
+.menu .link:hover {
+	background: #f48f14ff;
+}
+
+.inline-form {
+	display: inline-block;
+}
+
+.logo {
+	width: 100px;
+}
+
+.footer {
+	height: 250px;
+	background-color: #b0b0b0;
+}
+
+.push {
+	height: 250px;
+}
+
+.no-padding-left {
+	padding-left: 0 !important;
+}
+
+.no-padding-right {
+	padding-right: 0 !important;
+}
+
+.align-right {
+	justify-content: flex-end;
+}
+
+.clr {
+	clear: both;
+}
