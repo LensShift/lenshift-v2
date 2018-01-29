@@ -17,7 +17,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	end
 
 	def import_google
-		session = GoogleDrive::Session.from_service_account_key("./app/config/LensShift-Drive-9e638265ad1d.json")
+		session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GD_SECRETS']))
 		
 		@files = session.files
 	end
@@ -29,7 +29,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	end
 
 	def doc
-		session = GoogleDrive::Session.from_service_account_key("./app/config/LensShift-Drive-9e638265ad1d.json")
+		session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GD_SECRETS']))
     	@resource_item = ResourceItem.new
 
     	@file = session.file_by_id(params[:file_id])
