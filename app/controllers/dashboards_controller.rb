@@ -1,6 +1,12 @@
 class DashboardsController < ApplicationController
 	before_action :authenticate_lens_shifter!
 	  def show
-	  	@lens_shifter_profile = current_lens_shifter.lens_shifter_profile
+	  	@profile = current_lens_shifter.profile
+
+	  	if @profile.nil?
+	  		redirect_to new_profile_path
+	  	else
+	  		render :show
+	  	end
 	  end
 end

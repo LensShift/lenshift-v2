@@ -1,0 +1,32 @@
+<div class="grid-x grid-margin-x">
+  <div class="cell small-12 medium-8 large-6 medium-offset-2 large-offset-3">
+
+    <h1>Lens Shifter Profiles</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @profiles.each do |profile| %>
+          <tr>
+            <td><%= profile.first_name %></td>
+            <td><%= profile.last_name %></td>
+            <td><%= link_to 'Show', profile %></td>
+            <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+            <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'New Lens Shifter Profile', new_profile_path %>
+  </div>
+</div>

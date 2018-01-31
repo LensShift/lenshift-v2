@@ -5,9 +5,10 @@ class LensShifter < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :lens_shifter_profile
+  has_one :profile
   has_many :resource_items
 
   def full_name
-  	self.lens_shifter_profile.nil? ? self.email : "#{self.lens_shifter_profile.first_name} #{self.lens_shifter_profile.last_name}" 
+  	self.profile.nil? ? self.email : "#{self.profile.first_name} #{self.profile.last_name}" 
   end
 end

@@ -11,6 +11,7 @@ import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
 import navbar from '../components/navbar'
 import footer from '../components/footer'
+import lensShifterProfileForm from '../components/lensShifterProfileForm'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -22,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
   	el: '#app',
   	components: {
   		'app-navbar': navbar,
-  		'app-footer': footer
+  		'app-footer': footer,
+      'lens-shifter-profile-form': lensShifterProfileForm
   	}
   	// render: h => h(App)
   })

@@ -12,6 +12,7 @@ class CreateLensShifterProfiles < ActiveRecord::Migration[5.1]
       t.text :referral
       t.text :comment
       t.boolean :contact_consent
+      t.string :image
       t.belongs_to :lens_shifter, foreign_key: true
 
       t.timestamps

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128144314) do
+ActiveRecord::Schema.define(version: 20180130102905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,24 @@ ActiveRecord::Schema.define(version: 20180128144314) do
     t.index ["reset_password_token"], name: "index_lens_shifters_on_reset_password_token", unique: true
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "birthdate"
+    t.string "ethnicity"
+    t.string "location"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "sector"
+    t.text "referral"
+    t.text "comment"
+    t.boolean "contact_consent"
+    t.bigint "lens_shifter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lens_shifter_id"], name: "index_profiles_on_lens_shifter_id"
+  end
+
   create_table "resource_items", force: :cascade do |t|
     t.string "title"
     t.string "author"
@@ -114,5 +132,6 @@ ActiveRecord::Schema.define(version: 20180128144314) do
   end
 
   add_foreign_key "lens_shifter_profiles", "lens_shifters"
+  add_foreign_key "profiles", "lens_shifters"
   add_foreign_key "resource_items", "lens_shifters"
 end

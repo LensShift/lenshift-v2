@@ -81,3 +81,35 @@ img {
 .clr {
 	clear: both;
 }
+
+.show {
+  visibility: visible !important;
+  display: block !important;
+}
+
+.relative-block {
+	position: relative;
+}
+
+.dropdown-input {
+	margin-bottom: 0 !important;
+}
+
+.dropdown-options {
+	width: 100% !important;
+	margin-left: 0;
+	list-style-type: none;
+	padding: 0 !important;
+	position: absolute;
+	z-index: 10;
+	border: 0.5px solid black;
+	background: #fff;
+}
+
+.select-option-item {
+	padding: 0.5rem 1rem;
+}
+
+.select-option-active, .select-option-item:hover {
+	background: #e6e6e6;
+}

@@ -35,7 +35,7 @@ class Fellow::ResourceItemsController < ApplicationController
     	@file = session.file_by_id(params[:file_id])
     	@text_file = @file.export_as_string('text/plain')
     	@parsed_file = Archieml.load(@file.export_as_string('text/plain'))
-    	@article = ArticleCrawler.new(@parsed_file['Link'])
+    	@article = ArticleCrawler.new(@parsed_file['link'])
 	end
 
 	def new
