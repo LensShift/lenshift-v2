@@ -7,12 +7,17 @@ class ResourceItem < ApplicationRecord
    mount_uploader :image, ImageUploader
 
    RESOURCE_TYPE = {
-   	"article": "pencil-square-o",
-   	"podcast": "podcast",
-   	"video": "video-camera",
-   	"paper": "file-text",
-   	"picture": "picture-o",
-   	"map": "map-o"
+   	"academic": "university",
+	'article': "pencil-square-o",
+	'blog': "blogger",
+	'book': "book",
+	'document': "file",
+	'graphic': "picture-o",
+	'podcast': "podcast",
+	'reference': "building",
+	'video': "video-camera",
+	'website': "window-maximize",
+	'other': "certificate"
    }
 
   	def self.to_csv
