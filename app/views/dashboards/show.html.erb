@@ -3,7 +3,7 @@
 
       <h1>My Dashboard</h1>
       <p>
-        <h1>My Profile</h1>
+        <h3>Profile</h3>
         <p><b>Name:</b> <%= @profile.first_name %>
         <%= @profile.last_name %></p>
         <p><b>Birthday: </b><%= @profile.birthdate %></p>
@@ -15,17 +15,18 @@
         <p><%= @profile.contact_consent ? 'Do ' : 'Do Not ' %>contact me</p>
       </p>
 
-      <%= link_to 'Edit', edit_profile_path(@profile) %> |
-      <%= link_to 'Back', profiles_path %> |
-      <%= link_to 'Add Resource', new_fellow_resource_item_path %> |
-      <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> |
-      <%= link_to 'Export CSV', export_csv_fellow_resource_items_path(format: 'csv') %> |
-      <div class="inline-form">
-        <%= form_tag import_csv_fellow_resource_items_path, multipart: true do %>
-          <%= file_field_tag :file %>
-          <%= submit_tag "Import Resources", class: 'button small' %>
-        <% end %>
-      </div>
+      <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+      <% if current_lens_shifter.try(:admin?) %> |
+        <%= link_to 'Add Resource', new_fellow_resource_item_path %> |
+        <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> |
+        <%= link_to 'Export CSV', export_csv_fellow_resource_items_path(format: 'csv') %> |
+        <div class="inline-form">
+          <%= form_tag import_csv_fellow_resource_items_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Import Resources", class: 'button small' %>
+          <% end %>
+        </div>
+      <% end %>
 
   </div>
 </div>

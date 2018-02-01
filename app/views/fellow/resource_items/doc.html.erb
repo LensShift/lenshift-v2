@@ -1,58 +1,119 @@
+<resource-doc-form inline-template>
+<div class="grid-x grid-padding-x">
+	<%= simple_form_for @resource_item, url: fellow_resource_items_path, method: :post do |f| %>
+		<div class="grid-x grid-padding-x">
+			<div class="cell small-12 medium-8 large-8">
+				<h1>(preview) {{title}}</h1>
+				<%= f.input :title, input_html: {'v-model': "title"} %>
+				<%= f.input :source_url, label: 'Link', input_html: {value: @parsed_file['link']} %>
+				<%= f.input :published_at, label: 'Publish Date', as: :date, html5: true, input_html: {value: @parsed_file['date_published(leave_blank)']} %>
 
-<div class="grid-x grid-margin-x">
-	<div class="cell small-12 medium-10 large-10 medium-offset-1 large-offset-1">
-    	<h1>New Resource</h1>
-		<%= simple_form_for @resource_item, url: fellow_resource_items_path, method: :post do |f| %>
-			
-			<%= f.input :title, input_html: {value: @parsed_file['title']} %>
-		    <%= f.input :author, input_html: {value: @parsed_file['author/creator']} %>
-		    <%= f.input :source_url, input_html: {value: @parsed_file['link']} %>
-		    <div class="grid-x grid-margin-x">
-			    <div class="cell small-12 medium-6 large-4">
-			    	<%= f.input :estimated_reading_time, input_html: {value: @parsed_file['estimated_reading_time(minutes)'].gsub(/[^0-9]/, '')} %>
-			    </div>
-			    <div class="cell small-12 medium-6 large-4">
-			    	<%= f.input :resource_type, input_html: {value: @parsed_file['type']} %>
-			    </div>
-			    <div class="cell small-12 medium-6 large-4">
-			    	<%= f.input :google_doc_id, input_html: {value: @file.title.gsub(/[^0-9]/, '')} %>
-			    </div>
-			    <div class="cell small-12 medium-6 large-4">
-			    	<%= f.input :published_at, as: :date, html5: true, input_html: {value: @parsed_file['date_published']} %>
-			    </div>
-			    <div class="cell small-12 medium-6 large-4">
-			    	<%= f.association :lens_shifter, label_method: :full_name, value_method: :id, include_blank: true, input_html: {value: @parsed_file['LS-Initial-Author']} %>
+				<%= f.input :short_summary, as: :hidden, input_html: {'v-model': 'shortSummary', class: 'short-summary-text'} %>
+			    <label>Short Summary <small><i>(This heading will not show)</i></small></label>
+			    <div class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</div>
+			    <medium-editor :text="shortSummary" data-source="shortSummary" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+			    <br class="vertical-spacer">
+
+			    <%= f.input :tag_list, label: "tags (This heading will not show)", input_html: {value: @parsed_file['tags'].to_str} %>
+
+			    <table class="unstriped">
+			      <tr>
+			          <th class="horizontal-table-head"><small>Type</small></th>
+			          <td><%= f.input :resource_type, label: false, input_html: {value: @parsed_file['type'], class: "table-input"} %></td>
+			      </tr>
+			          <th class="horizontal-table-head"><small>Reading Time</small></th>
+			          <td><%= f.input :estimated_reading_time, label: false, input_html: {value: @parsed_file['estimated_reading_time(minutes)'].gsub(/[^0-9]/, ''), class: "table-input"} %></td>
+			      </tr>
+			          <th class="horizontal-table-head"><small>Author</small></th>
+			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_str, class: "table-input"} %></td>
+			      </tr>
+			          <th class="horizontal-table-head"><small>Date</small></th>
+			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: @parsed_file['article_date'], class: "table-input"} %></td>
+			      </tr>
+			          <th class="horizontal-table-head"><small>Source</small></th>
+			          <td><small><%= @parsed_file['link'].match("((.*?\/.*?){2})\/") %></small></td>
+			      </tr>
+				</table>
+    	
+			    <div class="grid-x grid-padding-x">
+				    <div class="cell small-12 medium-6 large-4">
+				    	<%= f.input :google_doc_id, label: 'Google doc index', input_html: {value: @file.title.gsub(/[^0-9]/, '')} %>
+					</div>
+				    <div class="cell small-12 medium-6 large-4">
+				    	<%= f.association :lens_shifter, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, input_html: {value: @parsed_file['LS-Initial-Author']}, label_html: {class: 'warning'} %>
+					</div>
+				    <div class="cell small-12 medium-6 large-4">
+				    	<%= f.input :feature, label: "Make me a featured resource" %>
+				    </div>
+				</div>	
+			</div>
+		
+
+			<div class="small-12 medium-4 large-4 cell">
+				<small>
+					<i>
+						Your photo options are:
+						<ul>
+							<li>Click on "choose file" to upload an image file</li>
+							<li>Cut and paste a full url of the photo in the "Remote image url" field to import an image</li>
+							<li>Click on one of the selections below to automatically paste a full url in the "Remote image url" field</li>
+						</ul>
+					</i>
+				</small>
+				<%= f.input :remote_image_url, input_html: {'v-model': 'image'} %>
+				<%= f.input :image, as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
+				<div>
+					<img v-if="image" :src="image" alt="image-preview" />
 				</div>
-			    <div class="cell small-12 medium-6 large-4">
-			    	<%= f.input :feature %>
-			    </div>
 			</div>
-			<%= f.input :tag_list, input_html: {value: @parsed_file['tags'].to_str} %>
-		    <%= f.input :short_summary, input_html: {value: @parsed_file['short_summary'], class: 'short-summary-text'} %>
-		   	<%= f.input :key_takeaways, input_html: {value: @parsed_file['key_takeaways'], class: 'short-summary-text'} %>
-		    <%= f.input :analysis_content, input_html: {value: @parsed_file['analysis_content'], class: 'long-summary-text'} %>
-		    <%= f.input :image, as: :image_preview, input_html: {preview_version: :thumb} %>
-		    <%= f.input :remote_image_url, input_htm: {value: @parsed_file['image']} %>
-		    <div class="button-group">
-		    	<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>
-		    	<%= f.button :submit, input_html: {class: 'button'} %>
-			</div>
-		<% end %>
+	 	</div>
+		<div class="small-12 medium-12 large-12 large">
+			<table>
+				<thead><tr><th>Key Takeaways <span class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</span></th></tr></thead>
+				<tbody>
+					<tr>
+						<td>
+			   				<%= f.input :key_takeaways, as: :hidden, input_html: {'v-model': 'keyTakeaways', class: 'short-summary-text'} %>
+			   				<medium-editor :text="keyTakeaways" data-source="keyTakeaways" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br class="vertical-spacer">
+
+		<div class="small-12 medium-12 large-12 cell analysis-content">
+			<label>Analysis Content <small><i>(This heading will not show)</i></small></label>
+			<div class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</div>
+		    <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
+		    <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+		</div>
+		   	
+
+		    
+	    <div class="button-group">
+	    	<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>
+	    	<%= f.button :submit, input_html: {class: 'button'} %>
+		</div>
+
+	<% end %>
+
+	<div class="grid-x grid-padding-x">
+		<div class="cell small-12 medium-10 large-10">
+			<h3>Article:</h3>
+				<small>click on any image to add the image link to the remote image link field</small>>
+	    		<div class="article-preview">
+					<h3 class="text-center"><%= @article.title %></h3>
+					<p><%= @article.description %></p>
+					<div class="grid-x grid-margin-x">
+						<% @article.images.each do |image| %>
+							<div class="cell small-12 medium-3 large-3 clickable-image" v-on:click="addImage('<%= image %>')">
+								<%=image_tag image, class: 'thumbnail' %>
+							</div>
+						<% end %>
+					</div>
+				</div>
+		</div>
 	</div>
 </div>	
-<div class="grid-x grid-margin-x">
-	<div class="cell small-12 medium-8 large-8 medium-offset-2 large-offset-2">
-		<h2>Article:</h2>
-    		<div class="article-preview">
-				<h3 class="text-center"><%= @article.title %></h3>
-				<p><%= @article.description %></p>
-				<div class="grid-x grid-margin-x">
-					<% @article.images.each do |image| %>
-						<div class="cell small-12 medium-6 large-6">
-							<%=image_tag image, class: 'thumbnail' %>
-						</div>
-					<% end %>
-				</div>
-			</div>
-	</div>
-	</div>
+</resource-doc-form>

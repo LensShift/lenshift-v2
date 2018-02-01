@@ -12,6 +12,8 @@ import App from '../app.vue'
 import navbar from '../components/navbar'
 import footer from '../components/footer'
 import lensShifterProfileForm from '../components/lensShifterProfileForm'
+import resourceDocForm from '../components/resourceDocForm'
+import resourceItemForm from '../components/resourceItemForm'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -24,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
   	components: {
   		'app-navbar': navbar,
   		'app-footer': footer,
-      'lens-shifter-profile-form': lensShifterProfileForm
+      'lens-shifter-profile-form': lensShifterProfileForm,
+      'resource-doc-form': resourceDocForm,
+      'resource-item-form': resourceItemForm
   	}
   	// render: h => h(App)
   })

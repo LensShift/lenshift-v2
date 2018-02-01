@@ -36,21 +36,24 @@ class Fellow::ResourceItemsController < ApplicationController
     	@text_file = @file.export_as_string('text/plain')
     	@parsed_file = Archieml.load(@file.export_as_string('text/plain'))
     	@article = ArticleCrawler.new(@parsed_file['link'])
+    	gon.parsed_file = @parsed_file
 	end
 
 	def new
 		@resource_item = ResourceItem.new
+		gon.resource_item = @resource_item
 	end
 
 	  # GET /resource_items/1/edit
 	def edit
+		gon.resource_item = @resource_item
 	end
 
 	  # POST /resource_items
 	  # POST /resource_items.json
 	def create
 	    @resource_item = ResourceItem.create(resource_item_params)
-
+	    gon.resource_item = resource_item_params
 	    respond_to do |format|
 	      if @resource_item.valid?
 	        format.html { redirect_to @resource_item, notice: 'Resource item was successfully created.' }
@@ -97,6 +100,6 @@ class Fellow::ResourceItemsController < ApplicationController
     def resource_item_params
       params.require(:resource_item).permit(:title, :author, :source_url, :estimated_reading_time, 
       	:short_summary, :tags, :analysis_content, :key_takeaways, :image, :resource_type, :lens_shifter_id, 
-      	:google_doc_id, :published_at, :slug, :tag_list, :file_id, :remote_image_url, :feature)
+      	:google_doc_id, :published_at, :slug, :tag_list, :author_list, :file_id, :remote_image_url, :feature)
     end
 end

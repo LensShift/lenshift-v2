@@ -82,6 +82,10 @@ img {
 	clear: both;
 }
 
+.vertical-spacer {
+	margin-bottom: 50px;
+}
+
 .show {
   visibility: visible !important;
   display: block !important;
@@ -112,4 +116,24 @@ img {
 
 .select-option-active, .select-option-item:hover {
 	background: #e6e6e6;
+}
+
+.analysis-content {
+	margin-bottom: 50px;
+}
+
+.horizontal-table-head {
+	background: #e6e6e6;
+}
+
+.clickable-image {
+	cursor: pointer;
+}
+
+.warning {
+	color: red;
+}
+
+.table-input {
+	margin-bottom: 0px !important;
 }

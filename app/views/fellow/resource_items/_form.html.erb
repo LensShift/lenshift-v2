@@ -1,32 +1,92 @@
+<resource-item-form inline-template>
+<div>
 
-          <%= f.input :title, input_html: {} %>
-          <%= f.input :author, input_html: {} %>
-          <%= f.input :source_url, input_html: {} %>
-          <div class="grid-x grid-margin-x">
+  <div class="grid-x grid-padding-x">
+      <div class="cell small-12 medium-8 large-8">
+        <h1>(preview) {{title}}</h1>
+        <%= f.input :title, input_html: {'v-model': "title"} %>
+        <%= f.input :source_url, label: 'Link', input_html: {} %>
+        <%= f.input :published_at, label: 'Publish Date', as: :date, html5: true, input_html: {} %>
+
+        <%= f.input :short_summary, as: :hidden, input_html: {'v-model': 'shortSummary', class: 'short-summary-text'} %>
+          <label>Short Summary <small><i>(This heading will not show)</i></small></label>
+          <div class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</div>
+          <medium-editor :text="shortSummary" data-source="shortSummary" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+          <br class="vertical-spacer">
+
+          <%= f.input :tag_list, label: "tags (This heading will not show)", input_html: {value: @resource_item.tag_list.to_s} %>
+
+          <table class="unstriped">
+            <tr>
+                <th class="horizontal-table-head"><small>Type</small></th>
+                <td><%= f.input :resource_type, label: false, input_html: {class: "table-input"} %></td>
+            </tr>
+                <th class="horizontal-table-head"><small>Reading Time</small></th>
+                <td><%= f.input :estimated_reading_time, label: false, input_html: {class: "table-input"} %></td>
+            </tr>
+                <th class="horizontal-table-head"><small>Author</small></th>
+                <td><%= f.input :author_list, label: false, input_html: {value: @resource_item.author_list.to_s, class: "table-input"} %></td>
+            </tr>
+                <th class="horizontal-table-head"><small>Date</small></th>
+                <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {class: "table-input"} %></td>
+            </tr>
+                <th class="horizontal-table-head"><small>Source</small></th>
+                <td><small><%= @resource_item.source_url.match("((.*?\/.*?){2})\/") if @resource_item.source_url.present? %></small></td>
+            </tr>
+        </table>
+      
+          <div class="grid-x grid-padding-x">
             <div class="cell small-12 medium-6 large-4">
-              <%= f.input :estimated_reading_time, input_html: {} %>
-            </div>
-            <div class="cell small-12 medium-6 large-4">
-              <%= f.input :resource_type, input_html: {} %>
-            </div>
-            <div class="cell small-12 medium-6 large-4">
-              <%= f.input :google_doc_id, input_html: {} %>
-            </div>
-            <div class="cell small-12 medium-6 large-4">
-              <%= f.input :published_at, as: :date, html5: true, input_html: {} %>
-            </div>
-            <div class="cell small-12 medium-6 large-4">
-              <%= f.association :lens_shifter, label_method: :full_name, value_method: :id, include_blank: true, input_html: {} %>
+              <%= f.input :google_doc_id, label: 'Google doc index', input_html: {} %>
           </div>
             <div class="cell small-12 medium-6 large-4">
-              <%= f.input :feature %>
+              <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: current_lens_shifter.id %>
+          </div>
+            <div class="cell small-12 medium-6 large-4">
+              <%= f.input :feature, label: "make me a featured resource" %>
             </div>
-        </div>
-          <%= f.input :tag_list, input_html: {value: f.object.tag_list.to_s} %>
-          <%= f.input :short_summary, input_html: {class: 'short-summary-text'} %>
-          <%= f.input :key_takeaways, input_html: { class: 'short-summary-text'} %>
-          <%= f.input :analysis_content, input_html: {class: 'long-summary-text'} %>
-          <%= f.input :image, as: :image_preview, input_html: {preview_version: :thumb} %>
-          <%= f.input :remote_image_url, input_htm: {} %>
-          
+        </div>  
+      </div>
+    
 
+      <div class="small-12 medium-4 large-4 cell">
+        <small>
+          <i>
+            Your photo options are:
+            <ul>
+              <li>Click on "choose file" to upload an image file</li>
+              <li>Cut and paste a full url of the photo in the "Remote image url" field to import an image</li>
+              <li>Click on one of the selections below to automatically paste a full url in the "Remote image url" field</li>
+            </ul>
+          </i>
+        </small>
+        <%= f.input :remote_image_url, input_html: {'v-model': 'image'} %>
+        <%= f.input :image, as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
+        <div>
+          <img v-if="image" :src="image" alt="image-preview" />
+        </div>
+      </div>
+    </div>
+    <div class="small-12 medium-12 large-12 large">
+      <table>
+        <thead><tr><th>Key Takeaways <span class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</span></th></tr></thead>
+        <tbody>
+          <tr>
+            <td>
+                <%= f.input :key_takeaways, as: :hidden, input_html: {'v-model': 'keyTakeaways', class: 'short-summary-text'} %>
+                <medium-editor :text="keyTakeaways" data-source="keyTakeaways" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br class="vertical-spacer">
+
+    <div class="small-12 medium-12 large-12 cell analysis-content">
+      <label>Analysis Content <small><i>(This heading will not show)</i></small></label>
+      <div class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</div>
+        <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
+        <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+    </div>
+</div>
+</resource-item-form>

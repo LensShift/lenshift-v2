@@ -2,7 +2,7 @@ class ResourceItem < ApplicationRecord
   belongs_to :lens_shifter
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
-  acts_as_taggable_on :tags
+  acts_as_taggable_on :tags, :author
    paginates_per 10
    mount_uploader :image, ImageUploader
 
