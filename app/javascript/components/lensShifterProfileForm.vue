@@ -16,7 +16,7 @@ export default {
     getLocation: function() {
       this.isActive = false
       if(this.location.length > 4) {
-          axiosMap.get('http://open.mapquestapi.com/nominatim/v1/search.php' + '?key=' + gon.mapquest_key + "&format=json" + "&q=" + this.location + "&addressdetails=1").then(res => {
+          axiosMap.get('https://open.mapquestapi.com/nominatim/v1/search.php' + '?key=' + gon.mapquest_key + "&format=json" + "&q=" + this.location + "&addressdetails=1").then(res => {
                 // console.log(res)
                 // console.log('mapquest', gon.mapquest_key)
                 this.suggestions = res.data.map(place => {
