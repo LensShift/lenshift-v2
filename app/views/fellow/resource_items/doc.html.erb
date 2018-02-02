@@ -14,7 +14,7 @@
 			    <medium-editor :text="shortSummary" data-source="shortSummary" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 			    <br class="vertical-spacer">
 
-			    <%= f.input :tag_list, label: "tags (This heading will not show)", input_html: {value: @parsed_file['tags'].to_str} %>
+			    <%= f.input :tag_list, label: "tags (This heading will not show)", input_html: {value: @parsed_file['tags'].to_s} %>
 
 			    <table class="unstriped">
 			      <tr>
@@ -25,7 +25,7 @@
 			          <td><%= f.input :estimated_reading_time, label: false, input_html: {value: @parsed_file['estimated_reading_time(minutes)'].gsub(/[^0-9]/, ''), class: "table-input"} %></td>
 			      </tr>
 			          <th class="horizontal-table-head"><small>Author</small></th>
-			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_str, class: "table-input"} %></td>
+			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_s, class: "table-input"} %></td>
 			      </tr>
 			          <th class="horizontal-table-head"><small>Date</small></th>
 			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: @parsed_file['article_date'], class: "table-input"} %></td>
