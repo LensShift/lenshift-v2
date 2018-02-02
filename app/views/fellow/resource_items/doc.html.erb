@@ -19,16 +19,16 @@
 			    <table class="unstriped">
 			      <tr>
 			          <th class="horizontal-table-head"><small>Type</small></th>
-			          <td><%= f.input :resource_type, label: false, input_html: {value: @parsed_file['type'], class: "table-input"} %></td>
+			          <td><%= f.input :resource_type, as: :select, label: false, collection: ResourceItem::RESOURCE_TYPE.map {|k, v| k }, selected: @parsed_file['type'].downcase, input_html: {value: @parsed_file['type'].downcase, class: "table-input"} %></td>
 			      </tr>
 			          <th class="horizontal-table-head"><small>Reading Time</small></th>
 			          <td><%= f.input :estimated_reading_time, label: false, input_html: {value: @parsed_file['estimated_reading_time(minutes)'].gsub(/[^0-9]/, ''), class: "table-input"} %></td>
 			      </tr>
 			          <th class="horizontal-table-head"><small>Author</small></th>
-			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_s, class: "table-input"} %></td>
+			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_s.downcase, class: "table-input"} %></td>
 			      </tr>
 			          <th class="horizontal-table-head"><small>Date</small></th>
-			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: @parsed_file['article_date'], class: "table-input"} %></td>
+			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: DateTime.parse(@parsed_file['article_date']).strftime("%Y-%m-%d"), class: "table-input"} %></td>
 			      </tr>
 			          <th class="horizontal-table-head"><small>Source</small></th>
 			          <td><small><%= @parsed_file['link'].match("((.*?\/.*?){2})\/") %></small></td>
@@ -89,8 +89,9 @@
 		    <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 		</div>
 		   	
+			<%= f.input :article_title, as: :hidden, input_html: {'value': @article.title || ''} %>
+		    <%= f.input :article_desc, as: :hidden, input_html: {'value': @article.description || ''} %>
 
-		    
 	    <div class="button-group">
 	    	<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>
 	    	<%= f.button :submit, input_html: {class: 'button'} %>

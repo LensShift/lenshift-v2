@@ -35,7 +35,7 @@ class Fellow::ResourceItemsController < ApplicationController
     	@file = session.file_by_id(params[:file_id])
     	@text_file = @file.export_as_string('text/plain')
     	@parsed_file = Archieml.load(@file.export_as_string('text/plain'))
-    	@article = ArticleCrawler.new(@parsed_file['link'])
+    	@article = ArticleCrawler.new(@parsed_file['link']) if !@parsed_file['link'].nil?
     	gon.parsed_file = @parsed_file
 	end
 
@@ -100,6 +100,7 @@ class Fellow::ResourceItemsController < ApplicationController
     def resource_item_params
       params.require(:resource_item).permit(:title, :author, :source_url, :estimated_reading_time, 
       	:short_summary, :tags, :analysis_content, :key_takeaways, :image, :resource_type, :lens_shifter_id, 
-      	:google_doc_id, :published_at, :slug, :tag_list, :author_list, :file_id, :remote_image_url, :feature)
+      	:google_doc_id, :published_at, :slug, :tag_list, :author_list, :file_id, :remote_image_url, :feature,
+      	:article_title, :article_desc)
     end
 end
