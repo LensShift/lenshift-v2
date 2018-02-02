@@ -10,7 +10,7 @@
 
 				<%= f.input :short_summary, as: :hidden, input_html: {'v-model': 'shortSummary', class: 'short-summary-text'} %>
 			    <label>Short Summary <small><i>(This heading will not show)</i></small></label>
-			    <div class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</div>
+			    <div class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</div>
 			    <medium-editor :text="shortSummary" data-source="shortSummary" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 			    <br class="vertical-spacer">
 
@@ -69,7 +69,7 @@
 	 	</div>
 		<div class="small-12 medium-12 large-12 large">
 			<table>
-				<thead><tr><th>Key Takeaways <span class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</span></th></tr></thead>
+				<thead><tr><th>Key Takeaways <span class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</span></th></tr></thead>
 				<tbody>
 					<tr>
 						<td>
@@ -84,7 +84,7 @@
 
 		<div class="small-12 medium-12 large-12 cell analysis-content">
 			<label>Analysis Content <small><i>(This heading will not show)</i></small></label>
-			<div class="label success">I have a build in style editor, click on me to start editing, & highlight any text to see style options.</div>
+			<div class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</div>
 		    <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
 		    <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 		</div>
