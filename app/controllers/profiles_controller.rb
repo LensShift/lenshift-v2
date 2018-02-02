@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
     else
       @profile = Profile.create(lens_shifter: current_lens_shifter)
     end
+    gon.profile = @profile
   end
 
   def edit
@@ -22,6 +23,7 @@ class ProfilesController < ApplicationController
   end
 
   def create
+    gon.profile = @profile
     if current_lens_shifter.profile.present?
       @profile = current_lens_shifter.profile.update_attributes(profile_params)
     else
