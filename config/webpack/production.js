@@ -1,5 +1,3 @@
 const environment = require('./environment')
 
-module.exports = environment.toWebpackConfig({
-	warnings: true
-})
+module.exports = environment.toWebpackConfig()
