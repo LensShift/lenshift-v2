@@ -4,7 +4,6 @@ class LensShifter < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_one :lens_shifter_profile
   has_one :profile
   has_many :resource_items
 
