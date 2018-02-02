@@ -27,8 +27,8 @@
 			          <th class="horizontal-table-head"><small>Author</small></th>
 			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_s.downcase, class: "table-input"} %></td>
 			      </tr>
-			          <th class="horizontal-table-head"><small>Date</small></th>
-			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: DateTime.parse(@parsed_file['article_date']).strftime("%Y-%m-%d"), class: "table-input"} %></td>
+			          <th class="horizontal-table-head"><small>Article Date</small></th>
+			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: date_validation(@parsed_file['article_date']) ? DateTime.parse(@parsed_file['article_date']).strftime("%Y-%m-%d") : "" , class: "table-input"} %></td>
 			      </tr>
 			          <th class="horizontal-table-head"><small>Source</small></th>
 			          <td><small><%= @parsed_file['link'].match("((.*?\/.*?){2})\/") %></small></td>
@@ -40,7 +40,7 @@
 				    	<%= f.input :google_doc_id, label: 'Google doc index', input_html: {value: @file.title.gsub(/[^0-9]/, '')} %>
 					</div>
 				    <div class="cell small-12 medium-6 large-4">
-				    	<%= f.association :lens_shifter, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, input_html: {value: @parsed_file['LS-Initial-Author']}, label_html: {class: 'warning'} %>
+				    	<%= f.association :lens_shifter, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, input_html: {value: @parsed_file['LS_initial_author']}, label_html: {class: 'warning'} %>
 					</div>
 				    <div class="cell small-12 medium-6 large-4">
 				    	<%= f.input :feature, label: "Make me a featured resource" %>
@@ -89,8 +89,8 @@
 		    <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 		</div>
 		   	
-			<%= f.input :article_title, as: :hidden, input_html: {'value': @article.title || ''} %>
-		    <%= f.input :article_desc, as: :hidden, input_html: {'value': @article.description || ''} %>
+			<%= f.input :article_title, as: :hidden, input_html: {'value': @article.title.nil? ? '' : @article.title} %>
+		    <%= f.input :article_desc, as: :hidden, input_html: {'value': @article.description.nil? ? '' : @article.description} %>
 
 	    <div class="button-group">
 	    	<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>
