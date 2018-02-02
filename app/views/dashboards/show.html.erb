@@ -15,7 +15,8 @@
         <p><%= @profile.contact_consent ? 'Do ' : 'Do Not ' %>contact me</p>
       </p>
 
-      <%= link_to 'Edit Profile', edit_profile_path(@profile) %>
+      <%= link_to 'Edit Profile', edit_profile_path(@profile) %> |
+      <%= link_to "Change your password", edit_user_registration_path %>
       <% if current_lens_shifter.try(:admin?) %> |
         <%= link_to 'Add Resource', new_fellow_resource_item_path %> |
         <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> |
