@@ -22,11 +22,12 @@
 					<% if ResourceItem.exists?(google_doc_id: file.title.gsub(/[^0-9]/, '')) %>
 						<td><span class='label success'>imported</span></td>
 						<td><%= ResourceItem.find_by(google_doc_id: file.title.gsub(/[^0-9]/, '')).created_at.strftime("%m/%d/%y") %>
+						<td><%= link_to 'Show', doc_fellow_resource_items_path(file_id: file.id) %></td>
 					<% else %>
 						<td></td>
 						<td></td>
+						<td></td>
 					<% end %>
-					<td><%= link_to 'Show', doc_fellow_resource_items_path(file_id: file.id) %></td>
 					</tr>
 				<% end %>
 			</tbody>
