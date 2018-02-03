@@ -20,7 +20,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	def import_google
 		session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GD_SECRETS']))
 		
-		@files = session.files
+		@files = session.files.sort_by {|x| x.title}
 	end
 
 	def import_csv
