@@ -26,8 +26,10 @@ class ArticleCrawler
 		title_image = self.doc.at_css("meta[property='og:image']").nil? ? nil : self.doc.at_css("meta[property='og:image']")['content']
 		images << title_image if !title_image.nil?
 		self.doc.css("img").each do |image_url|
-			image_src = image_url['src'].start_with?('http') ? image_url['src'] : host + image_url['src']
-			images << image_src
+			if !image_url['src'].nil?
+				image_src = image_url['src'].start_with?('http') ? image_url['src'] : host + image_url['src']
+				images << image_src
+			end
 		end
 		return images
 	end

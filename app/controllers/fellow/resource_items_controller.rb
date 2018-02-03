@@ -84,6 +84,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	        RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
 	        format.json { render :show, status: :ok, location: @resource_item }
 	      else
+	      	gon.resource_item = resource_item_params
 	        format.html { render :edit }
 	        format.json { render json: @resource_item.errors, status: :unprocessable_entity }
 	      end
