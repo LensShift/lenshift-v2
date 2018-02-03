@@ -22,7 +22,8 @@
         <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">  
             <div class="cell" v-for="resource in sortedResources">
               <div class='card resource-card'>
-                <img :src="resource.image.url" alt="resource thumbnail" />
+                <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
+                <div v-if="!resource.image.url" class="image-holder"><i :class="'fa fa-' + icons[resource.resource_type]"></i></div>
                 <a :href="'/resource_items/' + resource.id" alt="link to resource">
                 <div class='card-section'>
                   <h6><strong>{{resource.title}}</strong></h6>

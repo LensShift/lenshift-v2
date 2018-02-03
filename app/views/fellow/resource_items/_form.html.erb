@@ -39,7 +39,7 @@
           <%= f.input :google_doc_id, label: 'Google doc index', input_html: {} %>
         </div>
         <div class="cell small-12 medium-6 large-4">
-          <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true %>
+          <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter.id %>
         </div>
         <div class="cell small-12 medium-6 large-4">
           <%= f.input :feature, label: "make me a featured resource" %>
@@ -58,7 +58,8 @@
           </ul>
         </i>
       </small>
-      <%= f.input :remote_image_url, input_html: {'v-model': 'image'} %>
+      current image: {{image}}
+      <%= f.input :remote_image_url, input_html: {} %>
       <%= f.input :image, label: 'Upload image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
       <div>
         <img v-if="image" :src="image" alt="image-preview" />

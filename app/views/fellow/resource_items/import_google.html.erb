@@ -8,8 +8,8 @@
 	          <tr>
 	            <th>file name</th>
 	            <td>id</td>
-	            <th>imported</th>
-	            <th>on</th>
+	            <th></th>
+	            <th></th>
 	            <th></th>
 	          </tr>
 	        </thead>
@@ -18,15 +18,15 @@
 				<% @files.each do |file| %>
 					<tr>
 					<td><%= file.title %></td>
-					<td><%= truncate(file.id, :length => 10) %></td>
+					<td><small><%= truncate(file.id, :length => 10) %></small></td>
 					<% if ResourceItem.exists?(google_doc_id: file.title.gsub(/[^0-9]/, '')) %>
-						<td><span class='label success'>imported</span></td>
-						<td><%= ResourceItem.find_by(google_doc_id: file.title.gsub(/[^0-9]/, '')).created_at.strftime("%m/%d/%y") %>
-						<td><%= link_to 'Show', doc_fellow_resource_items_path(file_id: file.id) %></td>
+						<td><span class='label success'>imported</span>
+						<td><small><%= ResourceItem.find_by(google_doc_id: file.title.gsub(/[^0-9]/, '')).created_at.strftime("%m/%d/%y") %></small></td>
+						<td><%= link_to 'Edit', edit_fellow_resource_item_path(ResourceItem.find_by(google_doc_id: file.title.gsub(/[^0-9]/, ''))) %></td>
 					<% else %>
 						<td></td>
 						<td></td>
-						<td></td>
+						<td><%= link_to 'Show', doc_fellow_resource_items_path(file_id: file.id) %></td>
 					<% end %>
 					</tr>
 				<% end %>
