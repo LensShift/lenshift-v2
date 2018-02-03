@@ -79,6 +79,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	def update
 	    respond_to do |format|
 	      if @resource_item.update(resource_item_params)
+	      	gon.resource_item = @resource_item
 	        format.html { redirect_to @resource_item, notice: 'Resource item was successfully updated.' }
 	        RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
 	        format.json { render :show, status: :ok, location: @resource_item }
