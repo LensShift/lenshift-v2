@@ -20,13 +20,19 @@ html, body {
 .hero-content {
 	margin: auto;
 }
-
+select {
+	border-radius: 0;
+}
 a {
 	color: #8a8a8a !important;
 }
 
 a.button {
 	color: white !important;
+}
+
+.table-button {
+	margin-bottom: 0px !important;
 }
 
 img {
@@ -134,6 +140,15 @@ img {
 	color: red;
 }
 
-.table-input {
+.image_preview {
+	max-width: 400px !important;
+}
+
+.type-icon {
+	float: right;
+	font-size: 20px;
+}
+
+.card-text {
 	margin-bottom: 0px !important;
 }

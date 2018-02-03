@@ -1,5 +1,5 @@
-<div class="grid-x grid-margin-x">
-    <div class="cell small-12 medium-10 large-10 medium-offset-1 large-offset-1">
+<div class="grid-x grid-padding-x">
+    <div class="cell small-12 medium-10 large-10">
 
       <h1>My Dashboard</h1>
       <p>
@@ -18,12 +18,14 @@
       <%= link_to 'Edit Profile', edit_profile_path(@profile) %> |
       <%= link_to "Change password", edit_lens_shifter_registration_path %>
       <% if current_lens_shifter.try(:admin?) %> |
+        <%= link_to 'All Resources', fellow_resource_items_path %> |
         <%= link_to 'Add Resource', new_fellow_resource_item_path %> |
         <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> |
         <%= link_to 'Export CSV', export_csv_fellow_resource_items_path(format: 'csv') %> |
+        
         <div class="inline-form">
           <%= form_tag import_csv_fellow_resource_items_path, multipart: true do %>
-            <%= file_field_tag :file %>
+            <%= file_field_tag :file, class: "show-for-sr" %>
             <%= submit_tag "Import Resources", class: 'button small' %>
           <% end %>
         </div>

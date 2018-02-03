@@ -4,8 +4,9 @@ class Fellow::ResourceItemsController < ApplicationController
 	require 'google_drive'
 	require 'archieml'
 
+
 	def index
-		@resource_items = ReourceItem.all
+		@resource_items = ResourceItem.all
 	end
 
 	def export_csv
@@ -52,17 +53,25 @@ class Fellow::ResourceItemsController < ApplicationController
 	  # POST /resource_items
 	  # POST /resource_items.json
 	def create
-	    @resource_item = ResourceItem.create(resource_item_params)
-	    gon.resource_item = resource_item_params
-	    respond_to do |format|
-	      if @resource_item.valid?
-	        format.html { redirect_to @resource_item, notice: 'Resource item was successfully created.' }
-	        format.json { render :show, status: :created, location: @resource_item }
-	      else
-	        format.html { render :new }
-	        format.json { render json: @resource_item.errors, status: :unprocessable_entity }
-	      end
-	    end
+		if ResourceItem.exists?(google_doc_id: params[:resource_item]['google_doc_id'])
+			respond_to do |format|
+				format.html {redirect_to import_google_fellow_resource_items_path, notice: 'Resource existed'}
+			end
+		else
+	    	@resource_item = ResourceItem.create(resource_item_params)
+	    	gon.resource_item = resource_item_params
+		    respond_to do |format|
+		    if @resource_item.valid?
+		        format.html { redirect_to @resource_item, notice: 'Resource item was successfully created.' }
+		        
+		        RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
+		        format.json { render :show, status: :created, location: @resource_item }
+		      else
+		        format.html { render :new }
+		        format.json { render json: @resource_item.errors, status: :unprocessable_entity }
+		      end
+		    end
+		end
 	end
 
 	  # PATCH/PUT /resource_items/1
@@ -71,6 +80,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	    respond_to do |format|
 	      if @resource_item.update(resource_item_params)
 	        format.html { redirect_to @resource_item, notice: 'Resource item was successfully updated.' }
+	        RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
 	        format.json { render :show, status: :ok, location: @resource_item }
 	      else
 	        format.html { render :edit }
@@ -82,9 +92,11 @@ class Fellow::ResourceItemsController < ApplicationController
 	  # DELETE /resource_items/1
 	  # DELETE /resource_items/1.json
 	def destroy
+		RestClient.patch("https://lensshift-drive.firebaseio.com/resources_deleted/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
+		RestClient.delete("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json")
 		@resource_item.destroy
 	    respond_to do |format|
-	      format.html { redirect_to resource_items_url, notice: 'Resource item was successfully destroyed.' }
+	      format.html { redirect_to fellow_resource_items_url, notice: 'Resource item was successfully destroyed.' }
 	      format.json { head :no_content }
 	    end
 	end
@@ -101,6 +113,6 @@ class Fellow::ResourceItemsController < ApplicationController
       params.require(:resource_item).permit(:title, :author, :source_url, :estimated_reading_time, 
       	:short_summary, :tags, :analysis_content, :key_takeaways, :image, :resource_type, :lens_shifter_id, 
       	:google_doc_id, :published_at, :slug, :tag_list, :author_list, :file_id, :remote_image_url, :feature,
-      	:article_title, :article_desc)
+      	:article_title, :article_desc, :article_date)
     end
 end

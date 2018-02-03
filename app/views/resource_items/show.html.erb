@@ -8,6 +8,7 @@
       <h1 class="hide-for-small-only"><%= @resource_item.title %></h1>
     </p>
     <p><%= @resource_item.published_at %></p>
+
     <p>
       <%= @resource_item.short_summary %>
     </p>
@@ -76,11 +77,13 @@
   </div>
 
   <div class="small-12 medium-4 large-4 cell">
-
+    <% if @resource_item.image.present? %>
     <%= image_tag @resource_item.image_url %>
-
+    <% end %>
     <% if current_lens_shifter.try(:admin?) %>
-      <%= link_to 'edit', edit_fellow_resource_item_path(@resource_item), class: 'button' %>
+    <br />
+    <br />
+      <%= link_to 'edit resource', edit_fellow_resource_item_path(@resource_item), class: 'button' %>
     <% end %>
   </div>
 

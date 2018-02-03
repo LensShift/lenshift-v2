@@ -1,8 +1,6 @@
-<div class="grid-x grid-margin-x">
-
-	<h1>Editing Resource Item</h1>
+<div class="grid-x grid-padding-x">
 		<%= simple_form_for (@resource_item), url: fellow_resource_item_path, method: :patch do |f| %>
-			
+			<small><strong>(edit preview)</strong></small>
 			<%= render partial: 'form', resource_item: @resource_item, locals: {:f => f} %>
 
 			<div class="button-group">

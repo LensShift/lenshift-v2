@@ -1,0 +1,34 @@
+<div class="grid-x grid-margin-x">
+	<div class="cell small-12 medium-12 large-12">
+	
+		<h1>Resource Library Admin</h1>
+
+		<table>
+	        <thead>
+	          <tr>
+	            <th>GD ID</th>
+	            <th>Title</th>
+	            <th>Published</th>
+	            <th>LS Author</th>
+	            <th>Featured</th>
+	            <th></th>
+	            <th></th>
+	          </tr>
+	        </thead>
+
+	        <tbody>
+				<% @resource_items.each do |resource_item| %>
+					<tr>
+					<td><%= resource_item.google_doc_id %></td>
+					<td><%= resource_item.title %></td>
+					<td><%= resource_item.published_at %></td>
+					<td><%= resource_item.lens_shifter.full_name %></td>
+					<td><%= resource_item.feature ? "<span class='success label>feature</span".html_safe : '' %></td>
+					<td><%= link_to 'Edit', edit_fellow_resource_item_path(resource_item.id) %></td>
+					<td><%= delete_button_to 'Delete', fellow_resource_item_path(resource_item), data: {confirm: 'Are you sure?'}, class: 'button table-button alert' %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

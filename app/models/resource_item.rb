@@ -20,6 +20,10 @@ class ResourceItem < ApplicationRecord
 	'other': "certificate"
    }
 
+   	def type_icon
+		RESOURCE_TYPE[self.resource_type.to_sym]
+	end
+
   	def self.to_csv
 		CSV.generate do |csv|
 			csv << column_names

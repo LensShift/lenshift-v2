@@ -1,9 +1,10 @@
 <resource-doc-form inline-template>
 <div class="grid-x grid-padding-x">
-	<%= simple_form_for @resource_item, url: fellow_resource_items_path, method: :post do |f| %>
-		<div class="grid-x grid-padding-x">
+	<%= simple_form_for @resource_item, :html => {:ref => 'gd_form'}, url: fellow_resource_items_path, method: :post do |f| %>
+		<div class="grid-x grid-padding-x" ref="testDiv">
 			<div class="cell small-12 medium-8 large-8">
-				<h1>(preview) {{title}}</h1>
+				<small><strong>(import preview)</strong></small>
+				<h1>{{title}}</h1>
 				<%= f.input :title, input_html: {'v-model': "title"} %>
 				<%= f.input :source_url, label: 'Link', input_html: {value: @parsed_file['link']} %>
 				<%= f.input :published_at, label: 'Publish Date', as: :date, html5: true, input_html: {value: @parsed_file['date_published(leave_blank)']} %>
@@ -40,7 +41,7 @@
 				    	<%= f.input :google_doc_id, label: 'Google doc index', input_html: {value: @file.title.gsub(/[^0-9]/, '')} %>
 					</div>
 				    <div class="cell small-12 medium-6 large-4">
-				    	<%= f.association :lens_shifter, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, input_html: {value: @parsed_file['LS_initial_author']}, label_html: {class: 'warning'} %>
+				    	<%= f.association :lens_shifter, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, label_html: {class: 'warning'} %>
 					</div>
 				    <div class="cell small-12 medium-6 large-4">
 				    	<%= f.input :feature, label: "Make me a featured resource" %>
@@ -61,13 +62,15 @@
 					</i>
 				</small>
 				<%= f.input :remote_image_url, input_html: {'v-model': 'image'} %>
-				<%= f.input :image, as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
+				<div class="preview-frame">
+				<%= f.input :image, label: 'Upload image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
+				</div>
 				<div>
 					<img v-if="image" :src="image" alt="image-preview" />
 				</div>
 			</div>
 	 	</div>
-		<div class="small-12 medium-12 large-12 large">
+		<div class="small-12 medium-12 large-12 cell">
 			<table>
 				<thead><tr><th>Key Takeaways <span class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</span></th></tr></thead>
 				<tbody>
@@ -80,7 +83,7 @@
 				</tbody>
 			</table>
 		</div>
-		<br class="vertical-spacer">
+		<br class="vertical-spacer" />
 
 		<div class="small-12 medium-12 large-12 cell analysis-content">
 			<label>Analysis Content <small><i>(This heading will not show)</i></small></label>

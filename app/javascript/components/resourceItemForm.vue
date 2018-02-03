@@ -12,7 +12,7 @@ export default {
       shortSummary: gon.resource_item.short_summary,
       keyTakeaways: gon.resource_item.key_takeaways,
       analysisContent: gon.resource_item.analysis_content,
-      image: gon.resource_item.image_url,
+      image: gon.resource_item.image || gon.resource_item.remote_image_url,
       longOptions: {
         toolbar: {
           buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4']

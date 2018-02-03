@@ -1,63 +1,44 @@
-<div class='grid-x grid-padding-x'>
-  <div class="small-12 medium-12 large-12 cell">
-    <h1>Library</h1>
-    <p>Welcome to our pool of resources</p>
-  </div>
-</div>
-  <div class="grid-x grid-padding-x align-right">
-      <div class="small-3 large-1 cell">
-        <label for="sort_by" class="text-right middle">Sort by: </label>
+<resource-list inline-template>
+<div>
+  <div class='grid-x grid-padding-x'>
+    <div class="small-12 medium-7 large-9 cell">
+      <h1>Library</h1>
+      <p>Welcome to our pool of resources</p>
+    </div>
+      <div class="small-3 medium-2 large-1 cell">
+        <label for="sort_by" class="text-right middle">sort by:</label>
       </div>
-      <div class="small-4 large-2 cell">
-        <select id="sort_by" onchange="if(this.value) window.location.href=this.value">
-          <option value=""></option>
-          <option value="<%= resource_items_path(sort_by: 'title') %>">title</option>
-          <option value="<%= resource_items_path(sort_by: 'published_at') %>">published at</option>
-          <option value="<%= resource_items_path(sort_by: 'estimated_reading_time') %>">reading time</option>
+      <div class="small-8 medium-3 large-2 cell">
+        <select id="sort_by" v-model="sortBy">
+          <option disabled value="">options</option>
+          <option value="title">title</option>
+          <option value="published_at">published at</option>
+          <option value="estimated_reading_time">reading time</option>
         </select>
       </div>
   </div>
-
-<div class='grid-x grid-padding-x'>
-  <div class="small-12 medium-12 large-12 cell">
-    <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">
-      <% @resource_items.each do |resource_item| %>
-        <div class="cell">
-          <div class='card resource-card'>
-            <%= image_tag resource_item.image_url(:thumb).to_s %>
-            <%= link_to resource_item_path(resource_item) do %>
-            <div class='card-section'>
-              <h6><strong><%= resource_item.title %></strong></h6>
-              <small><%= truncate(resource_item.short_summary, length: 399) {link_to 'open', resource_item_path(resource_item)} %></small>
+  <div class='grid-x grid-padding-x'>
+    <div class="small-12 medium-12 large-12 cell">
+        <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">  
+            <div class="cell" v-for="resource in sortedResources">
+              <div class='card resource-card'>
+                <img :src="resource.image.url" alt="resource thumbnail" />
+                <a :href="'/resource_items/' + resource.id" alt="link to resource">
+                <div class='card-section'>
+                  <h6><strong>{{resource.title}}</strong></h6>
+                  <p class="text-justify card-text">{{resource.short_summary | truncate(339)}}
+                  <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
+                  </p>
+                   
+                </div>
+                </a>
+              </div>
             </div>
-            <% end %>
-          </div>
         </div>
-      <% end %>
+
     </div>
+    <%= paginate @resource_items, class: "pagination"  %>
   </div>
-  <%= paginate @resource_items, class: "pagination"  %>
 </div>
 
-<script>
-  $(document).ready(function() {
-    var getUrlParameter = function getUrlParameter(sParam) {
-        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
-
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : sParameterName[1];
-            }
-        }
-    };
-
-    var sort = getUrlParameter('sort_by');
-    console.log("/library?sort_by="+sort)
-    $("#sort_by").val("/library?sort_by="+sort)
-  })
-</script>
+</resource-list>

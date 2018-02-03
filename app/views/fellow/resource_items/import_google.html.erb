@@ -1,13 +1,15 @@
 <div class="grid-x grid-margin-x">
-<div class="cell small-12 medium-10 large-10 medium-offset-1 large-offset-1">
+<div class="cell small-12 medium-12 large-12">
 	
 	<h1>Google Drive Docs</h1>
 
 		<table>
 	        <thead>
 	          <tr>
-	            <th>File Name</th>
-	            <th>ID</th>
+	            <th>file name</th>
+	            <td>id</td>
+	            <th>imported</th>
+	            <th>on</th>
 	            <th></th>
 	          </tr>
 	        </thead>
@@ -16,7 +18,14 @@
 				<% @files.each do |file| %>
 					<tr>
 					<td><%= file.title %></td>
-					<td><%= file.id %></td>
+					<td><%= truncate(file.id, :length => 10) %></td>
+					<% if ResourceItem.exists?(google_doc_id: file.title.gsub(/[^0-9]/, '')) %>
+						<td><span class='label success'>imported</span></td>
+						<td><%= ResourceItem.find_by(google_doc_id: file.title.gsub(/[^0-9]/, '')).created_at.strftime("%m/%d/%y") %>
+					<% else %>
+						<td></td>
+						<td></td>
+					<% end %>
 					<td><%= link_to 'Show', doc_fellow_resource_items_path(file_id: file.id) %></td>
 					</tr>
 				<% end %>

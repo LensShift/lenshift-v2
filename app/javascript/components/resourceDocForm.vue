@@ -35,7 +35,16 @@ export default {
     addImage: function(imageLink) {
       console.log(imageLink)
       this.image = imageLink
+    },
+    addToFirebase: function() {
+      let myForm = document.getElementByID('new_resource_item');
+      let formData = new FormData(myForm)
+      console.log(formData)
+      axios.post('https://lensshift-drive.firebaseio.com/resource_item.json')
     }
+  },
+  created() {
+
   }
   
 }

@@ -14,12 +14,17 @@ import footer from '../components/footer'
 import lensShifterProfileForm from '../components/lensShifterProfileForm'
 import resourceDocForm from '../components/resourceDocForm'
 import resourceItemForm from '../components/resourceItemForm'
+import resourceList from '../components/resourceList'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
   
   // Vue.component('app-navbar', navbar)
   // Vue.component('app-footer', footer)
+
+  Vue.filter('truncate', function(text, stop, clamp) {
+    return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '')
+  })
 
   const app = new Vue({
   	el: '#app',
@@ -28,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
   		'app-footer': footer,
       'lens-shifter-profile-form': lensShifterProfileForm,
       'resource-doc-form': resourceDocForm,
-      'resource-item-form': resourceItemForm
+      'resource-item-form': resourceItemForm,
+      'resource-list': resourceList
   	}
   	// render: h => h(App)
   })
