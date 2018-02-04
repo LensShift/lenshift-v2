@@ -16,11 +16,15 @@
       <div class="top-bar-right">
         <ul class="menu">
           <% if lens_shifter_signed_in? %>
-          <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
-          <li class="link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
+            <% if current_lens_shifter.profile.avatar.present? %>
+              <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
+            <% else %>
+              <li class="link"><%= link_to 'Dashboard', dashboard_path %></li>
+            <% end %>
+            <li class="link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
           <% else %>
-          <li class="link"><%= link_to 'Sign In', new_lens_shifter_session_path %></li>
-          <li class="link"><%= link_to 'Sign Up', new_lens_shifter_registration_path %></li>
+            <li class="link"><%= link_to 'Sign In', new_lens_shifter_session_path %></li>
+            <li class="link"><%= link_to 'Sign Up', new_lens_shifter_registration_path %></li>
           <% end %>
         </ul>
       </div>
