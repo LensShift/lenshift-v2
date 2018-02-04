@@ -7,9 +7,13 @@ export default {
     return {
       location: gon.profile.location,
       suggestions: null,
+      address: null,
       mapquest_key: gon.mapquest_key,
       isActive: false,
       cursor: -1,
+      city: null,
+      state: null,
+      country: null
     }
   },
   methods: {
@@ -20,7 +24,7 @@ export default {
                 // console.log(res)
                 // console.log('mapquest', gon.mapquest_key)
                 this.suggestions = res.data.map(place => {
-                  return place.display_name
+                  return { 'name': place.display_name, 'address': place.address }
                 })
                 this.isActive = true
             })
@@ -29,7 +33,8 @@ export default {
       }
     },
     selectPlace: function(index) {
-      this.location = this.suggestions[index]
+      this.location = this.suggestions[index].name
+      this.address = JSON.stringify(this.suggestions[index].address)
     },
     focus: function () {
       this.isActive = true
@@ -39,10 +44,10 @@ export default {
     },
     keyUp: function (e) {
       e.preventDefault();
-      console.log('up')
+      // console.log('up')
       if(this.cursor > -1) {
         this.cursor--
-        console.log(this.cursor)
+        // console.log(this.cursor)
         // console.log(this.$el.getElementsByClassName('select-option-item')[this.cursor])
         this.selectPlace(this.cursor)
         this.itemView(this.$el.getElementsByClassName('select-option-item')[this.cursor])

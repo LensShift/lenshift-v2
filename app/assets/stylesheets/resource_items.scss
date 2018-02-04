@@ -4,6 +4,8 @@
 .resource-iframe {
 	min-height: 750px;
 	border: 1px solid grey;
+	width: 100%;
+	padding: 0px !important;
 }
 
 .library-body {
@@ -16,4 +18,10 @@
 
 .resource-card a {
 	color: #000000 !important;
+}
+
+.content-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

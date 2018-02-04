@@ -13,6 +13,7 @@ export default {
       keyTakeaways: gon.parsed_file.key_takeaways,
       analysisContent: gon.parsed_file.analysis_content,
       image: gon.parsed_file.image,
+      resourceType: null,
       longOptions: {
         toolbar: {
           buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4']
@@ -33,17 +34,12 @@ export default {
       this[source] = operation.api.origElements.innerHTML
     },
     addImage: function(imageLink) {
-      console.log(imageLink)
+      // console.log(imageLink)
       this.image = imageLink
-    },
-    addToFirebase: function() {
-      let myForm = document.getElementByID('new_resource_item');
-      let formData = new FormData(myForm)
-      console.log(formData)
-      axios.post('https://lensshift-drive.firebaseio.com/resource_item.json')
     }
   },
   created() {
+    this.resourceType = gon.parsed_file.type.toLowerCase()
 
   }
   

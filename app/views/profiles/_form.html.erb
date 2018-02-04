@@ -3,8 +3,10 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :first_name, wrapper_html: {class: 'column small-12 medium-6 no-padding-left'} %>
-    <%= f.input :last_name, wrapper_html: {class: 'column small-12 medium-6 no-padding-right'} %>
+    <div class="grid-x grid-margin-x">
+      <%= f.input :first_name, wrapper_html: {class: 'cell small-12 medium-6 large-6 no-padding-left'} %>
+      <%= f.input :last_name, wrapper_html: {class: 'cell small-12 medium-6 large-6 no-padding-right'} %>
+    </div>
     <%= f.input :birthdate, as: :date, html5: true %>
     
     <div class="input string optional profile_location relative-block">
@@ -13,15 +15,16 @@
       <input v-model="location" type="text" name="profile[location]" id="profile_location" aria-controls="places" data-is-focus="true" data-yeti-box="places" aria-haspopup="true" aria-expanded="false" class="string optional dropdown-input"  v-on:input="getLocation" v-on:focus="focus" v-on:blur="blur" v-on:keyup.enter="keyEnter" v-on:keydown.tab="keyEnter" v-on:keyup.up="keyUp" v-on:keydown.down="keyDown">
       
       <ul v-if="isActive" class="dropdown-options" id='places'>
-        <li v-if="isActive" v-for="(place, index) in suggestions" v-on:click="selectPlace(index)" :class="['select-option-item', {'select-option-active': index === cursor}]" v-on:mouseover="cursor = index">{{place}}</li>
+        <li v-if="isActive" v-for="(place, index) in suggestions" v-on:click="selectPlace(index)" :class="['select-option-item', {'select-option-active': index === cursor}]" v-on:mouseover="cursor = index">{{place.name}}</li>
       </ul>
     </div>
-
+    <%= f.input :address, as: :text, as: :hidden, input_html: {'v-bind:value': 'address'} %>
     
     
-    <%= f.input :sector %>
+    <%= f.input :sector, as: :select, collection: Profile::SECTORS %>
     <%= f.input :referral %>
     <%= f.input :comment %>
+    <%= f.input :avatar, label: 'Upload Profile Image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
     <%= f.input :contact_consent, label: "Keep me updated about LensShift by subscribing me to LensShift's newsletter" %>
   </div>
   <div class="form-actions">

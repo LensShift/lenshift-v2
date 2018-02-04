@@ -2,7 +2,7 @@
 <div class="grid-x grid-padding-x">
 	<%= simple_form_for @resource_item, :html => {:ref => 'gd_form'}, url: fellow_resource_items_path, method: :post do |f| %>
 		<div class="grid-x grid-padding-x" ref="testDiv">
-			<div class="cell small-12 medium-8 large-8">
+			<div class="cell small-12 medium-7 large-7">
 				<small><strong>(import preview)</strong></small>
 				<h1>{{title}}</h1>
 				<%= f.input :title, input_html: {'v-model': "title"} %>
@@ -20,17 +20,26 @@
 			    <table class="unstriped">
 			      <tr>
 			          <th class="horizontal-table-head"><small>Type</small></th>
-			          <td><%= f.input :resource_type, as: :select, label: false, collection: ResourceItem::RESOURCE_TYPE.map {|k, v| k }, selected: @parsed_file['type'].downcase, input_html: {value: @parsed_file['type'].downcase, class: "table-input"} %></td>
+			          <td><%= f.input :resource_type, as: :select, label: false, collection: ResourceItem::RESOURCE_TYPE.map {|k, v| k }, selected: @parsed_file['type'].downcase, input_html: {'v-model': 'resourceType', 'ref': "resource_type" , class: "table-input"} %></td>
 			      </tr>
+			      <tr v-if="resourceType === 'video'">
+			      	<th class="horizontal-table-head"><small>Video Embed Code</small></th>
+			      	<td><%= f.input :video_embed, label: false, input_html: {class: "table-input"} %></td>
+			      </tr>
+			      <tr>
 			          <th class="horizontal-table-head"><small>Reading Time</small></th>
 			          <td><%= f.input :estimated_reading_time, label: false, input_html: {value: @parsed_file['estimated_reading_time(minutes)'].gsub(/[^0-9]/, ''), class: "table-input"} %></td>
 			      </tr>
+			      <tr>
 			          <th class="horizontal-table-head"><small>Author</small></th>
 			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_s.downcase, class: "table-input"} %></td>
 			      </tr>
+			      <tr>
 			          <th class="horizontal-table-head"><small>Article Date</small></th>
-			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: date_validation(@parsed_file['article_date']) ? DateTime.parse(@parsed_file['article_date']).strftime("%Y-%m-%d") : "" , class: "table-input"} %></td>
+			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: date_validation(@parsed_file['article_date']) , class: "table-input"} %>
+			          </td>
 			      </tr>
+			      <tr>
 			          <th class="horizontal-table-head"><small>Source</small></th>
 			          <td><small><%= @parsed_file['link'].match("((.*?\/.*?){2})\/") %></small></td>
 			      </tr>
@@ -50,7 +59,7 @@
 			</div>
 		
 
-			<div class="small-12 medium-4 large-4 cell">
+			<div class="small-12 medium-5 large-5 cell">
 				<small>
 					<i>
 						Your photo options are:
@@ -91,9 +100,10 @@
 		    <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
 		    <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 		</div>
-		   	
-			<%= f.input :article_title, as: :hidden, input_html: {'value': @article.title.nil? ? '' : @article.title} %>
-		    <%= f.input :article_desc, as: :hidden, input_html: {'value': @article.description.nil? ? '' : @article.description} %>
+		
+		<%= f.input :article_title, as: :hidden, input_html: {'value': @article.title.nil? ? '' : @article.title} %>
+		<%= f.input :article_desc, as: :hidden, input_html: {'value': @article.description.nil? ? '' : @article.description} %>
+		<%= f.input :article_content, as: :hidden, input_html: {'value': @article.doc.nil? ? '' : @article.doc } %>
 
 	    <div class="button-group">
 	    	<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>

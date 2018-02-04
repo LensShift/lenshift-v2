@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202164903) do
+ActiveRecord::Schema.define(version: 20180204111510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,6 +85,9 @@ ActiveRecord::Schema.define(version: 20180202164903) do
     t.bigint "lens_shifter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.jsonb "address"
+    t.index "((address -> 'country'::text))", name: "index_profiles_on_address_city", using: :gin
     t.index ["lens_shifter_id"], name: "index_profiles_on_lens_shifter_id"
   end
 
@@ -109,6 +112,8 @@ ActiveRecord::Schema.define(version: 20180202164903) do
     t.datetime "article_date"
     t.string "article_title"
     t.text "article_desc"
+    t.text "article_content"
+    t.text "video_embed"
     t.index ["lens_shifter_id"], name: "index_resource_items_on_lens_shifter_id"
     t.index ["slug"], name: "index_resource_items_on_slug"
   end

@@ -12,7 +12,8 @@ export default {
       shortSummary: gon.resource_item.short_summary,
       keyTakeaways: gon.resource_item.key_takeaways,
       analysisContent: gon.resource_item.analysis_content,
-      image: gon.resource_item.image.url || gon.resource_item.remote_image_url,
+      image: null,
+      resourceType: null,
       longOptions: {
         toolbar: {
           buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4']
@@ -33,12 +34,15 @@ export default {
       this[source] = operation.api.origElements.innerHTML
     },
     addImage: function(imageLink) {
-      console.log(imageLink)
+      // console.log(imageLink)
       this.image = imageLink
     }
   },
   created() {
-    console.log('image', gon.resource_item)
+    // console.log('image', gon.resource_item)
+    this.image = gon.resource_item.image !== null && gon.resource_item.image !== undefined ? gon.resource_item.image.url : gon.resource_item.remote_image_url
+
+    this.resourceType = gon.resource_item.resource_type.toLowerCase()
   }
   
 }

@@ -3,7 +3,7 @@
     <h2><%= @resource_item.title %></h2>
   </div>
 
-  <div class="small-12 medium-8 large-8 cell">
+  <div class="small-12 medium-7 large-7 cell">
      <p>
       <h1 class="hide-for-small-only"><%= @resource_item.title %></h1>
     </p>
@@ -76,7 +76,7 @@
     </table>
   </div>
 
-  <div class="small-12 medium-4 large-4 cell">
+  <div class="small-12 medium-5 large-5 cell">
     <% if @resource_item.image.present? %>
     <%= image_tag @resource_item.image_url %>
     <% end %>
@@ -101,9 +101,14 @@
   </div>
   <br class="clr" />
   <br />
-  <iframe class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell resource-iframe" src="<%= @resource_item.source_url %>"></iframe>
-
-
+  <% if @resource_item.resource_type == 'video' %>
+    <div class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= @resource_item.video_embed.html_safe %></div>
+  <% elsif @resource_item.resource_item == 'graphic' %>
+    <div lass="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= image_tag @resource_item.image_url %></div>
+  <% else %>
+    <iframe srcdoc="<%= @resource_item.article_content %>" class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell resource-iframe"></iframe>
+  <% end %>
+</div>
 
 </div>
 

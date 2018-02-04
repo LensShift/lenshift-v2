@@ -47,7 +47,9 @@ class Fellow::ResourceItemsController < ApplicationController
 
 	  # GET /resource_items/1/edit
 	def edit
-		gon.resource_item = @resource_item
+		gon.resource_item = resource_item_params
+		@article = ArticleCrawler.new(@parsed_file['link']) if !@parsed_file['link'].nil?
+		gon.article = @article
 	end
 
 	  # POST /resource_items
@@ -59,7 +61,8 @@ class Fellow::ResourceItemsController < ApplicationController
 			end
 		else
 	    	@resource_item = ResourceItem.create(resource_item_params)
-	    	gon.resource_item = resource_item_params
+	    	gon.resource_item = @resource_item
+
 		    respond_to do |format|
 		    if @resource_item.valid?
 		        format.html { redirect_to @resource_item, notice: 'Resource item was successfully created.' }
@@ -85,7 +88,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	        format.json { render :show, status: :ok, location: @resource_item }
 	      else
 	      	gon.resource_item = resource_item_params
-	        format.html { render :edit }
+	        format.html { render :doc }
 	        format.json { render json: @resource_item.errors, status: :unprocessable_entity }
 	      end
 	    end
@@ -115,6 +118,6 @@ class Fellow::ResourceItemsController < ApplicationController
       params.require(:resource_item).permit(:title, :author, :source_url, :estimated_reading_time, 
       	:short_summary, :tags, :analysis_content, :key_takeaways, :image, :resource_type, :lens_shifter_id, 
       	:google_doc_id, :published_at, :slug, :tag_list, :author_list, :file_id, :remote_image_url, :feature,
-      	:article_title, :article_desc, :article_date)
+      	:article_title, :article_desc, :article_date, :article_content, :video_embed)
     end
 end

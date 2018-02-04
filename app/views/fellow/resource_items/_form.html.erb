@@ -1,6 +1,6 @@
 <resource-item-form inline-template>
 <div class="grid-x grid-padding-x">
-    <div class="cell small-12 medium-12 large-8">
+    <div class="cell small-12 medium-12 large-7">
       <h1>{{title}}</h1>
       <%= f.input :title, input_html: {'v-model': "title"} %>
       <%= f.input :source_url, label: 'Link', input_html: {} %>
@@ -20,6 +20,11 @@
               <th class="horizontal-table-head"><small>Type</small></th>
               <td><%= f.input :resource_type, as: :select, label: false, collection: ResourceItem::RESOURCE_TYPE.map {|k, v| k }, input_html: {class: "table-input"} %></td>
           </tr>
+          <tr v-if="resourceType === 'video'">
+              <th class="horizontal-table-head"><small>Video Embed Code</small></th>
+              <td><%= f.input :video_embed, label: false, input_html: {class: "table-input"} %></td>
+          </tr>
+          <tr>
               <th class="horizontal-table-head"><small>Reading Time</small></th>
               <td><%= f.input :estimated_reading_time, label: false, input_html: {class: "table-input"} %></td>
           </tr>
@@ -35,11 +40,11 @@
       </table>
     
       <div class="grid-x grid-padding-x">
-        <div class="cell small-12 medium-6 large-4">
+        <div class="cell small-12 medium-6 large-5">
           <%= f.input :google_doc_id, label: 'Google doc index', input_html: {} %>
         </div>
         <div class="cell small-12 medium-6 large-4">
-          <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter.id %>
+          <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter %>
         </div>
         <div class="cell small-12 medium-6 large-4">
           <%= f.input :feature, label: "make me a featured resource" %>
@@ -86,5 +91,9 @@
         <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
         <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
     </div>
+    <%= f.input :article_title, as: :hidden  %>
+    <%= f.input :article_desc, as: :hidden  %>
+    <%= f.input :article_content, as: :hidden %>
+
 </div>
 </resource-item-form>
