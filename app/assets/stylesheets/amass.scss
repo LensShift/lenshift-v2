@@ -20,6 +20,7 @@ html, body {
 .hero-content {
 	margin: auto;
 }
+
 select {
 	border-radius: 0;
 }
@@ -39,20 +40,55 @@ img {
 	width: 100%;
 }
 
+.top-bar {
+	padding: 0px !important;
+	height: 75px;
+}
+
 .menu {
 	align-items: center;
 }
 
 .menu a {
 	color: white !important;
-}
-
-.menu a:hover {
-	color: white !important;
+	height: 75px;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
 }
 
 .menu .link:hover {
+	color: white !important;
 	background: #f48f14ff;
+	height: 75px;
+}
+
+.menu li {
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+.avatar {
+	border-radius: 50%;
+	height: 55px;
+	width: 55px;
+	display: block;
+	padding: 0px !important;
+	margin: 0px 10px 0px 10px;
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+
+.avatar a {
+	padding: 0px !important;
+}
+
+.avatar a > img {
+	max-height: 100% !important;
+	width: auto;
+	border-radius: 50%;
 }
 
 .inline-form {
@@ -165,3 +201,4 @@ img {
 	justify-content: center;
 
 }
+
