@@ -19,7 +19,11 @@
             <% if current_lens_shifter.profile.avatar.present? %>
               <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
             <% else %>
-              <li class="link"><%= link_to 'Dashboard', dashboard_path %></li>
+              <li>
+                <%= link_to dashboard_path do %>
+                  <div class="avatar"><i class="fa fa-user fa-2x"></i></div>
+                <% end %>  
+              </li>
             <% end %>
             <li class="link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
           <% else %>

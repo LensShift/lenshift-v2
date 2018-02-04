@@ -79,6 +79,11 @@ img {
 	display: flex !important;
 	align-items: center;
 	justify-content: center;
+	background: #f48f14ff;
+}
+
+.avatar:hover {
+	color: #2B2D2E;
 }
 
 .avatar a {
