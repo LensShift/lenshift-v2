@@ -13,6 +13,7 @@ export default {
       keyTakeaways: gon.resource_item.key_takeaways,
       analysisContent: gon.resource_item.analysis_content,
       image: null,
+      lensShifter: null,
       resourceType: null,
       longOptions: {
         toolbar: {
@@ -43,6 +44,8 @@ export default {
     this.image = gon.resource_item.image !== null && gon.resource_item.image !== undefined ? gon.resource_item.image.url : gon.resource_item.remote_image_url
 
     this.resourceType = gon.resource_item.resource_type.toLowerCase()
+
+    console.log('article', this.articleContent)
   }
   
 }

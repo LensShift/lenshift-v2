@@ -20,8 +20,8 @@
               <th class="horizontal-table-head"><small>Type</small></th>
               <td><%= f.input :resource_type, as: :select, label: false, collection: ResourceItem::RESOURCE_TYPE.map {|k, v| k }, input_html: {class: "table-input"} %></td>
           </tr>
-          <tr v-if="resourceType === 'video'">
-              <th class="horizontal-table-head"><small>Video Embed Code</small></th>
+          <tr v-if="resourceType === 'video' || resourceType === 'podcast'">
+              <th class="horizontal-table-head"><small>Embed Code</small></th>
               <td><%= f.input :video_embed, label: false, input_html: {class: "table-input"} %></td>
           </tr>
           <tr>
@@ -91,9 +91,10 @@
         <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
         <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
     </div>
-    <%= f.input :article_title, as: :hidden  %>
-    <%= f.input :article_desc, as: :hidden  %>
-    <%= f.input :article_content, as: :hidden %>
-
+    <% if !@article.nil? %>
+      <%= f.input :article_title, as: :hidden, input_html: {'value': @article.title.nil? ? '' : @article.title } %>
+      <%= f.input :article_desc, as: :hidden, input_html: {'value': @article.description.nil? ? '' : @article.description }  %>
+      <%= f.input :article_content, as: :hidden, input_html: {'value': @article.doc.nil? ? '' : @article.doc } %>
+    <% end %>
 </div>
 </resource-item-form>

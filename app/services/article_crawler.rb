@@ -3,7 +3,7 @@ class ArticleCrawler
 
 	def initialize(url)
 		@url = url
-		@doc = Nokogiri::HTML(open(url))
+		@doc = Nokogiri::HTML(open(url, :allow_redirections => :safe))
 	end
 
 	def title

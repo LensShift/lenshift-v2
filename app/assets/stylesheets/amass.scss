@@ -3,6 +3,10 @@ html, body {
 	overflow-x: hidden;
 }
 
+.is-orange {
+	background: #F48F14 !important;
+}
+
 #main-container {
 	height: 100%;
 	min-height: 800px;
@@ -59,7 +63,7 @@ img {
 
 .menu .link:hover {
 	color: white !important;
-	background: #f48f14ff;
+	background: #F48F14;
 	height: 75px;
 }
 
@@ -199,7 +203,6 @@ img {
 	background: #e6e6e6;
 	color: white;
 	height: 250px;
-	width: 250px;
 	font-size: 90px;
 	display: flex;
 	align-items: center;

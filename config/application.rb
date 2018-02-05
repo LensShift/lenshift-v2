@@ -6,6 +6,7 @@ require 'json'
 require 'nokogiri'
 require 'open-uri'
 require 'rest-client'
+require 'open_uri_redirections'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

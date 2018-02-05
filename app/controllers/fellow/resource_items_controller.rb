@@ -36,8 +36,14 @@ class Fellow::ResourceItemsController < ApplicationController
     	@file = session.file_by_id(params[:file_id])
     	@text_file = @file.export_as_string('text/plain')
     	@parsed_file = Archieml.load(@file.export_as_string('text/plain'))
-    	@article = ArticleCrawler.new(@parsed_file['link']) if !@parsed_file['link'].nil?
-    	gon.parsed_file = @parsed_file
+		gon.parsed_file = @parsed_file
+    	
+    	begin
+    		@article = ArticleCrawler.new(@parsed_file['link']) if !@parsed_file['link'].nil?
+    	rescue StandardError
+    		flash[:notice] = 'Scraper cannot scrape the link'
+    	end
+    	
 	end
 
 	def new
@@ -48,7 +54,11 @@ class Fellow::ResourceItemsController < ApplicationController
 	  # GET /resource_items/1/edit
 	def edit
 		gon.resource_item = @resource_item
-		@article = ArticleCrawler.new(@resource_item.source_url) if !@resource_item.source_url.nil?
+		begin
+			@article = ArticleCrawler.new(@resource_item.source_url) if !@resource_item.source_url.nil?
+		rescue StandardError
+			flash[:notice] = 'Scraper cannot scrape the link'
+		end
 		gon.article = @article
 	end
 
@@ -80,6 +90,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	  # PATCH/PUT /resource_items/1
 	  # PATCH/PUT /resource_items/1.json
 	def update
+		# @article = ArticleCrawler.new(resource_item_params['source_url']) if !resource_item_params['source_url'].nil?
 	    respond_to do |format|
 	      if @resource_item.update(resource_item_params)
 	      	gon.resource_item = @resource_item
