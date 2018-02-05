@@ -103,7 +103,7 @@
   <br />
   <% if @resource_item.resource_type == 'video' %>
     <div class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= @resource_item.video_embed.html_safe %></div>
-  <% elsif @resource_item.resource_item == 'graphic' %>
+  <% elsif @resource_item.resource_type == 'graphic' %>
     <div lass="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= image_tag @resource_item.image_url %></div>
   <% else %>
     <iframe srcdoc="<%= @resource_item.article_content %>" class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell resource-iframe"></iframe>
