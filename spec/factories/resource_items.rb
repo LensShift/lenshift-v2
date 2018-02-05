@@ -1,11 +1,10 @@
 FactoryBot.define do
+
   factory :resource_item do
     title 'mystring'
-    author 'mystring'
     source_url 'mystring'
 	estimated_reading_time 20
 	short_summary 'mystring'
-	tags 'mystring'
 	key_takeaways 'mystring'
 	analysis_content 'mystring'
 	image 'mystring'

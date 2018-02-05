@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204111510) do
+ActiveRecord::Schema.define(version: 20180204213409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,19 @@ ActiveRecord::Schema.define(version: 20180204111510) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "guides", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "image"
+    t.string "file"
+    t.bigint "lens_shifter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "tags"
+    t.string "slug"
+    t.index ["lens_shifter_id"], name: "index_guides_on_lens_shifter_id"
   end
 
   create_table "lens_shifter_profiles", force: :cascade do |t|
@@ -143,6 +156,7 @@ ActiveRecord::Schema.define(version: 20180204111510) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  add_foreign_key "guides", "lens_shifters"
   add_foreign_key "lens_shifter_profiles", "lens_shifters"
   add_foreign_key "profiles", "lens_shifters"
   add_foreign_key "resource_items", "lens_shifters"

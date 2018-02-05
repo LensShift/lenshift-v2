@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         post :import_csv
       end
     end
+
+    resources :guides, except: [:show]
   end
 
   devise_for :lens_shifters, controllers: {
@@ -23,6 +25,8 @@ Rails.application.routes.draw do
   
 
   get 'details', to: 'static_pages#details'
+
+  resources :static_pages, only: [:index]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
