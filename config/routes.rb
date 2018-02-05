@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :resource_items, only: [:index, :show]
   resources :lens_shifter_profiles
   resources :profiles
+  resources :guides, only: [:index]
+
   namespace :fellow do
     resources :resource_items do
       collection do

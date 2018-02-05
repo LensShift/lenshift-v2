@@ -1,0 +1,28 @@
+<div class='grid-x grid-padding-x'>
+    <div class="small-12 medium-12 large-12 cell">
+      <h1>Practical Guides</h1>
+      <p>Welcome to our practical guides</p>
+    </div>
+
+    <div class="small-12 medium-12 large-12 cell">
+    	<% @guides.each do |guide| %>
+	    	<div class="small-12 medium-10 large-10 cell guide-container">
+	    		<div class="grid-x">
+	    			<div class="small-12 medium-3 large-3 cell">guide.image.url</div>
+	    			<div class="small-12 medium-9 large-9 cell">
+	    				<h3>guide.title</h3>
+	    				<p>guide.description</p>
+	    				<p>
+		    				<% @resource_item.tag_list.each do |tag| %>
+	        					<span class="label secondary"><%= tag %></span>
+	      					<% end %>
+      					</p>
+	    				<%= link_to 'download here', guide.file.url %>
+	    			</div>
+	    		</div>
+	    	</div>
+    	<% end %>
+    </div>
+
+
+</div>
