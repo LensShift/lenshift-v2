@@ -14,6 +14,7 @@ export default {
       analysisContent: gon.parsed_file.analysis_content,
       image: gon.parsed_file.image,
       resourceType: null,
+      lensShifter: null,
       longOptions: {
         toolbar: {
           buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4']

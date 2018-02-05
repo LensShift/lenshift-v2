@@ -47,8 +47,8 @@ class Fellow::ResourceItemsController < ApplicationController
 
 	  # GET /resource_items/1/edit
 	def edit
-		gon.resource_item = resource_item_params
-		@article = ArticleCrawler.new(@parsed_file['link']) if !@parsed_file['link'].nil?
+		gon.resource_item = @resource_item
+		@article = ArticleCrawler.new(@resource_item.source_url) if !@resource_item.source_url.nil?
 		gon.article = @article
 	end
 

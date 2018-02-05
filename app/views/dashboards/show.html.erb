@@ -34,10 +34,10 @@
 
         </div>
         <div class="cell small-12 medium-4 large-4">
-          <% if @profile.avatar.nil? %>
-            <div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div>
+          <% if @profile.avatar.url.nil? %>
+            <div class="avatar"><i class="fa fa-user fa-2x"></i></div>
           <% else %>
-            <%= image_tag @profile.avatar_url, :alt => 'profile avatar' %>
+            <%= image_tag @profile.avatar.url, :alt => 'profile avatar' %>
           <% end %>
         </div>
       </div>
