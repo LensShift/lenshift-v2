@@ -20,7 +20,7 @@
         <%= link_to "Change password", edit_lens_shifter_registration_path %>
           <% if current_lens_shifter.try(:admin?) %> |
             <%= link_to 'All Resources', fellow_resource_items_path %> |
-            <%= link_to 'Add Resource', new_fellow_resource_item_path %> |
+            <%= link_to 'Add New Resource', new_fellow_resource_item_path %> |
             <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> |
             <%= link_to 'Export CSV', export_csv_fellow_resource_items_path(format: 'csv'), class: 'button small' %> |
             
