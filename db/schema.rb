@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204213409) do
+ActiveRecord::Schema.define(version: 20180207225847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 20180204213409) do
     t.index ["reset_password_token"], name: "index_lens_shifters_on_reset_password_token", unique: true
   end
 
+  create_table "lessons", force: :cascade do |t|
+    t.string "title"
+    t.text "analysis"
+    t.bigint "stream_id"
+    t.integer "row_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stream_id"], name: "index_lessons_on_stream_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -131,6 +141,30 @@ ActiveRecord::Schema.define(version: 20180204213409) do
     t.index ["slug"], name: "index_resource_items_on_slug"
   end
 
+  create_table "streams", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "estimated_reading_time"
+    t.text "guiding_questions"
+    t.string "tags"
+    t.string "slug"
+    t.string "image"
+    t.bigint "lens_shifter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lens_shifter_id"], name: "index_streams_on_lens_shifter_id"
+  end
+
+  create_table "syllabuses", force: :cascade do |t|
+    t.integer "row_order"
+    t.bigint "lesson_id"
+    t.bigint "resource_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_syllabuses_on_lesson_id"
+    t.index ["resource_item_id"], name: "index_syllabuses_on_resource_item_id"
+  end
+
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -158,6 +192,10 @@ ActiveRecord::Schema.define(version: 20180204213409) do
 
   add_foreign_key "guides", "lens_shifters"
   add_foreign_key "lens_shifter_profiles", "lens_shifters"
+  add_foreign_key "lessons", "streams"
   add_foreign_key "profiles", "lens_shifters"
   add_foreign_key "resource_items", "lens_shifters"
+  add_foreign_key "streams", "lens_shifters"
+  add_foreign_key "syllabuses", "lessons"
+  add_foreign_key "syllabuses", "resource_items"
 end

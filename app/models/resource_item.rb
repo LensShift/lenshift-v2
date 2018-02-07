@@ -1,5 +1,6 @@
 class ResourceItem < ApplicationRecord
   belongs_to :lens_shifter
+  has_many :lessons, through: :syllabuses
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
   acts_as_taggable_on :tags, :author

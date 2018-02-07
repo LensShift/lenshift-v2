@@ -3,9 +3,12 @@ Rails.application.routes.draw do
 
   root 'resource_items#index'
 
-  resources :resource_items, only: [:index, :show]
+  
   resources :lens_shifter_profiles
   resources :profiles
+  
+  resources :resource_items, only: [:index, :show]
+  resources :streams, only: [:index, :show]
   resources :guides, only: [:index]
 
   namespace :fellow do
@@ -19,6 +22,8 @@ Rails.application.routes.draw do
     end
 
     resources :guides, except: [:show]
+
+    resources :streams, except: [:show]
   end
 
   devise_for :lens_shifters, controllers: {
