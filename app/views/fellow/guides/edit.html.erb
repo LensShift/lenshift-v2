@@ -1,0 +1,15 @@
+<div class="grid-x grid-margin-x">
+	<div class="small-12 medium-8 large-8 cell">
+		<%= simple_form_for (@guide), url: fellow_guide_path, method: :patch do |f| %>
+			<small><strong>Edit Guide</strong></small>
+			<%= render partial: 'form', guide: @guide, locals: {:f => f} %>
+
+			<div class="button-group">
+        		<%= link_to 'Cancel', fellow_guides_path, class: 'warning button' %>
+        		<%= f.button :submit %>
+    		</div>
+		<% end %>
+		<%= link_to 'Show', @guide %> |
+		<%= link_to 'Back', fellow_guides_path %>
+	</div>
+</div>
