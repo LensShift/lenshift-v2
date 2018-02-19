@@ -1,9 +1,13 @@
 class ResourceItem < ApplicationRecord
   belongs_to :lens_shifter
+  has_many :syllabuses
+  has_many :lessons, through: :syllabuses
+  validates :title, presence: true
+  
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
   acts_as_taggable_on :tags, :author
-   paginates_per 10
+   paginates_per 8
    mount_uploader :image, ImageUploader
 
    RESOURCE_TYPE = {

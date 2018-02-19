@@ -1,6 +1,6 @@
 <%= f.input 'title' %>
 <%= f.input 'description' %>
-<%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter %>
+<%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter_id %>
 <%= f.input 'tag_list' %>
 <%= f.input 'image', label: 'Upload Image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
 <%= f.input 'file', label: 'Attach file', as: :file %>

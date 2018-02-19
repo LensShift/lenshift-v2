@@ -6,7 +6,7 @@ FactoryBot.define do
     admin false
   end
 
-  factory :fellow do
+  factory :fellow, class: LensShifter do
     email 'adminEmail@gmail.com'
     password 'MyString'
     password_confirmation "MyString"

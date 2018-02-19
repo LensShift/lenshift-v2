@@ -1,0 +1,36 @@
+<stream-new inline-template>
+	<div class="row align-center" ref="newStream">
+		<transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-bind:css="false">
+			<div v-if="newStream" class="column small-12 medium-6 large-6">
+				<h1>{{stream.title}}</h1>
+				<p><b>Description:</b> <br />{{stream.description}}</p>
+				<p>
+       				<span v-for="tag in stream.tags" class="label secondary">{{tag.name}}</span>
+    			</p>
+				<table v-for="lesson in stream.lessons">
+					<thead>
+						<th colspan="2">Lesson: {{lesson.title}}</th>
+					</thead>
+					<tbody>
+					<tr><td colspan="2">{{lesson.analysis}}</td></tr>
+					<tr><td colspan="2"><b>Resources</b></td></tr>
+					<tr v-for="resource_item in lesson.resource_items">
+						<td>{{resource_item.google_doc_id}}</td>
+						<td>{{resource_item.title}}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+		</transition>
+		<div class="column small-12 medium-6 large-6">
+			<h1 v-if="!newStream">{{stream.title}}</h1>
+			<keep-alive>
+				<transition v-on:before-enter="beforeFormEnter" v-on:enter="formEnter" v-on:leave="formLeave">
+					<component :is="component" :token="'<%= form_authenticity_token %>'" v-on:stream="newLesson($event)" :stream-id="stream.id"></component>
+				</transition>
+			</keep-alive>
+		</div>
+	</div>
+</stream-new>
+<%= link_to 'Back', fellow_streams_path %>
+

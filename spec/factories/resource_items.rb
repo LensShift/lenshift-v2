@@ -13,6 +13,6 @@ FactoryBot.define do
 	published_at nil
 	feature false
 	google_doc_id nil
-	lens_shifter nil
+	lens_shifter
   end
 end

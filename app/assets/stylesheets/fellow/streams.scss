@@ -1,0 +1,25 @@
+  .resource-destination-window, .resource-selection-window {
+    height: 500px;
+    min-height: 500px;
+    overflow-y: scroll;
+    border: 1px solid #e6e6e6;
+  	box-shadow: 1px 1px 10px -2px #e6e6e6 inset;
+  }
+
+  .resource-item {
+  	cursor: pointer;
+  }
+
+  .ghost {
+  	opacity: .5;
+  	background: #F48F14;
+  }
+
+  .chosen {
+  	background: grey;
+  }
+
+  .resource-window {
+    overflow-y: scroll;
+    height: 500px;
+  }

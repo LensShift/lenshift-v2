@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 gem 'webpacker'
 
@@ -72,6 +72,8 @@ gem 'font-awesome-rails'
 gem 'rest-client'
 
 gem 'open_uri_redirections'
+
+gem 'ranked-model'
 
 
 group :development, :test do

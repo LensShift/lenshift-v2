@@ -1,11 +1,30 @@
 Rails.application.routes.draw do
+  get 'streams/index'
+
+  get 'streams/show'
+
+  namespace :fellow do
+    get 'lessons/create'
+  end
+
+  namespace :fellow do
+    get 'lessons/update'
+  end
+
+  namespace :fellow do
+    get 'lessons/destroy'
+  end
+
   resource :dashboard, only: [:show]
 
   root 'resource_items#index'
 
-  resources :resource_items, only: [:index, :show]
+  
   resources :lens_shifter_profiles
   resources :profiles
+  
+  resources :resource_items, only: [:index, :show]
+  resources :streams, only: [:index, :show]
   resources :guides, only: [:index]
 
   namespace :fellow do
@@ -19,6 +38,9 @@ Rails.application.routes.draw do
     end
 
     resources :guides, except: [:show]
+    resources :streams do
+      resources :lessons, only: [:new, :create, :update]
+    end
   end
 
   devise_for :lens_shifters, controllers: {

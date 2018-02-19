@@ -1,0 +1,51 @@
+// Place all the styles related to the streams controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.stream-block {
+	min-height: 300px;
+	border: 2px solid black;
+	background: #767676;
+	color: white;
+	margin-bottom: 25px;
+	padding: 25px 25px;
+	overflow: hidden;
+}
+
+.label-margin-right {
+	margin-right: 5px;
+}
+
+.stream-desc-window {
+	overflow-y: scroll;
+	height: 125px;
+}
+
+.stream-thumbnail {
+	height: 200px;
+	overflow: hidden;
+}
+
+.stream-side-frame {
+	height: 200px;
+	overflow: scroll;
+	background: white;
+	color: black;
+}
+
+.stream-side-frame ul {
+	margin-left: auto;
+	margin-bottom: auto;
+}
+
+.stream-side-frame ul li {
+	display: flex;
+	align-items: center;
+	min-height: 50px;
+	border-bottom: 1px solid black;
+	padding: 0px 10px;
+}
+
+.syllabus-button {
+	margin-top: 1rem;
+}

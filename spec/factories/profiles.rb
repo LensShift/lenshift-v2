@@ -11,7 +11,7 @@ FactoryBot.define do
      referral "MyString"
      comment "MyString"
      contact_consent true
-     lens_shifter_id 20
+     lens_shifter
      avatar "MyString"
      address "MyString"
     
