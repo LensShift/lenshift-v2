@@ -1,0 +1,48 @@
+<stream-list inline-template>
+	<div>
+		<div class="row align-center">
+    		<div class="column small-12 medium-7 large-9">
+				<h1>Streams</h1>
+			</div>
+			<div class="small-4 medium-2 large-1 column">
+      			<label for="sort_by" class="text-right middle">sort by:</label>
+    		</div>
+			<div class="small-8 medium-3 large-2 column">
+		      <select id="sort_by" v-model="sortBy">
+		        <option disabled value="">options</option>
+		        <option value="title">title</option>
+		        <option value="published_at">published at</option>
+		        <option value="estimated_reading_time">reading time</option>
+		      </select>
+		    </div>
+		    <div class="column small-12 medium-12 large-12">
+		    	<p>Our structured streams will walk you through 15-20 resources from the library to unpack topics fundamental to social impact. Learn more about important topics in a structured way.</p>
+		    </div>
+		</div>
+
+
+		<div class="row align-center">
+	    	<div v-for="stream in streams" class="column small-12 medium-12 large-12 stream-block">
+	    		<div class="row">
+		    		<div class="column small-12 small-order-2 medium-8 medium-order-1 large-8 large-order-1">
+			    		<h4>{{stream.title}}</h4>
+			    		<span v-for="tag in stream.tags" class="label warning label-margin-right">{{tag.name}}</span>
+			    		<div class="stream-desc-window">{{stream.description}}</div>
+		    		</div>
+		    		<div class="column small-12 small-order-1 medium-4 medium-order-2 large-4 large-order-2">
+		    			<div :ref="'streamImage' + stream.id" class="stream-thumbnail" style="display:block;">
+		    				<img :src="stream.image.thumb.url" alt="stream image" />	
+		    			</div>
+		    			<div :ref="'streamFrame' + stream.id" class="stream-side-frame" :id="'syllabus-dropdown' + stream.id" style="display:none;">		    				
+	    					<ul>
+	    						<li v-for="(lesson, index) in stream.lessons">Lesson {{index + 1}}: {{lesson.title}}</li>
+	    					</ul>
+		    			</div>
+		    			<button class="button syllabus-button" type="button" :data-toggle="'syllabus-dropdown' + stream.id" v-on:click="syllabusShow(stream.id)">Syllabus</button>
+		    		</div>
+	    		</div>
+	    	</div>
+
+		</div>
+	</div>
+</stream-list>

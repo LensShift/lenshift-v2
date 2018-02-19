@@ -4,6 +4,6 @@ FactoryBot.define do
     description "MyText"
     estimated_reading_time 1
     guiding_questions "MyText"
-    lens_shifter nil
+    lens_shifter
   end
 end

@@ -9,12 +9,14 @@
 
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
-import navbar from '../components/navbar'
-import footer from '../components/footer'
 import lensShifterProfileForm from '../components/lensShifterProfileForm'
 import resourceDocForm from '../components/resourceDocForm'
 import resourceItemForm from '../components/resourceItemForm'
 import resourceList from '../components/resourceList'
+import streamNew from '../components/streamNew'
+import streamForm from '../components/streamForm'
+import streamShow from '../components/streamShow'
+import streamList from '../components/streamList'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -26,15 +28,22 @@ document.addEventListener('DOMContentLoaded', () => {
     return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '')
   })
 
+  var draggable = require('vuedraggable')
+  Vue.use(draggable);
+  Vue.use(require('vue-moment'));
+  var velocity = require('velocity-animate');
+
   const app = new Vue({
   	el: '#app',
   	components: {
-  		'app-navbar': navbar,
-  		'app-footer': footer,
       'lens-shifter-profile-form': lensShifterProfileForm,
       'resource-doc-form': resourceDocForm,
       'resource-item-form': resourceItemForm,
-      'resource-list': resourceList
+      'resource-list': resourceList,
+      'stream-new': streamNew,
+      'stream-form': streamForm,
+      'stream-show': streamShow,
+      'stream-list': streamList
   	}
   	// render: h => h(App)
   })

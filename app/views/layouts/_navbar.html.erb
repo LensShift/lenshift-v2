@@ -1,4 +1,4 @@
-<app-navbar inline-template>
+
   <div data-sticky-container>
     
     <div class="top-bar" data-sticky data-options="marginTop:0;" style="width:100%">
@@ -7,7 +7,7 @@
           <li><%= link_to image_tag('lensshift_logo_white.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
           <li class="link"><%= link_to 'About', '#' %></li>
           <li class="link"><%= link_to 'Library', resource_items_path %></li>
-          <li class="link"><%= link_to 'Streams', '#' %></li>
+          <li class="link"><%= link_to 'Streams', streams_path %></li>
           <li class="link"><%= link_to 'Practical Guides', guides_path %></li>
           <li class="link"><%= link_to 'Upcoming Features', '#' %></li>
           <li class="link"><%= link_to 'Contacts', '#' %></li>
@@ -35,4 +35,3 @@
       </div>
     </div>
   </div>
-</app-navbar>

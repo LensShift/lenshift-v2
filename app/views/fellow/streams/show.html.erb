@@ -1,0 +1,53 @@
+<stream-show inline-template>
+	<div>
+	<p id="notice"><%= notice %></p>
+	<div class="row">
+		<div class="column small-12 medium-6 large-6">
+			<h1>{{stream.title}}</h1>
+			<p><b>Description:</b> <br />{{stream.description}}</p>
+			<p><b>Tags:</b>
+					<span v-for="tag in stream.tags" class="label secondary">{{tag.name}}</span>
+			</p>
+			<p>
+				<b>Key Questions: </b>{{stream.key_questions}}
+			</p>
+			<table>
+				<thead>
+					<tr>
+						<th><small>Time</small></th>
+						<th><small>Lessons#</small></th>
+						<th><small>Resources#</small></th>
+						<th><small>Created</small></th>
+						<th><small>Published</small></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><small>{{stream.estimated_reading_time}} min</small></td>
+						<td><small>{{stream.lessons.length}}</small></td>
+						<td><small>{{resourcesCount}}</small></td>
+						<td><small>{{stream.created_at | moment("MM-DD-YYYY")}}</small></td>
+						<td><small>{{stream.published_at | moment("MM-DD-YYYY")}}</small></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="column small-12 medium-6 large-6 resource-window">
+			<table v-for="(lesson, index) in stream.lessons">
+				<thead>
+					<th colspan="2">Lesson {{index + 1}}: {{lesson.title}}</th>
+				</thead>
+				<tbody>
+				<tr><td colspan="2">{{lesson.analysis}}</td></tr>
+				<tr><td colspan="2"><b>Resources</b></td></tr>
+				<tr v-for="resource_item in lesson.resource_items">
+					<td>{{resource_item.google_doc_id}}</td>
+					<td>{{resource_item.title}}</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<%= link_to 'Back', fellow_streams_path %>
+	</div>
+</stream-show>

@@ -4,8 +4,7 @@ FactoryBot.define do
     description "MyText"
     image "MyString"
     file "MyString"
-    lens_shifter nil
+    lens_shifter
     slug "MyString"
-    tags "MyString"
   end
 end

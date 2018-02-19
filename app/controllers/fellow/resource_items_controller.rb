@@ -33,9 +33,8 @@ class Fellow::ResourceItemsController < ApplicationController
 		session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GD_SECRETS']))
     	@resource_item = ResourceItem.new
 
-    	@file = session.file_by_id(params[:file_id])
-    	@text_file = @file.export_as_string('text/plain')
-    	@parsed_file = Archieml.load(@file.export_as_string('text/plain'))
+    	file = session.file_by_id(params[:file_id])
+    	@parsed_file = Archieml.load(file.export_as_string('text/plain'))
 		gon.parsed_file = @parsed_file
     	
     	begin
@@ -99,7 +98,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	        format.json { render :show, status: :ok, location: @resource_item }
 	      else
 	      	gon.resource_item = resource_item_params
-	        format.html { render :doc }
+	        format.html { render :edit, location: @resource_item, status: :unprocessable_entity, error: @resource_item.errors }
 	        format.json { render json: @resource_item.errors, status: :unprocessable_entity }
 	      end
 	    end

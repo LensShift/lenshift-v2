@@ -12,7 +12,7 @@ RSpec.describe ResourceItemsController, type: :controller do
   describe "GET #show" do
     it "returns http success" do
       resource = FactoryBot.create(:resource_item)
-      get :show, id: resource.id
+      get :show, params: {id: resource.to_param}
       expect(response).to have_http_status(:success)
     end
   end

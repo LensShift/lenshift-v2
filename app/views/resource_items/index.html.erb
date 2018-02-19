@@ -1,46 +1,46 @@
 <resource-list inline-template>
 <div>
-  <div class='grid-x grid-padding-x'>
-    <div class="small-12 medium-7 large-9 cell">
+  
+  <div class="row align-center">
+    <div class="column small-12 medium-7 large-9">
       <h1>Library</h1>
       <p>Welcome to our pool of resources</p>
     </div>
-      <div class="small-3 medium-2 large-1 cell">
-        <label for="sort_by" class="text-right middle">sort by:</label>
-      </div>
-      <div class="small-8 medium-3 large-2 cell">
-        <select id="sort_by" v-model="sortBy">
-          <option disabled value="">options</option>
-          <option value="title">title</option>
-          <option value="published_at">published at</option>
-          <option value="estimated_reading_time">reading time</option>
-        </select>
-      </div>
-  </div>
-  <div class='grid-x grid-padding-x'>
-    <div class="small-12 medium-12 large-12 cell">
-        <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">  
-            <div class="cell" v-for="resource in sortedResources">
-              <div class='card resource-card'>
-                <div class="image-holder">
-                  <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
-                  <i v-if="!resource.image.url" :class="'fa fa-' + icons[resource.resource_type]"></i>
-                </div>
-                <a :href="'/resource_items/' + resource.id" alt="link to resource">
-                    <div class='card-section'>
-                    <h6><strong>{{resource.title}}</strong></h6>
-                    <p class="text-justify card-text">{{resource.short_summary | truncate(339)}}
-                    <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </div>
-        </div>
-
+    <div class="small-4 medium-2 large-1 column">
+      <label for="sort_by" class="text-right middle">sort by:</label>
     </div>
-    <%= paginate @resource_items, class: "pagination"  %>
+    <div class="small-8 medium-3 large-2 column">
+      <select id="sort_by" v-model="sortBy">
+        <option disabled value="">options</option>
+        <option value="title">title</option>
+        <option value="published_at">published at</option>
+        <option value="estimated_reading_time">reading time</option>
+      </select>
+    </div>
   </div>
+
+
+  <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">  
+      <div class="cell" v-for="resource in sortedResources">
+        <div class='card resource-card'>
+          <div class="image-holder">
+            <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
+            <i v-if="!resource.image.url" :class="'fa fa-' + icons[resource.resource_type]"></i>
+          </div>
+          <a :href="'/resource_items/' + resource.id" alt="link to resource">
+              <div class='card-section'>
+              <h6><strong>{{resource.title}}</strong></h6>
+              <p class="text-justify card-text">{{resource.short_summary | truncate(339)}}
+              <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+  </div>
+
+
+    <%= paginate @resource_items, class: "pagination"  %>
 </div>
 
 </resource-list>
