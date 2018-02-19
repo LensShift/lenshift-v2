@@ -13,9 +13,9 @@ class ResourceItem < ApplicationRecord
    RESOURCE_TYPE = {
    	"academic": "university",
 	'article': "pencil-square-o",
-	'blog': "blogger",
+	'blog': "rss",
 	'book': "book",
-	'document': "file",
+	'document': "file-text-o",
 	'graphic': "picture-o",
 	'podcast': "podcast",
 	'reference': "building",
