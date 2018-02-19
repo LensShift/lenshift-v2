@@ -19,7 +19,7 @@ class Fellow::ResourceItemsController < ApplicationController
 
 	def import_google
 		session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GD_SECRETS']))
-		
+
 		@files = session.files.sort_by {|x| x.title}
 	end
 
@@ -33,8 +33,8 @@ class Fellow::ResourceItemsController < ApplicationController
 		session = GoogleDrive::Session.from_service_account_key(StringIO.new(ENV['GD_SECRETS']))
     	@resource_item = ResourceItem.new
 
-    	file = session.file_by_id(params[:file_id])
-    	@parsed_file = Archieml.load(file.export_as_string('text/plain'))
+    	@file = session.file_by_id(params[:file_id])
+    	@parsed_file = Archieml.load(@file.export_as_string('text/plain'))
 		gon.parsed_file = @parsed_file
     	
     	begin
