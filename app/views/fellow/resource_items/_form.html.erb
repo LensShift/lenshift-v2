@@ -35,7 +35,7 @@
               <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {class: "table-input"} %></td>
           </tr>
               <th class="horizontal-table-head"><small>Source</small></th>
-              <td><small><%= @resource_item.source_url.match("((.*?\/.*?){2})\/") if @resource_item.source_url.present? %></small></td>
+              <td><small><%= f.input :source_url, label: false, input_html: {class: "table-input"} %></small></td>
           </tr>
       </table>
     
