@@ -1,4 +1,16 @@
 @import "./settings";
+@import url('https://fonts.googleapis.com/css?family=Hind+Siliguri:400,700');
+@font-face {
+    font-family: 'League Spartan';
+    src: url('leaguespartan-bold.eot');
+    src: url('leaguespartan-bold.eot?#iefix') format('embedded-opentype'),
+         url('leaguespartan-bold.woff2') format('woff2'),
+         url('leaguespartan-bold.woff') format('woff'),
+         url('leaguespartan-bold.ttf') format('truetype'),
+         url('leaguespartan-bold.svg#league_spartanbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
 
 html, body {
 	height: 100%;
@@ -33,9 +45,6 @@ html, body {
 
 select {
 	border-radius: 0;
-}
-a {
-	color: $dark-gray !important;
 }
 
 a.button {

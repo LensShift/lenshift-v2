@@ -25,10 +25,9 @@
 	    	<div v-for="stream in streams" class="column small-12 medium-12 large-12 stream-block">
 	    		<div class="row">
 		    		<div class="column small-12 small-order-2 medium-8 medium-order-1 large-8 large-order-1">
-			    		<h4>{{stream.title}}</h4>
-			    		<a :href="'/streams/' + stream.id" alt="stream link">See details</a>
+			    		<h4><a :href="'/streams/' + stream.id" alt="stream link">{{stream.title}}</a></h4>
 			    		<span v-for="tag in stream.tags" class="label warning label-margin-right">{{tag.name}}</span>
-			    		<div class="stream-desc-window">{{stream.description}}</div>
+			    		<div class="stream-desc-window"><a :href="'/streams/' + stream.id" alt="stream link">{{stream.description}}</a></div>
 		    		</div>
 		    		<div class="column small-12 small-order-1 medium-4 medium-order-2 large-4 large-order-2">
 		    			<div :ref="'streamImage' + stream.id" class="stream-thumbnail" style="display:block;">
