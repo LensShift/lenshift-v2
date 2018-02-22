@@ -22,7 +22,7 @@
 
 
 		<div class="row align-center">
-	    	<div v-for="stream in streams" class="column small-12 medium-12 large-12 stream-block">
+	    	<div v-for="stream in sortedStreams" class="column small-12 medium-12 large-12 stream-block">
 	    		<div class="row">
 		    		<div class="column small-12 small-order-2 medium-8 medium-order-1 large-8 large-order-1">
 			    		<h4><a :href="'/streams/' + stream.id" alt="stream link">{{stream.title}}</a></h4>
