@@ -15,8 +15,11 @@ import resourceItemForm from '../components/resourceItemForm'
 import resourceList from '../components/resourceList'
 import streamNew from '../components/streamNew'
 import streamForm from '../components/streamForm'
+import streamFellowShow from '../components/streamFellowShow'
 import streamShow from '../components/streamShow'
 import streamList from '../components/streamList'
+import sideMenu from '../components/sideMenu'
+import streamEdit from '../components/streamEdit'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -42,8 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
       'resource-list': resourceList,
       'stream-new': streamNew,
       'stream-form': streamForm,
+      'stream-fellow-show': streamShow,
+      'stream-list': streamList,
       'stream-show': streamShow,
-      'stream-list': streamList
+      'stream-edit': streamEdit,
+      'side-menu': sideMenu
   	}
   	// render: h => h(App)
   })

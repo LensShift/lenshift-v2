@@ -1,2 +1,57 @@
-<h1>Streams#show</h1>
-<p>Find me in app/views/streams/show.html.erb</p>
+<stream-show inline-template>
+	<div class="row">
+	    <div class="column small-12 medium-12 large-12">
+	    	<h1>{{stream.title}}</h1>
+	    	<p class="lesson-paragraph">{{stream.description}}</p>
+	    
+		</div>		
+	   	<div class="column small-12 medium-12 large-9">
+    		<div class="tabs">
+    			<div v-for="(lesson, index) in stream.lessons" :class="['tabs-hover','tabs-title', activeLessonIndex === index ? 'is-active' : '' ]" :id="'tab' + index" v-on:click="showLesson(lesson, index)"><a :href="'#lesson' + (Number(index) + 1)"><small>Lesson {{index + 1}}</small></a></div>
+    		</div>
+    		<br />
+    		<br class="clr" />
+    	</div>
+
+    	<div class="column small-12 small-order-2 medium-12 medium-order-2 large-9 large-order-1 lesson-container">
+    		<div class='lesson-glance'>
+    		<h5>At a Glance</h5>
+			<p v-if="currentLesson" class="lesson-paragraph"> {{currentLesson.analysis}}</p>
+			</div>
+    		<div v-if="safeURL">
+				<div v-if="currentResource.resource_type === 'video' || currentResource.resource_type === 'podcast'" class="content-container" v-html="currentResource.video_embed"></div>
+
+				<div  v-else-if="currentResource.resource_type === 'graphic'" div class="content-container"><img :src="currentResource.image.url"></div>
+
+				<div v-else>
+					<div class="iframe-head"><b>From the website of the resource</b></div>
+					<iframe :srcdoc="currentResource.article_content" class="resource-iframe"></iframe>
+				</div>
+			</div>
+			<div v-else>
+
+				<div class="card" class="column small-12 medium-9 large-9">
+				  <div class="card-divider">
+				    {{currentResource.title}}
+				  </div>
+				  <div class="card-section">
+				    <p>{{currentResource.short_summary}}</p>
+				    <a :href="currentResource.source_url" alt="resource link" class="button is-orange" target="_blank">Click here to read more about it</a>
+				  </div>
+				</div>
+				
+
+			</div>
+
+
+	    </div>
+	    <div class="column small-12 small-order-1 medium-6 medium-order-1 large-3 large-order-2">
+			<div class="resource-syllabus-frame">
+				<div class="resource-syllabus-frame-head">Resources</div>
+				<div v-for="resource in currentLesson.resource_items" class="resource-syllabus-item" v-on:click="showResource(resource)"><small>{{resource.title}}</small></div>
+			</div>
+		</div>
+
+		    
+	</div>
+</stream-show>

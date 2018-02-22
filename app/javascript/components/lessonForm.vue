@@ -70,17 +70,17 @@ export default {
     }
   },
   methods: {
-    addResource: function (evt) {
-        // this.lesson.resource_item_ids = this.newResourceList.map(element => {
-        //   return element.id
-        // })
-        // console.log(this.lesson.resource_item_ids)
-    },
-    checkMove: function (evt, originalEvent) {
-      console.log('move', evt)
-      this.lesson.syllabuses_attributes = {'row_order_position': evt.newIndex, 'resource_id': evt.item.id}
-      // console.log('new index', this.lesson.resources)
-    },
+    // addResource: function (evt) {
+    //     // this.lesson.resource_item_ids = this.newResourceList.map(element => {
+    //     //   return element.id
+    //     // })
+    //     // console.log(this.lesson.resource_item_ids)
+    // },
+    // checkMove: function (evt, originalEvent) {
+    //   console.log('move', evt)
+    //   this.lesson.syllabuses_attributes = {'row_order_position': evt.newIndex, 'resource_id': evt.item.id}
+    //   // console.log('new index', this.lesson.resources)
+    // },
     addLesson: function() {
         this.lesson.resource_item_ids = this.newResourceList.map(element => {
           return element.id
@@ -89,7 +89,7 @@ export default {
        axios.post('/fellow/streams/'+ this.streamId + '/lessons', {'utf8': '✓','authenticity_token': this.token, 'lesson': this.lesson})
         .then(res => {
           console.log('lesson response', res)
-          this.$emit('stream', res)
+          this.$emit('lesson', res)
           this.lesson.title = null
           this.lesson.analysis = null
           this.resource_item_ids = []

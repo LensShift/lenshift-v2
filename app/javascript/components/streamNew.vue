@@ -26,13 +26,17 @@ export default {
     }
   },
   methods: {
-    newLesson: function(object) {
+    newStream: function(object) {
       console.log(object)
       this.component = 'lesson-form'
       this.newStream = true
       this.stream = object.data
       console.log(this.stream.id)
-
+    },
+    addLesson: function(object) {
+      this.component = 'lesson-form'
+      this.newStream = true
+      this.stream.lessons.push(object.data)
     },
     beforeEnter: function(el) {
       el.style.opacity = 0

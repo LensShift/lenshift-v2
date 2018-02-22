@@ -1,11 +1,12 @@
 // Place all the styles related to the streams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./settings";
 
 .stream-block {
 	min-height: 300px;
 	border: 2px solid black;
-	background: #767676;
+	background: map-get($foundation-palette, secondary);
 	color: white;
 	margin-bottom: 25px;
 	padding: 25px 25px;
@@ -48,4 +49,135 @@
 
 .syllabus-button {
 	margin-top: 1rem;
+	margin-bottom: 0;
 }
+
+.lesson-container {
+	min-height: 750px;
+}
+
+.resource-syllabus-frame {
+	border: 1px solid $light-gray;
+    background: $white;
+}
+
+.resource-syllabus-frame-head {
+	border: 1px solid $light-gray;
+	background: $medium-gray;
+	color: $white;
+	text-align: center;
+	padding: 15px 15px;
+}
+
+.resource-syllabus-item {
+	border-bottom: 1px solid $light-gray;
+	padding: 15px 15px;
+	cursor: pointer;
+}
+
+.resource-syllabus-item:hover {
+	background: $light-gray;
+}
+
+.tabs {
+	margin: 0;
+    background: $white;
+    list-style-type: none;
+    height: 50px;
+}
+
+.tabs-hover:hover {
+	background: $light-gray;
+}
+
+.tabs-hover:hover.tabs-title:after {
+	border-left-color: $light-gray;
+}
+
+.tabs-title {
+	position: relative;
+	background: $white;
+	border: 1px solid #e6e6e6;
+	display: inline-block;
+	height: 60px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+	padding-right: 10px;
+	cursor: pointer;
+}
+
+.tabs-title:first-child {
+	padding-left: 10px;
+}
+
+.tabs-title:after, .tabs-title:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	z-index: 5;
+	pointer-events: none;
+}
+
+.tabs-title:after {
+	border-color: rgba(0, 0, 0, 0);
+	border-left-color: $white;
+	border-width: 30px;
+	margin-top: -30px;
+}
+.tabs-title:before {
+	border-color: rgba(230, 230, 230, 0);
+	border-left-color: $light-gray;
+	border-width: 31px;
+	margin-top: -31px;
+}
+
+.lesson-paragraph {
+	margin: 25px 0px;
+}
+
+.is-active {
+	background: $light-gray;
+	
+}
+
+.is-active.tabs-title:after {
+	border-left-color: $light-gray;
+}
+
+.lesson-glance {
+	margin-top: 25px;
+}
+
+//mobile
+
+@media print, screen and (max-width: 40em) {
+	.lesson-glance {
+		margin-top: 50px;
+	}
+
+	.resource-syllabus-frame {
+		margin-top: 50px;
+		max-height: 250px;
+		overflow-y: scroll;
+	}
+}
+
+//tablet
+
+@media print, screen and (min-width: 40em) {
+	.lesson-glance {
+		margin-top: 50px;
+	}
+
+	.resource-syllabus-frame {
+		margin-top: 25px;
+		max-height: 250px;
+		overflow-y: scroll;
+	}
+}
+

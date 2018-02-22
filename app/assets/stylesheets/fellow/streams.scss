@@ -1,9 +1,11 @@
+@import "./settings";
+
   .resource-destination-window, .resource-selection-window {
     height: 500px;
     min-height: 500px;
     overflow-y: scroll;
-    border: 1px solid #e6e6e6;
-  	box-shadow: 1px 1px 10px -2px #e6e6e6 inset;
+    border: 1px solid $light-gray;
+  	box-shadow: 1px 1px 10px -2px $light-gray inset;
   }
 
   .resource-item {
@@ -12,7 +14,7 @@
 
   .ghost {
   	opacity: .5;
-  	background: #F48F14;
+  	background: $lens-shift-orange;
   }
 
   .chosen {

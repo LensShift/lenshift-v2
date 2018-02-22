@@ -5,8 +5,7 @@ class Fellow::LessonsController < ApplicationController
   	# resource_ids = lesson_params[:resources].map{|x| x[:id]}
   	lesson = Lesson.new(lesson_params)
       if lesson.save
-      	stream = lesson.stream
-        render json: stream.to_json(include: {lessons: {include: :resource_items}}), status: :created, notice: 'Lesson was successfully created.'
+        render json: lesson.to_json(include: :resource_items), status: :created, notice: 'Lesson was successfully created.'
       else
         render json: render_errors(lesson.errors), status: :unprocessable_entity
       end

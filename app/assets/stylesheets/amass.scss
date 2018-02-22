@@ -1,14 +1,16 @@
+@import "./settings";
+
 html, body {
 	height: 100%;
 	overflow-x: hidden;
 }
 
 .is-orange {
-	background: #F48F14 !important;
+	background: $lens-shift-orange !important;
 }
 
 .is-lightgray {
-	background: #e6e6e6 !important;
+	background: $light-gray !important;
 }
 
 #main-container {
@@ -19,7 +21,7 @@ html, body {
 }
 
 .hero {
-	background: #e6e6e6;
+	background: $light-gray;
 	height: 250px;
 	margin-bottom: 25px;
 	padding: 50px;
@@ -33,11 +35,11 @@ select {
 	border-radius: 0;
 }
 a {
-	color: #8a8a8a !important;
+	color: $dark-gray !important;
 }
 
 a.button {
-	color: white !important;
+	color: $white !important;
 }
 
 .table-button {
@@ -53,12 +55,16 @@ img {
 	height: 75px;
 }
 
+.navbar-small {
+	justify-content: flex-end !important;
+}
+
 .menu {
 	align-items: center;
 }
 
 .menu a {
-	color: white !important;
+	color: $white !important;
 	height: 75px;
 	display: flex !important;
 	align-items: center;
@@ -66,32 +72,51 @@ img {
 }
 
 .menu .link:hover {
-	color: white !important;
-	background: #F48F14;
+	color: $white !important;
+	background: $lens-shift-orange;
 	height: 75px;
 }
 
-.menu li {
-	display: flex !important;
-	align-items: center;
-	justify-content: center;
+.side-menu {
+	position: absolute;
+	background: $lens-shift-gray;
+	left: 1400px;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	padding: 25px 25px !important;
+	z-index: 999;
 }
+
+.menu-close {
+	color: $white;
+	cursor: pointer;
+}
+
+.menu-close:hover {
+	color: $lens-shift-gray;
+}
+
+// .menu li {
+// 	display: flex !important;
+// 	align-items: center;
+// 	justify-content: center;
+// }
 
 .avatar {
 	border-radius: 50%;
 	height: 45px;
 	width: 45px;
-	display: block;
 	padding: 0px !important;
 	margin: 0px 5px 0px 5px;
 	display: flex !important;
 	align-items: center;
 	justify-content: center;
-	background: #f48f14ff;
+	background: $lens-shift-orange;
 }
 
 .avatar:hover {
-	color: #2B2D2E;
+	color: $lens-shift-gray;
 }
 
 .avatar a {
@@ -110,6 +135,10 @@ img {
 
 .logo {
 	width: 100px;
+}
+
+.footer-logo {
+	width: 70px;
 }
 
 .footer {
@@ -163,7 +192,7 @@ img {
 	position: absolute;
 	z-index: 10;
 	border: 0.5px solid black;
-	background: #fff;
+	background: $white;
 }
 
 .select-option-item {
@@ -171,7 +200,7 @@ img {
 }
 
 .select-option-active, .select-option-item:hover {
-	background: #e6e6e6;
+	background: $light-gray;
 }
 
 .analysis-content {
@@ -179,7 +208,7 @@ img {
 }
 
 .horizontal-table-head {
-	background: #e6e6e6;
+	background: $light-gray;
 }
 
 .clickable-image {
@@ -204,8 +233,8 @@ img {
 }
 
 .image-holder {
-	background: #e6e6e6;
-	color: white;
+	background: $light-gray;
+	color: $white;
 	height: 250px;
 	font-size: 90px;
 	display: flex;
@@ -216,22 +245,108 @@ img {
 }
 
 .iframe-head {
-	border-top: 0.5px solid black;
-	border-left: 0.5px solid black;
-	border-right: 0.5px solid black;
+	border-top: 0.5px solid $light-gray;
+	border-left: 0.5px solid $light-gray;
+	border-right: 0.5px solid $light-gray;
 	height: 43px;
 	display: flex !important;
 	justify-content: center;
 	align-items: center;
-	color: white;
+	color: $white;
+	background: $lens-shift-orange;
 }
 
 .footer-cell {
 	padding: 50px 50px !important;
-	color: white;
+	color: $white;
 }
 
 .footer-cell a {
-	color: white !important;
+	color: $white !important;
 }
 
+.menu-hamburger {
+	font-size: 24px !important;
+	color: $white;
+	margin-right: 1rem;
+	cursor: pointer;
+}
+
+
+.modal-element {
+  position: absolute;
+  z-index: 9997;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(138, 138, 138, .5);
+  transition: opacity .3s ease;
+  -webkit-transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  position: fixed;
+	z-index: 9999;
+	max-width: 603px;
+	width: 90%;
+	height: 751px;
+}
+
+.modal-container {
+  max-width: 603px;
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  -webkit-transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-header h3 {
+  margin-top: 63px;
+  color: $light-gray;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+.window-scroll {
+	overflow-y: scroll;
+	height: 1100px;
+}
+
+
+@media print, screen and (min-width: 40em) {
+	.navbar-small {
+		display:flex;
+		justify-content: flex-end;
+	}
+}

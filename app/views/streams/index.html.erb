@@ -26,6 +26,7 @@
 	    		<div class="row">
 		    		<div class="column small-12 small-order-2 medium-8 medium-order-1 large-8 large-order-1">
 			    		<h4>{{stream.title}}</h4>
+			    		<a :href="'/streams/' + stream.id" alt="stream link">See details</a>
 			    		<span v-for="tag in stream.tags" class="label warning label-margin-right">{{tag.name}}</span>
 			    		<div class="stream-desc-window">{{stream.description}}</div>
 		    		</div>

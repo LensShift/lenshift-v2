@@ -1,5 +1,5 @@
 <div class="row align-center">
-	<div class="column small-12 medium-8 large-8">
+	<div class="column small-12 medium-6 large-6 window-scroll">
 		<h1>Editing Stream</h1>
 
 		<%= render 'form', stream: @stream %>
@@ -7,4 +7,25 @@
 		<%= link_to 'Show', @stream %> |
 		<%= link_to 'Back', fellow_streams_path %>
 	</div>
+	
+	<stream-edit inline-template>
+  		<div class="column small-12 medium-6 large-6">
+ 			<button id="show-modal" v-on:click="showLessonForm = true" class="button">add lesson</button>
+ 			<table v-for="lesson in newLessons">
+					<thead>
+						<th colspan="2">Lesson: {{lesson.title}}</th>
+					</thead>
+					<tbody>
+					<tr><td colspan="2">{{lesson.analysis}}</td></tr>
+					<tr><td colspan="2"><b>Resources</b></td></tr>
+					<tr v-for="resource_item in lesson.resource_items">
+						<td>{{resource_item.google_doc_id}}</td>
+						<td>{{resource_item.title}}</td>
+					</tr>
+					</tbody>
+			</table>
+ 			<lesson-form v-if="showLessonForm" :stream-id="<%= @stream.id %>" :token="'<%= form_authenticity_token %>'" v-on:lesson="addLesson($event)" ></lesson-form>
+ 		</div>
+	</stream-edit>
+	
 </div>

@@ -17,6 +17,7 @@ class Fellow::StreamsController < ApplicationController
 
   # GET /fellow/streams/1/edit
   def edit
+    gon.resources = ResourceItem.select(:id, :google_doc_id, :title).order(:google_doc_id)
   end
 
   def show

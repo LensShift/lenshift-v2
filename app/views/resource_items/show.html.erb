@@ -10,7 +10,7 @@
     <p><%= @resource_item.published_at %></p>
 
     <p>
-      <%= @resource_item.short_summary %>
+      <%= @resource_item.short_summary.html_safe %>
     </p>
 
     <p>
@@ -99,7 +99,7 @@
   <div class="small-12 medium-12 large-12 cell analysis-content">
     <%= @resource_item.analysis_content.html_safe if @resource_item.analysis_content %>
   </div>
-  <% if URI.parse(@resource_item.source_url).scheme === 'https' %>
+  <% if URI.parse(@resource_item.source_url).scheme == 'https' %>
     <br class="clr" />
     <br />
 

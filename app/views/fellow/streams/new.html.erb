@@ -26,7 +26,7 @@
 			<h1 v-if="!newStream">{{stream.title}}</h1>
 			<keep-alive>
 				<transition v-on:before-enter="beforeFormEnter" v-on:enter="formEnter" v-on:leave="formLeave">
-					<component :is="component" :token="'<%= form_authenticity_token %>'" v-on:stream="newLesson($event)" :stream-id="stream.id"></component>
+					<component :is="component" :token="'<%= form_authenticity_token %>'" v-on:stream="newStream($event)" v-on:lesson="addLesson($event)" :stream-id="stream.id"></component>
 				</transition>
 			</keep-alive>
 		</div>

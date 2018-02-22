@@ -1,9 +1,9 @@
 // Place all the styles related to the fellow/resource_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+@import "./settings";
 .article-preview {
-	border: 1px solid #8e8e8e;
+	border: 1px solid $light-gray;
 	padding: 25px 25px;
 }
 
