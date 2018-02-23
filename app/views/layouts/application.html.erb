@@ -12,7 +12,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body infinite-wrapper>
    
     <div id="app">
        <%= render partial: "layouts/navbar" %>
@@ -26,8 +26,9 @@
         <% end %>
 
         <%= yield %>
-       <div class='push'></div>
+       
        </div>
+       <div class='push'></div>
        <%= render partial: 'layouts/footer' %>
     </div>
     

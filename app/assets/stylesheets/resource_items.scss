@@ -3,6 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "./settings";
 
+.library-items {
+	max-height: 100%;
+}
+
+.library-container {
+}
+
+.wrap-infinite {
+	max-height: 150px;
+}
+
 .resource-iframe {
 	min-height: 750px;
 	border: 1px solid $light-gray;

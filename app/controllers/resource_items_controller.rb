@@ -2,8 +2,14 @@ class ResourceItemsController < ApplicationController
   before_action :set_resource_item, only: [:show]
   
   def index
-      gon.resources = ResourceItem.page params[:page]
+      resources = ResourceItem.page params[:page]
+      gon.resources = resources
       gon.icons = ResourceItem::RESOURCE_TYPE
+
+      respond_to do |format|
+        format.html
+        format.json {render json: resources}
+      end
   end
 
   def show

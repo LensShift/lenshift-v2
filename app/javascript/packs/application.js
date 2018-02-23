@@ -38,6 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const app = new Vue({
   	el: '#app',
+    data() {
+      return {
+        scrollPosition: 0,
+        navPosition: ''
+      }
+    },
   	components: {
       'lens-shifter-profile-form': lensShifterProfileForm,
       'resource-doc-form': resourceDocForm,
@@ -50,7 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
       'stream-show': streamShow,
       'stream-edit': streamEdit,
       'side-menu': sideMenu
-  	}
+  	},
+    created() {
+      console.log('I am created', document.body)
+      window.onscroll = function(e) {
+
+        var currentScrollPosition = e.srcElement.scrollingElement.scrollTop;
+        // console.log('scrolling', currentScrollPosition)
+        if (currentScrollPosition > this.scrollPosition && currentScrollPosition > 75) {
+         document.getElementById('ls-top-bar').classList.add('nav-up');
+        } else {
+         document.getElementById('ls-top-bar').classList.remove('nav-up')
+        }
+        this.scrollPosition = currentScrollPosition;
+      }
+      
+    },
+    destroyed() {
+      document.body.removeEventListener('scroll', this.handleScroll);
+    }
   	// render: h => h(App)
   })
 

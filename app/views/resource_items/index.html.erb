@@ -1,5 +1,5 @@
 <resource-list inline-template>
-<div>
+<div class="library-container">
   
   <div class="row align-center">
     <div class="column small-12 medium-7 large-9">
@@ -20,7 +20,7 @@
   </div>
 
 
-  <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4">  
+  <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4 library-items">  
       <div class="cell" v-for="resource in sortedResources">
         <div class='card resource-card'>
           <div class="image-holder">
@@ -38,6 +38,7 @@
         </div>
       </div>
   </div>
+  <infinite-loading v-on:infinite="infiniteHandler" id="infini" force-use-infinite-wrapper="true" :spinner="'waveDots'" :distance="10"></infinite-loading>
 </div>
 
 </resource-list>
