@@ -106,6 +106,8 @@ export default {
         .then(res => {
           // console.log(res)
           this.$emit('stream', res)
+        }, error => {
+          console.log(error)
         })
     },
     onFileChange(e) {

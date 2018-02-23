@@ -11,7 +11,7 @@ export default {
   },
   data: function () {
     return {
-      newStream: false,
+      showNewStream: false,
       stream: {
         title: "New Stream",
         description: null,
@@ -29,13 +29,13 @@ export default {
     newStream: function(object) {
       console.log(object)
       this.component = 'lesson-form'
-      this.newStream = true
+      this.showNewStream = true
       this.stream = object.data
       console.log(this.stream.id)
     },
     addLesson: function(object) {
       this.component = 'lesson-form'
-      this.newStream = true
+      this.showNewStream = true
       this.stream.lessons.push(object.data)
     },
     beforeEnter: function(el) {

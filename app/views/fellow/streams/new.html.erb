@@ -1,7 +1,7 @@
 <stream-new inline-template>
 	<div class="row align-center" ref="newStream">
 		<transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-bind:css="false">
-			<div v-if="newStream" class="column small-12 medium-6 large-6">
+			<div v-if="showNewStream" class="column small-12 medium-6 large-6">
 				<h1>{{stream.title}}</h1>
 				<p><b>Description:</b> <br />{{stream.description}}</p>
 				<p>

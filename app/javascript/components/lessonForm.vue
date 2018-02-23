@@ -20,7 +20,7 @@
     <div class="row">
       <div class="column small-12 medium-6 large-6">
         <label>Add Resource Items</label>
-        <draggable :list="newResourceList" :options="{group: 'resources', ghostClass: 'ghost', chosenClass: 'chosen'}" class="resource-destination-window" @add="addResource" @end="checkMove" ref="newList">
+        <draggable :list="newResourceList" :options="{group: 'resources', ghostClass: 'ghost', chosenClass: 'chosen'}" class="resource-destination-window" ref="newList">
           <div v-for="resource in newResourceList" :key="resource.id" class="callout warning" :id="resource.id"><b>Google Doc ID:</b> {{resource.google_doc_id}}<br /><b>Title: </b>{{resource.title}}</div>
         </draggable>
       </div>

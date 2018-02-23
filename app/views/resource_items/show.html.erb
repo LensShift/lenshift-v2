@@ -1,11 +1,10 @@
 <div class="grid-x grid-padding-x">
-  <div class="small-12 cell show-for-small-only">
-    <h2><%= @resource_item.title %></h2>
-  </div>
-
-  <div class="small-12 medium-7 large-7 cell">
+  <div class="small-12 medium-auto large-auto cell">
      <p>
-      <h1 class="hide-for-small-only"><%= @resource_item.title %></h1>
+      <h1><%= @resource_item.title %></h1>
+      <% if current_lens_shifter.try(:admin?) %>
+        <%= link_to 'edit resource', edit_fellow_resource_item_path(@resource_item), class: 'button' %>
+      <% end %>
     </p>
     <p><%= @resource_item.published_at %></p>
 
@@ -75,18 +74,11 @@
       </tbody>
     </table>
   </div>
-
-  <div class="small-12 medium-5 large-5 cell">
-    <% if @resource_item.image.present? %>
-    <%= image_tag @resource_item.image_url %>
-    <% end %>
-    <% if current_lens_shifter.try(:admin?) %>
-    <br />
-    <br />
-      <%= link_to 'edit resource', edit_fellow_resource_item_path(@resource_item), class: 'button' %>
-    <% end %>
-  </div>
-
+  <% if @resource_item.image.present? %>
+    <div class="small-12 medium-5 large-5 cell">
+      <%= image_tag @resource_item.image_url %>
+    </div>
+  <% end %>
   <div class="small-12 medium-12 large-12 cell">
     <table>
         <thead><tr><th>Key Takeaways</th></tr></thead>
@@ -104,7 +96,7 @@
     <br />
 
     <% if @resource_item.resource_type == 'video' || @resource_item.resource_type == 'podcast' %>
-      <div class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= @resource_item.video_embed.html_safe %></div>
+      <div class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= @resource_item.video_embed.html_safe if @resource_item.video_embed %></div>
     <% elsif @resource_item.resource_type == 'graphic' %>
       <div lass="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= image_tag @resource_item.image_url %></div>
     <% else %>
