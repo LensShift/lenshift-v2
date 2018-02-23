@@ -13,6 +13,14 @@
 	overflow: hidden;
 }
 
+.stream-block a {
+	color: white;
+}
+
+.stream-block a:hover {
+	color: $light-gray;
+}
+
 .label-margin-right {
 	margin-right: 5px;
 }
