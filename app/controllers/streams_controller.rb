@@ -2,7 +2,7 @@ class StreamsController < ApplicationController
   before_action :authenticate_lens_shifter!
 
   def index
-  	gon.streams = Stream.all.to_json({include: :lessons})
+  	gon.streams = Stream.published_before(Time.zone.now).to_json({include: :lessons})
   end
 
   def show

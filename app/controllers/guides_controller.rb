@@ -1,6 +1,6 @@
 class GuidesController < ApplicationController
 	
 	def index
-		@guides = Guide.all
+		@guides = Guide.published_before(Time.zone.now)
 	end
 end

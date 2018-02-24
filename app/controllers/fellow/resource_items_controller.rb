@@ -95,7 +95,7 @@ class Fellow::ResourceItemsController < ApplicationController
 	      	gon.resource_item = @resource_item
 	        format.html { redirect_to @resource_item, notice: 'Resource item was successfully updated.' }
 	        RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
-	        format.json { render :show, status: :ok, location: @resource_item }
+	        format.json { render json: @resource_item.to_json, status: :ok, location: @resource_item }
 	      else
 	      	gon.resource_item = resource_item_params
 	        format.html { render :edit, location: @resource_item, status: :unprocessable_entity, error: @resource_item.errors }

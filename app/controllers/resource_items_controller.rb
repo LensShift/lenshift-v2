@@ -2,7 +2,7 @@ class ResourceItemsController < ApplicationController
   before_action :set_resource_item, only: [:show]
   
   def index
-      resources = ResourceItem.page params[:page]
+      resources = ResourceItem.published_before(Time.zone.now).page params[:page]
       gon.resources = resources
       gon.icons = ResourceItem::RESOURCE_TYPE
 

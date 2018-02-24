@@ -20,6 +20,8 @@ import streamShow from '../components/streamShow'
 import streamList from '../components/streamList'
 import sideMenu from '../components/sideMenu'
 import streamEdit from '../components/streamEdit'
+import resourceFellowList from '../components/resourceFellowList'
+import streamFellowList from '../components/streamFellowList'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -55,7 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'stream-list': streamList,
       'stream-show': streamShow,
       'stream-edit': streamEdit,
-      'side-menu': sideMenu
+      'side-menu': sideMenu,
+      'resource-fellow-list': resourceFellowList,
+      'stream-fellow-list': streamFellowList
   	},
     created() {
       console.log('I am created', document.body)

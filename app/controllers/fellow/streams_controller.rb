@@ -38,13 +38,14 @@ class Fellow::StreamsController < ApplicationController
   # PATCH/PUT /fellow/streams/1
   # PATCH/PUT /fellow/streams/1.json
   def update
-
-    if @stream.update(stream_params)
-      gon.stream = @stream.to_json(include: {lessons: {include: :resource_items}})
-      # render json: @stream.to_json(include: {lessons: {include: :resource_items}})
-      render :show, status: :created, notice: 'Stream was successfully updated.'
-    else
-      render json: render_errors(@stream.errors), status: :unprocessable_entity
+    respond_to do |format|
+      if @stream.update(stream_params)
+        gon.stream = @stream.to_json(include: {lessons: {include: :resource_items}})
+        format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}) }
+        format.html { render :show, status: :created, notice: 'Stream was successfully updated.' }
+      else
+        format.json { render json: render_errors(@stream.errors), status: :unprocessable_entity }
+      end
     end
   end
 
