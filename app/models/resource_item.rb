@@ -10,6 +10,8 @@ class ResourceItem < ApplicationRecord
    paginates_per 8
    mount_uploader :image, ImageUploader
 
+   scope :published_before, ->(time) { where("published_at <= ?", time)}
+
    RESOURCE_TYPE = {
    	"academic": "university",
 	'article': "pencil-square-o",

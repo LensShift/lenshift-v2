@@ -10,5 +10,5 @@ validates :title, presence: true
    paginates_per 8
    mount_uploader :image, ImageUploader
 
-
+   scope :published_before, ->(time) { where("published_at <= ?", time)}
 end
