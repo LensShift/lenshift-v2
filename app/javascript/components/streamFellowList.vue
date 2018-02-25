@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import moment from 'moment'
 
 export default {
   data: function () {
@@ -11,8 +12,9 @@ export default {
     publishNow: function (id, token) {
       let now = new Date();
       axios.patch(`/fellow/streams/${id}.json`, {'utf8': '✓', authenticity_token: token, stream: {published_at: now}}).then(res => {
-        // console.log(res)
-        this.$refs['stream' + res.data.id].innerHTML = "<span class='label success'>published</span>"
+        console.log(res)
+        this.$refs['streamStatus' + res.data.id].innerHTML = "<span class='label success'>published</span>"
+        this.$refs['streamPublishDate' + res.data.id].innerHTML = moment(res.data.published_at).format('MM/DD/YYYY')
       }, error => {
         console.log(error)
       })

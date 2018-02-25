@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   
   resources :lens_shifter_profiles
-  resources :profiles
+  resources :profiles, except: [:index]
   
   resources :resource_items, only: [:index, :show]
   resources :streams, only: [:index, :show]
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   namespace :fellow do
     resources :resource_items do
+        get :get_article
       collection do
         get :import_google
         get 'doc/:file_id', to: 'resource_items#doc', as: :doc

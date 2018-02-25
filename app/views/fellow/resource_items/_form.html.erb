@@ -4,7 +4,7 @@
       <h1>{{title}}</h1>
       <%= f.input :title, input_html: {'v-model': "title"} %>
       <%= f.input :source_url, label: 'Link', input_html: {} %>
-      <%= f.input :published_at, label: 'Publish Date', as: :date, html5: true, input_html: {} %>
+      <%= f.input :published_at, label: 'Publish Date (on LensShift)', as: :date, html5: true, input_html: {} %>
 
       <%= f.input :short_summary, as: :hidden, input_html: {'v-model': 'shortSummary', class: 'short-summary-text'} %>
         <label>Short Summary <small><i>(This heading will not show)</i></small></label>
@@ -91,10 +91,25 @@
         <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
         <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
     </div>
-    <% if !@article.nil? %>
-      <%= f.input :article_title, as: :hidden, input_html: {'value': @article.title.nil? ? '' : @article.title } %>
-      <%= f.input :article_desc, as: :hidden, input_html: {'value': @article.description.nil? ? '' : @article.description }  %>
-      <%= f.input :article_content, as: :hidden, input_html: {'value': @article.doc.nil? ? '' : @article.doc } %>
-    <% end %>
+
+      <div class="small-12 medium-12 large-12 cell analysis-content">
+        <b>Scraped Content:</b><br />
+
+        <span class="button" v-on:click="getArticle(<%= @resource_item.id %>)">Scrape Again</span><br />
+        <span class="callout primary small" v-if="notice">{{notice}}</span>
+        <div v-if="!articleScraped">
+          <%= f.input :article_title %>
+          <%= f.input :article_desc %>
+          <%= f.input :article_content %>
+        </div>
+
+        <div v-if="articleScraped">
+          <div class="callout success small cell">freshly scraped</div>
+          <%= f.input :article_title, input_html: {'v-bind:value': 'article.title' } %>
+          <%= f.input :article_desc, input_html: {'v-bind:value': 'article.description' }  %>
+          <%= f.input :article_content, input_html: {'v-bind:value': 'article.content' } %>
+        </div>
+      </div>
+
 </div>
 </resource-item-form>

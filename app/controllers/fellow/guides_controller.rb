@@ -59,6 +59,6 @@ class Fellow::GuidesController < ApplicationController
 	end
 
 	def guide_params
-      params.require(:guides).permit(:title, :description, :file, :image, :tags, :slug, :lens_shifter_id)
+      params.require(:guides).permit(:title, :description, :file, :image, :tags, :slug, :lens_shifter_id, :published_at)
   	end
 end

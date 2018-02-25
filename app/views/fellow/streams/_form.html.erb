@@ -1,12 +1,15 @@
 <%= simple_form_for @stream, url: fellow_stream_path do |f| %>
   <%= f.input :title %>
   <%= f.input :description, input_html: {class: "shorter-summary-text"} %>
-  <div class="grid-x grid-margin-x">
-    <div class="cell small-12 medium-2 large-3">
-      <%= f.input :estimated_reading_time %>
+  <div class="row">
+    <div class="column small-12 medium-3 large-3">
+      <%= f.input :estimated_reading_time, label: 'Reading time' %>
     </div>
-    <div class="cell small-12 medium-5 large-5">
+    <div class="column small-12 medium-5 large-5">
       <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter_id %>
+    </div>
+    <div class="column small-12 medium-4 large-4">
+      <%= f.input :published_at, as: :date, html5: true, label: 'Publish Date' %>
     </div>
   </div>
   <%= f.input :guiding_questions, input_html: {class: "shorter-summary-text"} %>

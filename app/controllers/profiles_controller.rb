@@ -1,11 +1,7 @@
 class ProfilesController < ApplicationController
 	before_action :authenticate_lens_shifter!
   before_action :set_profile, only: [:edit, :update, :destroy]
-  before_action :authenticate_fellow!, only: [:index]
 
-  def index
-  	@profiles = Profile.all
-  end
 
   def new
     gon_mapquest_key

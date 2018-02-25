@@ -19,8 +19,8 @@
       <tr>
         <td><%= stream.title %></td>
         <td><%= stream.lens_shifter.full_name %></td>
-        <td><%= stream.published_at %></td>
-        <td ref="stream<%= stream.id %>">
+        <td ref="streamPublishDate<%= stream.id %>"><%= stream.published_at.strftime("%m/%d/%Y") if stream.published_at? %></td>
+        <td ref="streamStatus<%= stream.id %>">
               <% if stream.published_at? && stream.published_at <= Time.zone.now %>
                 <span class="label success">published</span>
               <% elsif stream.published_at? && stream.published_at > Time.zone.now %>

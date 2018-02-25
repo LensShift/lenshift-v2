@@ -91,7 +91,8 @@
   <div class="small-12 medium-12 large-12 cell analysis-content">
     <%= @resource_item.analysis_content.html_safe if @resource_item.analysis_content %>
   </div>
-  <% if URI.parse(@resource_item.source_url).scheme == 'https' %>
+
+  
     <br class="clr" />
     <br />
 
@@ -100,12 +101,25 @@
     <% elsif @resource_item.resource_type == 'graphic' %>
       <div lass="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell content-container"><%= image_tag @resource_item.image_url %></div>
     <% else %>
-      <div class="iframe-head is-orange small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell"><b>From the website of the resource</b></div>
-      <iframe srcdoc="<%= @resource_item.article_content %>" class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell resource-iframe"></iframe>
+      <% if !@resource_item.article_content.nil? %>
+
+          <div class="iframe-head is-orange small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell"><b>From the website of the resource</b></div>
+          <iframe srcdoc="<%= @resource_item.article_content %>" class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell resource-iframe"></iframe>
+
+      <% elsif URI.parse(@resource_item.source_url).scheme == 'https' %>
+
+        <div class="iframe-head is-orange small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell"><b>From the website of the resource</b></div>
+          <iframe src="<%= @resource_item.source_url %>" class="small-12 medium-10 large-10 small-offset-1 medium-offset-1 large-offset-1 cell resource-iframe"></iframe>
+
+      <% else %>
+          <div class="small-12 medium-12 large-12 cell "><strong></strong> <%= link_to 'Click here to read more about it', @resource_item.source_url, alt: 'resource link', :target => "_blank", class: 'button is-orange' %></div>
+
+      <% end %>
+
+
+
     <% end %>
-  <% else %>
-    <div class="small-12 medium-12 large-12 cell "><strong></strong> <%= link_to 'Click here to read more about it', @resource_item.source_url, alt: 'resource link', :target => "_blank", class: 'button is-orange' %></div>
-  <% end %>
+ 
 </div>
 
 </div>

@@ -53,12 +53,17 @@ class Fellow::ResourceItemsController < ApplicationController
 	  # GET /resource_items/1/edit
 	def edit
 		gon.resource_item = @resource_item
+	end
+
+	def get_article
+		resource_item = ResourceItem.friendly.find(params[:resource_item_id])
 		begin
-			@article = ArticleCrawler.new(@resource_item.source_url) if !@resource_item.source_url.nil?
+			article = ArticleCrawler.new(resource_item.source_url)
+			render json: {title: article.title, description: article.description, content: article.content }
 		rescue StandardError
 			flash[:notice] = 'Scraper cannot scrape the link'
+			render json: { notice: 'Scraper cannot scrape the link', status: :unprocessable_entity }
 		end
-		gon.article = @article
 	end
 
 	  # POST /resource_items

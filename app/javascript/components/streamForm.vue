@@ -17,13 +17,13 @@
         <textarea name="stream[description]" id="stream_description" class="text optional shorter-summary-text" v-model="stream.description"></textarea>
       </div> 
       <div class='row'>
-        <div class="column small-12 medium-6 large-6">
+        <div class="column small-12 medium-4 large-4">
           <div class="input integer optional stream_estimated_reading_time">   
             <label for="stream_estimated_reading_time" class="integer optional">Estimated reading time</label>
             <input type="number" step="1" name="stream[estimated_reading_time]" id="stream_estimated_reading_time" class="numeric integer optional" v-model="stream.estimated_reading_time">
           </div>
         </div>
-        <div class="column small-12 medium-6 large-6">
+        <div class="column small-12 medium-4 large-4">
           <div class="input select required stream_lens_shifter">    
             <label for="stream_lens_shifter_id" class="select required"><abbr title="required">*</abbr> LensShifter</label>
               <select name="stream[lens_shifter_id]" id="stream_lens_shifter_id" class="select required" v-model="stream.lens_shifter_id">
@@ -32,7 +32,13 @@
 
               </select>
           </div>
-        </div> 
+        </div>
+        <div class="column small-12 medium-4 large-4">
+          <div class="input date optional stream_published_at">    
+            <label for="stream_published_at" class="integer optional">Publish Date</label>
+            <input type="date" name="stream[published_at]" id="stream_published_at" class="date optional" v-model="stream.published_at">
+          </div>
+        </div>
       </div> 
     </div>
 
@@ -81,7 +87,8 @@ export default {
         image: null,
         guiding_questions: null,
         tag_list: null,
-        lens_shifter_id: null
+        lens_shifter_id: null,
+        published_at: null
       },
       lensShifters: gon.lens_shifters,
       imageURL: null

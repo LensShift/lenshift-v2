@@ -1,5 +1,6 @@
 <script>
 import editor from 'vue2-medium-editor';
+import axios from 'axios';
 
 export default {
   name: 'resourceItemForm',
@@ -20,11 +21,14 @@ export default {
           buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4']
         }
       },
+      article: {},
+      articleScraped: false,
       shortOptions: {
         toolbar: {
           buttons: ['bold','italic','underline','anchor','unorderedlist']
         }
-      }
+      },
+      notice: null
     }
   },
   methods: {
@@ -37,6 +41,19 @@ export default {
     addImage: function(imageLink) {
       // console.log(imageLink)
       this.image = imageLink
+    },
+    getArticle: function(id) {
+      axios.get(`/fellow/resource_items/${id}/get_article.json`)
+        .then(res => {
+        console.log(res)
+        this.articleScraped = true
+        this.article['title'] = res.data.title
+        this.article['description'] = res.data.description
+        this.article['content'] = res.data.content
+      }, error => {
+        console.log(error)
+        this.notice = error.notice
+      })
     }
   },
   created() {

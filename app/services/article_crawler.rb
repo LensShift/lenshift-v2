@@ -1,9 +1,14 @@
 class ArticleCrawler
-	attr_accessor :doc, :url, :publisher
+	attr_accessor :doc, :url, :publisher, :content
 
 	def initialize(url)
 		@url = url
-		@doc = Nokogiri::HTML(open(url, :allow_redirections => :safe))
+		@doc = Nokogiri::HTML.parse(open(url, :allow_redirections => :safe))
+		
+	end
+
+	def content
+		self.doc.to_s
 	end
 
 	def title
