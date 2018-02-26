@@ -5,7 +5,7 @@
       <%= f.input :title, input_html: {'v-model': "title"} %>
       <%= f.input :source_url, label: 'Link', input_html: {} %>
       
-      <% if !f.object.article_content.nil? %>
+      <% if !f.object.article_content.nil? && f.object.resource_type != 'video' && f.object.resource_type != 'podcast' %>
         <span>Resource will be shown in iframe, select to override...</span>
         <%= f.input :no_iframe, label: "Do not show in iframe" %>
       <% end %>
