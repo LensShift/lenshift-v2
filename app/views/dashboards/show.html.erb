@@ -23,10 +23,11 @@
           <%= link_to "Change password", edit_lens_shifter_registration_path %>
             <% if current_lens_shifter.try(:admin?) %> <br />
               <%= link_to 'All Resources', fellow_resource_items_path %> <br />
+              <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> <br />
               <%= link_to 'Guides', fellow_guides_path %> <br />
               <%= link_to 'Streams', fellow_streams_path %> <br />
-              <%= link_to 'Add New Resource', new_fellow_resource_item_path %> <br />
-              <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> <br /><br />
+              <%= link_to 'Static Pages', fellow_static_pages_path %> <br />
+              <br />
               <%= link_to 'Export CSV', export_csv_fellow_resource_items_path(format: 'csv'), class: 'button small' %> <br />
               
               <div class="inline-form">

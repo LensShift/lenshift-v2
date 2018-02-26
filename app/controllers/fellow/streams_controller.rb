@@ -29,6 +29,7 @@ class Fellow::StreamsController < ApplicationController
   def create
     stream = Stream.new(stream_params)
       if stream.save
+        RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{stream.id}.json", stream.to_json)
         render json: stream, status: :created, notice: 'Stream was successfully created.'
       else
         render json: render_errors(stream.errors), status: :unprocessable_entity
@@ -41,6 +42,7 @@ class Fellow::StreamsController < ApplicationController
     respond_to do |format|
       if @stream.update(stream_params)
         gon.stream = @stream.to_json(include: {lessons: {include: :resource_items}})
+        RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{stream.id}.json", gon.stream)
         format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}) }
         format.html { render :show, status: :created, notice: 'Stream was successfully updated.' }
       else
@@ -54,6 +56,10 @@ class Fellow::StreamsController < ApplicationController
   def destroy
     return render json: render_errors("Cannot find the stream"), status: :not_found if @stream.blank?
     return render json: render_errors("you can't"), status: :forbidden if @stream.lens_shifter != current_lens_shifter
+    
+    RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", gon.stream)
+    RestClient.delete("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json")
+
     @stream.destroy
 
     # head :no_contsent

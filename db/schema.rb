@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226193121) do
+ActiveRecord::Schema.define(version: 20180226205028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,6 +143,16 @@ ActiveRecord::Schema.define(version: 20180226193121) do
     t.index ["slug"], name: "index_resource_items_on_slug"
   end
 
+  create_table "static_pages", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "slug"
+    t.bigint "lens_shifter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lens_shifter_id"], name: "index_static_pages_on_lens_shifter_id"
+  end
+
   create_table "streams", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -198,6 +208,7 @@ ActiveRecord::Schema.define(version: 20180226193121) do
   add_foreign_key "lessons", "streams"
   add_foreign_key "profiles", "lens_shifters"
   add_foreign_key "resource_items", "lens_shifters"
+  add_foreign_key "static_pages", "lens_shifters"
   add_foreign_key "streams", "lens_shifters"
   add_foreign_key "syllabuses", "lessons"
   add_foreign_key "syllabuses", "resource_items"

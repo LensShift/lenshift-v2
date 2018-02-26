@@ -1,0 +1,2 @@
+module Fellow::StaticPagesHelper
+end
