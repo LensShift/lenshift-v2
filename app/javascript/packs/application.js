@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'stream-fellow-list': streamFellowList
   	},
     created() {
-      console.log('I am created', document.body)
+      // console.log('I am created', document.body)
       window.onscroll = function(e) {
 
         var currentScrollPosition = e.srcElement.scrollingElement.scrollTop;

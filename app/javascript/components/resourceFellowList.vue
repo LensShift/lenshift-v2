@@ -8,7 +8,8 @@ export default {
     }
   },
   methods: {
-    publishNow: function (id, token) {
+    publishNow: function (id) {
+      let token = this.$refs.indexTable.getAttribute("token")
       let now = new Date();
       axios.patch(`/fellow/resource_items/${id}.json`, {'utf8': '✓', authenticity_token: token, resource_item: {published_at: now}}).then(res => {
         console.log(res)
