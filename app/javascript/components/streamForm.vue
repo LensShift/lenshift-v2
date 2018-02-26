@@ -1,5 +1,5 @@
 <template>
-  <form novalidate="novalidate" id="new_stream" enctype="multipart/form-data"accept-charset="UTF-8" class="new_stream" ref="streamData" v-on:submit.prevent="createStream">
+  <form novalidate="novalidate" id="new_stream" enctype="multipart/form-data"accept-charset="UTF-8" class="new_stream" ref="streamData" v-on:submit.prevent="createStream($event)">
     <input name="utf8" type="hidden" value="✓"> 
 
     <input type="hidden" name="authenticity_token" id="authenticity_token" ref="authToken" :value="token"> 
@@ -95,7 +95,9 @@ export default {
     }
   },
   methods: {
-    createStream: function() {
+    createStream: function(event) {
+      event.target.elements.commit.disabled = true
+      console.log(event.target.elements)
       // console.log('create')
       // console.log(this.token)
 
@@ -115,6 +117,7 @@ export default {
           this.$emit('stream', res)
         }, error => {
           console.log(error)
+          event.target.elements.commit.disabled = false
         })
     },
     onFileChange(e) {

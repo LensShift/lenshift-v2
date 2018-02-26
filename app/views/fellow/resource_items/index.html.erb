@@ -34,7 +34,7 @@
 							<% elsif resource_item.published_at? && resource_item.published_at > Time.zone.now %>
 								<span  class="label success">date set</span>
 							<% else %>
-								<button class="button table-button" v-on:click="publishNow(<%= resource_item.id %>)">Publish</button>
+								<button class="button table-button" v-on:click="publishNow(<%= resource_item.id %>, $event)">Publish</button>
 							<% end %>
 						</td>
 						<td><%= delete_button_to 'Delete', fellow_resource_item_path(resource_item), data: {confirm: 'Are you sure?'}, class: 'button table-button alert' %></td>

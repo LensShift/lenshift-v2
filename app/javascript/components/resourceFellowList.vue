@@ -8,7 +8,8 @@ export default {
     }
   },
   methods: {
-    publishNow: function (id) {
+    publishNow: function (id, event) {
+      event.target.disabled = true
       let token = this.$refs.indexTable.getAttribute("token")
       let now = new Date();
       axios.patch(`/fellow/resource_items/${id}.json`, {'utf8': '✓', authenticity_token: token, resource_item: {published_at: now}}).then(res => {
@@ -17,6 +18,7 @@ export default {
         this.$refs['resourcePublishDate' + res.data.id].innerHTML = moment(res.data.published_at).format('MM/DD/YYYY')
       }, error => {
         console.log(error)
+        event.target.disabled = false
       })
     }
   }
