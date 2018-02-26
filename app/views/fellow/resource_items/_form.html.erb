@@ -4,6 +4,12 @@
       <h1>{{title}}</h1>
       <%= f.input :title, input_html: {'v-model': "title"} %>
       <%= f.input :source_url, label: 'Link', input_html: {} %>
+      
+      <% if !f.object.article_content.nil? %>
+        <span>Resource will be shown in iframe, select to override...</span>
+        <%= f.input :no_iframe, label: "Do not show in iframe" %>
+      <% end %>
+      
       <%= f.input :published_at, label: 'Publish Date (on LensShift)', as: :date, html5: true, input_html: {} %>
 
       <%= f.input :short_summary, as: :hidden, input_html: {'v-model': 'shortSummary', class: 'short-summary-text'} %>

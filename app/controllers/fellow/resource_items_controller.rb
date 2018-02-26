@@ -133,6 +133,6 @@ class Fellow::ResourceItemsController < ApplicationController
       params.require(:resource_item).permit(:title, :author, :source_url, :estimated_reading_time, 
       	:short_summary, :tags, :analysis_content, :key_takeaways, :image, :resource_type, :lens_shifter_id, 
       	:google_doc_id, :published_at, :slug, :tag_list, :author_list, :file_id, :remote_image_url, :feature,
-      	:article_title, :article_desc, :article_date, :article_content, :video_embed)
+      	:article_title, :article_desc, :article_date, :article_content, :video_embed, :no_iframe)
     end
 end

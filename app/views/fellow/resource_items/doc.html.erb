@@ -7,7 +7,14 @@
 				<h1>{{title}}</h1>
 				<%= f.input :title, input_html: {'v-model': "title"} %>
 				<%= f.input :source_url, label: 'Link', input_html: {value: @parsed_file['link']} %>
+
+				<% if !@article.nil? && !@article.doc.nil? %>
+					<span>Resource will be shown in iframe, select to override...</span>
+    				<%= f.input :no_iframe, label: "Do not show in iframe" %>
+    			<% end %>
+
 				<%= f.input :published_at, label: 'Publish Date (on LensShift)', as: :date, html5: true, input_html: {value: @parsed_file['date_published(leave_blank)']} %>
+
 
 				<%= f.input :short_summary, as: :hidden, input_html: {'v-model': 'shortSummary', class: 'short-summary-text'} %>
 			    <label>Short Summary <small><i>(This heading will not show)</i></small></label>
@@ -53,7 +60,7 @@
 				    	<%= f.association :lens_shifter, as: :select, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, label_html: {class: 'warning'}, input_html: {'v-model': 'lensShifter'} %>
 					</div>
 				    <div class="cell small-12 medium-6 large-4">
-				    	<%= f.input :feature, label: "Make me a featured resource" %>
+				    	<%= f.input :feature, label: "Feature this resource" %>
 				    </div>
 				</div>	
 			</div>
@@ -125,7 +132,7 @@
 						<div class="grid-x grid-margin-x">
 							<% @article.images.each do |image| %>
 								<div class="cell small-12 medium-3 large-3 clickable-image" v-on:click="addImage('<%= image %>')">
-									<%=image_tag image, class: 'thumbnail' %>
+									<%= image_tag image, class: 'thumbnail' %>
 								</div>
 							<% end %>
 						</div>
