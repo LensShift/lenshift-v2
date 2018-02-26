@@ -6,7 +6,7 @@
         <%= link_to 'edit resource', edit_fellow_resource_item_path(@resource_item), class: 'button' %>
       <% end %>
     </p>
-    <p><%= @resource_item.published_at %></p>
+    <p><small><i>Added: <%= @resource_item.published_at.strftime("%m-%d-%Y") if !@resource_item.published_at.nil? %></i></small></p>
 
     <p>
       <%= @resource_item.short_summary.html_safe %>
@@ -31,8 +31,8 @@
         <tr>
           <td><small><%= @resource_item.resource_type %></small></td>
           <td><small><%= @resource_item.estimated_reading_time %> minutes<small></td>
-          <td><small><%= @resource_item.author_list %></small></td>
-          <td><small><%= @resource_item.published_at %></small></td>
+          <td><small><%= @resource_item.author_list.to_s.upcase %></small></td>
+          <td><small><%= @resource_item.article_date.strftime("%m-%d-%Y") if !@resource_item.article_date.nil? %></small></td>
           <td><small><%= @resource_item.source_url.match("((.*?\/.*?){2})\/") %></small></td>
         </tr>
       </tbody>

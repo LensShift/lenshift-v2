@@ -1,0 +1,30 @@
+<div>
+  <p id="notice"><%= notice %></p>
+
+  <h1>Static Pages</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>LS Author</th>
+        <th>Published</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pages.each do |page| %>
+        <tr>
+          <td><%= page.title %></td>
+          <td><%= page.lens_shifter.full_name %></td>
+          <td><%= link_to 'Edit', edit_fellow_static_page_path(page) %></td>
+          <td><%= delete_button_to 'Delete',  fellow_static_page_path(page), class: 'button table-button alert' %></td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <br />
+
+  <%= link_to 'New Static Page', new_fellow_static_page_path %>
+</div>

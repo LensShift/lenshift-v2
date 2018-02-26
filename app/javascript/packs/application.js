@@ -22,6 +22,7 @@ import sideMenu from '../components/sideMenu'
 import streamEdit from '../components/streamEdit'
 import resourceFellowList from '../components/resourceFellowList'
 import streamFellowList from '../components/streamFellowList'
+import staticPageForm from '../components/staticPageForm'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -59,7 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'stream-edit': streamEdit,
       'side-menu': sideMenu,
       'resource-fellow-list': resourceFellowList,
-      'stream-fellow-list': streamFellowList
+      'stream-fellow-list': streamFellowList,
+      'static-page-form': staticPageForm
   	},
     created() {
       // console.log('I am created', document.body)

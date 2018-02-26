@@ -3,13 +3,12 @@ Rails.application.routes.draw do
 
   root 'resource_items#index'
 
-  
-  resources :lens_shifter_profiles
   resources :profiles, except: [:index]
   
   resources :resource_items, only: [:index, :show]
   resources :streams, only: [:index, :show]
   resources :guides, only: [:index]
+  resources :static_pages, path: '/', only: [:show]
 
   namespace :fellow do
     resources :resource_items do
@@ -27,16 +26,12 @@ Rails.application.routes.draw do
       resources :lessons, only: [:new, :create, :update, :destroy]
     end
     resources :lessons, only: [:new, :create, :update, :destroy]
+    resources :static_pages, except: [:show]
   end
 
   devise_for :lens_shifters, controllers: {
     registrations: "lens_shifters/registrations"
   }
-  
-
-  get 'details', to: 'static_pages#details'
-
-  resources :static_pages, only: [:index]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
