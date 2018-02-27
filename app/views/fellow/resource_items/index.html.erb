@@ -8,10 +8,10 @@
 			<table ref="indexTable" token="<%= form_authenticity_token %>">
 		        <thead>
 		          <tr>
-		          	<th>no.</th>
-		          	<th>id</th>
-		            <th>GD ID</th>
-		            <th>Title</th>
+		          	<th>no. </th>
+		          	<th><%= link_to fellow_resource_items_path(sort: 'id') do %>id<i v-if="sortParams === 'id'" class="fa fa-sort-down"></i><% end %></i></th>
+		            <th><%= link_to fellow_resource_items_path(sort: 'google_doc_id') do %>GD ID<i v-if="sortParams === 'google_doc_id'" class="fa fa-sort-down"></i><% end %></th>
+		            <th><%= link_to fellow_resource_items_path(sort: 'title') do %>Title<i v-if="sortParams === 'title'" class="fa fa-sort-down"></i><% end %></th>
 		            <th>Publish Date</th>
 		            <th>LS Author</th>
 		            <th>Featured</th>

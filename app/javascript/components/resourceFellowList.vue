@@ -5,6 +5,7 @@ import moment from 'moment'
 export default {
   data: function () {
     return {
+      sortParams: null
     }
   },
   methods: {
@@ -21,6 +22,10 @@ export default {
         event.target.disabled = false
       })
     }
+  },
+  created () {
+    const windowPath = new URL(window.location.href)
+    this.sortParams = windowPath.searchParams.get("sort")
   }
 }
 </script>
