@@ -6,7 +6,7 @@ class Fellow::ResourceItemsController < ApplicationController
 
 
 	def index
-		@resource_items = ResourceItem.all
+		@resource_items = ResourceItem.order(:google_doc_id)
 	end
 
 	def export_csv

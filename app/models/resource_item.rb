@@ -7,7 +7,6 @@ class ResourceItem < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
   acts_as_taggable_on :tags, :author
-   paginates_per 8
    mount_uploader :image, ImageUploader
 
    scope :published_before, ->(time) { where("published_at <= ?", time)}
