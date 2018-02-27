@@ -16,22 +16,23 @@
   <%= f.input :tag_list %>
   <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter_id %>
 
-  <% @stream.lessons.order(:row_order).each_with_index do |lesson, index| %>
-    <b>Lesson <%= index + 1 %>: </b><%= lesson.title %>
-    <%= f.simple_fields_for :lessons do |l| %>
-      <%= l.input :analysis, label: "At a Glance:", input_html: {class: "shorter-summary-text"} %>
-    <% end %>
-    <table>
-      <thead><tr><th colspan="2">Resources</th></tr></thead>
-      <tbody>
-      <% lesson.resource_items.order("syllabuses.row_order").each do |resource| %>
-        <tr>
-          <td><%= resource.google_doc_id %></td>
-          <td><%= resource.title %></td>
-        </tr>
+    <% @stream.lessons.order(:row_order).each_with_index do |lesson, index| %>
+      <%= f.simple_fields_for :lessons, lesson do |l| %>
+        <%= l.input :title, label: "Lesson #{index + 1} Title" %>
+        <%= l.input :analysis, label: "At a Glance:", input_html: {class: "shorter-summary-text"} %>
+        <table>
+          <thead><tr><th colspan="2">Resources</th></tr></thead>
+          <tbody>
+          <% l.object.resource_items.order("syllabuses.row_order").each do |resource| %>
+            <tr>
+              <td><%= resource.google_doc_id %></td>
+              <td><%= resource.title %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
       <% end %>
-      </tbody>
-    </table>
-  <% end %>
+    <% end %>
+
   <%= f.button :submit %>
 <% end %>

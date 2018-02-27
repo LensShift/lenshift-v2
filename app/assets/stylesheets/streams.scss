@@ -65,7 +65,9 @@
 }
 
 .resource-syllabus-frame {
-	border: 1px solid $light-gray;
+	border-top: 1px solid $light-gray;
+	border-left: 1px solid $light-gray;
+	border-right: 1px solid $light-gray;
     background: $white;
 }
 
@@ -168,8 +170,12 @@
 		margin-top: 50px;
 	}
 
-	.resource-syllabus-frame {
+	.resource-syllabus-frame-head {
 		margin-top: 50px;
+	}
+
+	.resource-syllabus-frame {
+		
 		max-height: 250px;
 		overflow-y: scroll;
 	}
@@ -182,8 +188,11 @@
 		margin-top: 50px;
 	}
 
-	.resource-syllabus-frame {
+	.resource-syllabus-frame-head {
 		margin-top: 25px;
+	}
+
+	.resource-syllabus-frame {
 		max-height: 250px;
 		overflow-y: scroll;
 	}
