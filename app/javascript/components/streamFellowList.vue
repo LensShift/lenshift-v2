@@ -5,11 +5,12 @@ import moment from 'moment'
 export default {
   data: function () {
     return {
-      
     }
   },
   methods: {
-    publishNow: function (id, token) {
+    publishNow: function (id) {
+      const meta = document.getElementsByTagName('meta')
+      let token = meta['csrf-token'].content
       let now = new Date();
       axios.patch(`/fellow/streams/${id}.json`, {'utf8': '✓', authenticity_token: token, stream: {published_at: now}}).then(res => {
         console.log(res)

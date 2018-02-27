@@ -11,7 +11,8 @@ export default {
   methods: {
     publishNow: function (id, event) {
       event.target.disabled = true
-      let token = this.$refs.indexTable.getAttribute("token")
+      const meta = document.getElementsByTagName('meta')
+      let token = meta['csrf-token'].content
       let now = new Date();
       axios.patch(`/fellow/resource_items/${id}.json`, {'utf8': '✓', authenticity_token: token, resource_item: {published_at: now}}).then(res => {
         console.log(res)
@@ -26,6 +27,7 @@ export default {
   created () {
     const windowPath = new URL(window.location.href)
     this.sortParams = windowPath.searchParams.get("sort")
+
   }
 }
 </script>

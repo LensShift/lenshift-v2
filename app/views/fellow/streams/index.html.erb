@@ -26,7 +26,7 @@
               <% elsif stream.published_at? && stream.published_at > Time.zone.now %>
                 <span  class="label success">date set</span>
               <% else %>
-                <button class="button table-button" v-on:click="publishNow(<%= stream.id %>, '<%= form_authenticity_token %>')">Publish</button>
+                <button class="button table-button" v-on:click="publishNow(<%= stream.id %>)">Publish</button>
               <% end %>
         </td>
         <td><%= link_to 'Edit', edit_fellow_stream_path(stream) %></td>

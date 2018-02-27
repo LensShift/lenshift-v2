@@ -4,8 +4,7 @@
 		
 			<h1>Resource Library Admin</h1>
 			<%= link_to 'New Resource', new_fellow_resource_item_path, class: 'button' %>
-
-			<table ref="indexTable" token="<%= form_authenticity_token %>">
+			<table>
 		        <thead>
 		          <tr>
 		          	<th>no. </th>
@@ -30,7 +29,7 @@
 							<td><%= resource_item.title %></td>
 							<td ref="resourcePublishDate<%= resource_item.id %>"><%= resource_item.published_at.strftime("%m/%d/%Y") if resource_item.published_at? %></td>
 							<td><%= resource_item.lens_shifter.full_name %></td>
-							<td><%= resource_item.feature ? "<span class='success label>feature</span".html_safe : '' %></td>
+							<td><%= resource_item.feature ? "<span class='success label'>featured</span>".html_safe : '' %></td>
 							<td><%= link_to 'Edit', edit_fellow_resource_item_path(resource_item.id) %></td>
 							<td ref="resourceStatus<%= resource_item.id %>" key="resourceKey<%= resource_item.id %>">
 								<% if resource_item.published_at? && resource_item.published_at <= Time.zone.now %>
