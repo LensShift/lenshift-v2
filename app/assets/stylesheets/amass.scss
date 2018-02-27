@@ -259,13 +259,24 @@ img {
 .image-holder {
 	background: $light-gray;
 	color: $white;
-	height: 250px;
+	padding-bottom: 100%;
 	font-size: 90px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	overflow-x: hidden;
 	overflow-y: hidden;
+	position: relative;
+}
+
+.image-holder img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.image-holder i {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .iframe-head {
