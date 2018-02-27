@@ -8,6 +8,8 @@
 			<table ref="indexTable" token="<%= form_authenticity_token %>">
 		        <thead>
 		          <tr>
+		          	<th>no.</th>
+		          	<th>id</th>
 		            <th>GD ID</th>
 		            <th>Title</th>
 		            <th>Publish Date</th>
@@ -20,24 +22,26 @@
 		        </thead>
 
 		        <tbody>
-					<% @resource_items.each do |resource_item| %>
+					<% @resource_items.each_with_index do |resource_item, index| %>
 						<tr>
-						<td><%= resource_item.google_doc_id %></td>
-						<td><%= resource_item.title %></td>
-						<td ref="resourcePublishDate<%= resource_item.id %>"><%= resource_item.published_at.strftime("%m/%d/%Y") if resource_item.published_at? %></td>
-						<td><%= resource_item.lens_shifter.full_name %></td>
-						<td><%= resource_item.feature ? "<span class='success label>feature</span".html_safe : '' %></td>
-						<td><%= link_to 'Edit', edit_fellow_resource_item_path(resource_item.id) %></td>
-						<td ref="resourceStatus<%= resource_item.id %>" key="resourceKey<%= resource_item.id %>">
-							<% if resource_item.published_at? && resource_item.published_at <= Time.zone.now %>
-								<span class="label success">published</span>
-							<% elsif resource_item.published_at? && resource_item.published_at > Time.zone.now %>
-								<span  class="label success">date set</span>
-							<% else %>
-								<button class="button table-button" v-on:click="publishNow(<%= resource_item.id %>, $event)">Publish</button>
-							<% end %>
-						</td>
-						<td><%= delete_button_to 'Delete', fellow_resource_item_path(resource_item), data: {confirm: 'Are you sure?'}, class: 'button table-button alert' %></td>
+							<td><%= index + 1 %></td>
+							<td><%= resource_item.id %></td>
+							<td><%= resource_item.google_doc_id %></td>
+							<td><%= resource_item.title %></td>
+							<td ref="resourcePublishDate<%= resource_item.id %>"><%= resource_item.published_at.strftime("%m/%d/%Y") if resource_item.published_at? %></td>
+							<td><%= resource_item.lens_shifter.full_name %></td>
+							<td><%= resource_item.feature ? "<span class='success label>feature</span".html_safe : '' %></td>
+							<td><%= link_to 'Edit', edit_fellow_resource_item_path(resource_item.id) %></td>
+							<td ref="resourceStatus<%= resource_item.id %>" key="resourceKey<%= resource_item.id %>">
+								<% if resource_item.published_at? && resource_item.published_at <= Time.zone.now %>
+									<span class="label success">published</span>
+								<% elsif resource_item.published_at? && resource_item.published_at > Time.zone.now %>
+									<span  class="label success">date set</span>
+								<% else %>
+									<button class="button table-button" v-on:click="publishNow(<%= resource_item.id %>, $event)">Publish</button>
+								<% end %>
+							</td>
+							<td><%= delete_button_to 'Delete', fellow_resource_item_path(resource_item), data: {confirm: 'Are you sure?'}, class: 'button table-button alert' %></td>
 						</tr>
 					<% end %>
 				</tbody>
