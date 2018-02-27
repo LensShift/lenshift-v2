@@ -1,12 +1,24 @@
 <div class="row align-center">
-  <div class="column small-12 medium-12 large-12">
+  <div class="column small-12 medium-10 large-10">
     <h2>My Dashboard</h2>
-  </div>
+        <div class="dashboard-row row">
+        <div class="column small-12 medium-4 large-4">
+          <% if @profile.avatar.url.nil? %>
+            <div class="avatar"><i class="fa fa-user fa-2x"></i></div>
+          <% else %>
+            <div class="profile-avatar">
+              <%= image_tag @profile.avatar.url, :alt => 'profile avatar' %>
+            </div>
+          <% end %>
+        </div>
+  
+        <div class="column align-self-middle text-center">
+            <h2><%= current_lens_shifter.full_name %></h2>
+        </div>
+      </div>
+      <div class="dashboard-row row">
         <div class="column small-12 medium-9 large-6">
-        <p>
           <h3>Profile</h3>
-          <p><b>Name:</b> <%= @profile.first_name %>
-          <%= @profile.last_name %></p>
           <p><b>Birthday: </b><%= @profile.birthdate %></p>
           <p><b>Ethnicity: </b><%= @profile.ethnicity %></p>
           <p><b>Location: </b><%= @profile.location %></p>
@@ -14,9 +26,9 @@
           <p><b>Referral: </b><%= @profile.referral %></p>
           <p><b>Comments: </b><%= @profile.comment %></p>
           <p><%= @profile.contact_consent ? 'Do ' : 'Do Not ' %>contact me</p>
-        </p>
-
         </div>
+
+
 
         <div class="column small-12 medium-3 large-2">
           <%= link_to 'Edit Profile', edit_profile_path(@profile) %> <br />
@@ -38,14 +50,9 @@
               </div>
             <% end %>
         </div>
+      </div>
 
-        <div class="column small-12 medium-12 large-4">
-          <% if @profile.avatar.url.nil? %>
-            <div class="avatar"><i class="fa fa-user fa-2x"></i></div>
-          <% else %>
-            <%= image_tag @profile.avatar.url, :alt => 'profile avatar' %>
-          <% end %>
-        </div>
+  </div>
 
 
 </div>

@@ -17,7 +17,7 @@ export default {
       lensShifter: null,
       longOptions: {
         toolbar: {
-          buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4']
+          buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4', 'html']
         }
       },
       shortOptions: {
