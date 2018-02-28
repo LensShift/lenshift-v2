@@ -29,10 +29,9 @@
           </div>
           <a :href="'/resource_items/' + resource.id" alt="link to resource">
               <div class='card-section'>
-              <h6><strong>{{resource.title}}</strong></h6>
-              <p class="text-justify card-text" v-html="$options.filters.truncate(resource.short_summary, 200)">
+              <h6>{{resource.title}}</h6>
+              <p class="text-justify card-text" v-html="$options.filters.truncate(resource.short_summary, 200)"></p>
               <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
-              </p>
             </div>
           </a>
         </div>

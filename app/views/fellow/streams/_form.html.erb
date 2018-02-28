@@ -13,7 +13,7 @@
     </div>
   </div>
   <%= f.input :guiding_questions, input_html: {class: "shorter-summary-text"} %>
-  <%= f.input :tag_list %>
+  <%= f.input :tag_list, input_html: {value: @stream.tag_list.to_s} %>
   <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter_id %>
 
     <% @stream.lessons.order(:row_order).each_with_index do |lesson, index| %>

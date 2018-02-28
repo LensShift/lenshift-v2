@@ -54,7 +54,7 @@
 
     <div class="input file optional stream_image">
       <label for="stream_image" class="file optional">Image</label>
-      <input type="file" name="stream[image]" id="stream_image" class="file optional" @change="onFileChange">
+      <input type="file" name="stream[image]" id="stream_image" class="file optional" @change="onFileChange($event, 'stream')">
     </div>
     <div>
       <img :src="imageURL">
@@ -69,6 +69,7 @@
 </template>
 <script>
 import axios from 'axios'
+import fileUploadMixin from '../mixins/fileUploadMixin'
 
 export default {
   props: {
@@ -76,6 +77,7 @@ export default {
   },
   components: {
   },
+  mixins: [fileUploadMixin],
   data: function () {
     return {
       message: "Hello Vue! Everyone two",
@@ -109,7 +111,7 @@ export default {
           this.stream.image
         )
 
-      console.log(formData)
+      // console.log(formData)
       
       axios.post('/fellow/streams', formData)
         .then(res => {
@@ -119,23 +121,6 @@ export default {
           console.log(error)
           event.target.elements.commit.disabled = false
         })
-    },
-    onFileChange(e) {
-      console.log('file uploading')
-      var file = e.target.files[0]
-      let filename = file.name
-      // console.log(filename)
-      if (filename.lastIndexOf('.') <= 0) {
-        return alert('Please add a file with valid extension')
-      }
-
-      const fileReader = new FileReader()
-      fileReader.addEventListener('load', () => {
-        this.imageURL = fileReader.result
-      })
-      fileReader.readAsDataURL(file)
-
-      this.stream.image = file
     }
   },
   created() {

@@ -42,7 +42,7 @@ class Fellow::StreamsController < ApplicationController
     respond_to do |format|
       if @stream.update(stream_params)
         gon.stream = @stream.to_json(include: {lessons: {include: :resource_items}})
-        RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{stream.id}.json", gon.stream)
+        RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json", gon.stream)
         format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}) }
         format.html { render :show, status: :created, notice: 'Stream was successfully updated.' }
       else

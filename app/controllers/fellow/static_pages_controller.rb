@@ -11,7 +11,7 @@ class Fellow::StaticPagesController < ApplicationController
 	end
 
 	def update
-		if @page.update_attributes(satic_page_params)
+		if @page.update_attributes(static_page_params)
 			redirect_to @page, notice: 'Page was successfully updated'
 		else
 			flash[:warning] = "There is a problem updating"
@@ -21,25 +21,25 @@ class Fellow::StaticPagesController < ApplicationController
 
 	def new
 		@page = StaticPage.new
+		gon.page = @page
 	end
 
 	def create
 		@page = current_lens_shifter.static_pages.create(static_page_params)
 		if @page.valid?
 			flash[:notice] = 'Page was successfully created.'
-			redirect_to static_page_path(@page), status: :created
+			redirect_to static_page_path(@page)
 		else
 			render json: render_errors(@page.errors), status: :unprocessable_entity
 		end
 	end
 
-	def delete
+	def destroy
 		return render json: render_errors("Cannot find the stream"), status: :not_found if @page.blank?
     	return render json: render_errors("you can't"), status: :forbidden if @page.lens_shifter != current_lens_shifter
     
-    
    		@page.destroy
-   		redirect_to fellow_static_pages
+   		redirect_to fellow_static_pages_path
 	end
 
 	private

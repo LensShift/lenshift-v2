@@ -1,15 +1,19 @@
 <side-menu inline-template>
   <div data-sticky-container>
     <transition v-on:enter="openMenu" v-on:leave="closeMenu">
-    <div v-if="showMenu" class="side-menu">
+    <div v-show="showMenu" class="side-menu">
       <i class="fa fa-times menu-close" v-on:click="showMenu = false"></i>
       <ul class="vertical menu">
-        <li class="link"><%= link_to 'About', '#' %></li>
-        <li class="link"><%= link_to 'Library', resource_items_path %></li>
-        <li class="link"><%= link_to 'Streams', streams_path %></li>
-        <li class="link"><%= link_to 'Practical Guides', guides_path %></li>
-        <li class="link"><%= link_to 'Upcoming Features', '#' %></li>
-        <li class="link"><%= link_to 'Contacts', '#' %></li>
+        <li class="side-link"><%= link_to 'About', '#' %></li>
+        <li class="side-link"><%= link_to 'Library', resource_items_path %></li>
+        <li class="side-link"><%= link_to 'Streams', streams_path %></li>
+        <li class="side-link"><%= link_to 'Practical Guides', guides_path %></li>
+        <li class="side-link"><%= link_to 'Upcoming Features', '#' %></li>
+        <li class="side-link"><%= link_to 'Contacts', '#' %></li>
+      <% if lens_shifter_signed_in? %>
+        <li class="link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
+      <% end %>
+
       </ul>
     </div>
     </transition>
@@ -18,26 +22,26 @@
   <div class="top-bar" id="ls-top-bar" data-options="marginTop:0;" style="width:100%">
     <div class="top-bar-left">
       <ul class="menu hide-for-large navbar-small">
-        <li><%= link_to image_tag('lensshift_logo_white.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
-        <% if lens_shifter_signed_in? %>
-          <% if current_lens_shifter.profile.avatar.present? %>
-            <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
-          <% else %>
-            <li>
-              <%= link_to dashboard_path do %>
-                <div class="avatar"><i class="fa fa-user fa-2x"></i></div>
-              <% end %>  
-            </li>
-          <% end %>
+        <li><%= link_to image_tag('lensshift_beta_logo_black.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
+        
+        <% if lens_shifter_signed_in? && current_lens_shifter.profile.avatar.present? %>
+          <li class="link"><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
+        
+        <% elsif lens_shifter_signed_in? %>
+          <li class="link">
+            <%= link_to dashboard_path do %>
+              <div class="avatar"><i class="fa fa-user fa-2x"></i></div>
+            <% end %>  
+          <i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
           
         <% else %>
-          <li class="link"><%= link_to 'Sign In', new_lens_shifter_session_path %></li>
-          <li class="link"><%= link_to 'Sign Up', new_lens_shifter_registration_path %></li>
+          <li class="link"><%= link_to 'Sign In', new_lens_shifter_session_path %><%= link_to 'Sign Up', new_lens_shifter_registration_path %><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
         <% end %>
-        <li class="hide-for-large"><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
+        
       </ul>
+
       <ul class="menu show-for-large">
-        <li><%= link_to image_tag('lensshift_logo_white.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
+        <li><%= link_to image_tag('lensshift_beta_logo_black.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
         <li class="link"><%= link_to 'About', '#' %></li>
         <li class="link"><%= link_to 'Library', resource_items_path %></li>
         <li class="link"><%= link_to 'Streams', streams_path %></li>
@@ -45,6 +49,7 @@
         <li class="link"><%= link_to 'Upcoming Features', '#' %></li>
       </ul>
     </div>
+
     <div class="top-bar-right show-for-large">
       <ul class="menu">
         <% if lens_shifter_signed_in? %>

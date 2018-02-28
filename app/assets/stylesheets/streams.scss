@@ -5,16 +5,16 @@
 
 .stream-block {
 	min-height: 300px;
-	border: 2px solid black;
-	background: map-get($foundation-palette, secondary);
-	color: white;
+	border: 8px solid $lens-shift-gray;
+	background: $white;
+	color: $lens-shift-gray;
 	margin-bottom: 25px;
 	padding: 25px 25px;
 	overflow: hidden;
 }
 
 .stream-block a {
-	color: white;
+	color: $lens-shift-gray;
 }
 
 .stream-block a:hover {
@@ -65,15 +65,15 @@
 }
 
 .resource-syllabus-frame {
-	border-top: 1px solid $light-gray;
-	border-left: 1px solid $light-gray;
-	border-right: 1px solid $light-gray;
+	border-bottom: 3px solid $dark-gray;
+	border-left: 3px solid $dark-gray;
+	border-right: 3px solid $dark-gray;
     background: $white;
 }
 
 .resource-syllabus-frame-head {
-	border: 1px solid $light-gray;
-	background: $medium-gray;
+	border: 1px solid $lens-shift-gray;
+	background: $lens-shift-gray;
 	color: $white;
 	text-align: center;
 	padding: 15px 15px;
@@ -86,28 +86,40 @@
 }
 
 .resource-syllabus-item:hover {
-	background: $light-gray;
+	background: $dark-gray;
+}
+
+.stream-resource-card {
+	border: 0px;
+}
+
+.stream-resource-card .card-section {
+	border-bottom: 3px solid $dark-gray;
+	border-left: 3px solid $dark-gray;
+	border-right: 3px solid $dark-gray;
 }
 
 .tabs {
 	margin: 0;
     background: $white;
     list-style-type: none;
-    height: 50px;
+    min-height: 55px;
 }
 
 .tabs-hover:hover {
-	background: $light-gray;
+	background: $dark-gray;
+	color: $white;
 }
 
 .tabs-hover:hover.tabs-title:after {
-	border-left-color: $light-gray;
+	border-left-color: $dark-gray;
 }
 
 .tabs-title {
 	position: relative;
 	background: $white;
-	border: 1px solid #e6e6e6;
+	color: $dark-gray;
+	border: 1px solid $lens-shift-gray;
 	display: inline-block;
 	height: 60px;
 	padding-top: 15px;
@@ -118,7 +130,7 @@
 }
 
 .tabs-title:first-child {
-	padding-left: 10px;
+	padding-left: 20px;
 }
 
 .tabs-title:after, .tabs-title:before {
@@ -141,7 +153,7 @@
 }
 .tabs-title:before {
 	border-color: rgba(230, 230, 230, 0);
-	border-left-color: $light-gray;
+	border-left-color: $lens-shift-gray;
 	border-width: 31px;
 	margin-top: -31px;
 }
@@ -150,22 +162,28 @@
 	margin: 25px 0px;
 }
 
-.is-active {
-	background: $light-gray;
-	
+.lesson-is-active {
+	color: $white !important;
+	background: $lens-shift-gray;
 }
 
-.is-active.tabs-title:after {
-	border-left-color: $light-gray;
+.resource-is-active { 
+	color: $white !important;
+	background: $dark-gray;
+}
+
+.lesson-is-active.tabs-title:after {
+	border-left-color: $lens-shift-gray;
 }
 
 .lesson-glance {
 	margin-top: 25px;
 }
 
-//mobile
+//mobile 40em and below
 
-@media print, screen and (max-width: 40em) {
+@media print, screen and (max-width: 40em)
+	and (-webkit-min-device-pixel-ratio: 3)  {
 	.lesson-glance {
 		margin-top: 50px;
 	}
@@ -181,9 +199,10 @@
 	}
 }
 
-//tablet
+//tablet 40em and above
 
-@media print, screen and (min-width: 40em) {
+@media print, screen and (min-width: 40em) 
+	and (-webkit-min-device-pixel-ratio: 1) {
 	.lesson-glance {
 		margin-top: 50px;
 	}

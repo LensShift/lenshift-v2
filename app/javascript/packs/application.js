@@ -23,6 +23,8 @@ import streamEdit from '../components/streamEdit'
 import resourceFellowList from '../components/resourceFellowList'
 import streamFellowList from '../components/streamFellowList'
 import staticPageForm from '../components/staticPageForm'
+import dashboard from '../components/dashboard'
+import profileForm from '../components/profileForm'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -61,7 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'side-menu': sideMenu,
       'resource-fellow-list': resourceFellowList,
       'stream-fellow-list': streamFellowList,
-      'static-page-form': staticPageForm
+      'static-page-form': staticPageForm,
+      'dashboard': dashboard,
+      'profile-form': profileForm
   	},
     created() {
       // console.log('I am created', document.body)
@@ -69,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         var currentScrollPosition = e.srcElement.scrollingElement.scrollTop;
         // console.log('scrolling', currentScrollPosition)
-        if (currentScrollPosition > this.scrollPosition && currentScrollPosition > 75) {
+        if (currentScrollPosition > this.scrollPosition && currentScrollPosition > 85) {
          document.getElementById('ls-top-bar').classList.add('nav-up');
         } else {
          document.getElementById('ls-top-bar').classList.remove('nav-up')

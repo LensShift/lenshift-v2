@@ -14,7 +14,7 @@ export default {
     	}
   	},
   	created () {
-  		if(gon.page !== null && gon.page !== undefined) {
+  		if (gon.page !== null && gon.page !== undefined) {
   			this.pageTitle = gon.page.title
   			this.pageContent = gon.page.content
   		}

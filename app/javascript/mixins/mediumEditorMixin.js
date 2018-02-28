@@ -1,5 +1,5 @@
 export default {
-	data () {
+	data: function () {
 		return {
 			longOptions: {
 		        toolbar: {
@@ -15,7 +15,7 @@ export default {
 	},
 	methods: {
 		applyChanges: function(operation) {
-	      console.log("i am being edited")
+	      // console.log("i am being edited")
 	      // console.log(operation.api.origElements.attributes['data-source'].value)
 	      let source = operation.api.origElements.attributes['data-source'].value
 	      this[source] = operation.api.origElements.innerHTML

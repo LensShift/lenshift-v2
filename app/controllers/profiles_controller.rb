@@ -27,8 +27,8 @@ class ProfilesController < ApplicationController
     end
     respond_to do |format|
       if @profile.valid?
-        format.html { redirect_to dashboard_path, notice: 'Lens shifter profile was successfully created.' }
-        format.json { render :dashboard, status: :created, location: @profile }
+        format.html { redirect_to dashboard_path, notice: 'Well done! Your profile was successfully created.' }
+        format.json { render json: @profile.to_json, status: :created }
       else
         format.html { render :new }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
@@ -37,10 +37,14 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    return render json: render_errors("Cannot find the profile"), status: :not_found if @profile.blank?
+    return render json: render_errors("We can't update this because this profile doesn't seem to belong to you!"), status: :forbidden if @profile.lens_shifter != current_lens_shifter
+
   	respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to dashboard_path, notice: 'Lens shifter profile was successfully updated.' }
-        format.json { render :dashboard, status: :ok, location: @profile }
+        flash[:notice] = 'Thanks! your profile was successfully updated.' 
+        format.html { redirect_to dashboard_path, notice: 'Thanks! your profile was successfully updated.' }
+        format.json { render json: @profile.to_json, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
@@ -49,10 +53,13 @@ class ProfilesController < ApplicationController
   end
 
   def destroy
+    return render json: render_errors("Cannot find the profile"), status: :not_found if @profile.blank?
+    return render json: render_errors("We can't update this because this profile doesn't seem to belong to you!"), status: :forbidden if @profile.lens_shifter != current_lens_shifter
+
   	@profile.destroy
     respond_to do |format|
-      format.html { redirect_to profiles_url, notice: 'Lens shifter profile was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to profiles_url, notice: 'Your profile was successfully destroyed.' }
+      format.json { head :no_content, notice: 'Your profile was successfully destroyed.' }
     end
   end
 

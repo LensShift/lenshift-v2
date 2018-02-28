@@ -7,7 +7,7 @@
 		</div>		
 	   	<div class="column small-12 medium-12 large-9">
     		<div class="tabs">
-    			<div v-for="(lesson, index) in stream.lessons" :class="['tabs-hover','tabs-title', activeLessonIndex === index ? 'is-active' : '' ]" :id="'tab' + index" v-on:click="showLesson(lesson, index)"><a :href="'#lesson' + (Number(index) + 1)"><small>Lesson {{index + 1}}</small></a></div>
+    			<div v-for="(lesson, index) in stream.lessons" :class="['tabs-hover','tabs-title', activeLessonIndex === index ? 'lesson-is-active' : '' ]" :id="'tab' + index" v-on:click="showLesson(lesson, index)"><strong><small>Lesson {{index + 1}}</small></strong></div>
     		</div>
     		<br />
     		<br class="clr" />
@@ -19,43 +19,36 @@
 			<p v-if="currentLesson" class="lesson-paragraph"> {{currentLesson.analysis}}</p>
 			</div>
 
-
     		<div v-if="safeURL">
 				<div v-if="currentResource.resource_type === 'video' || currentResource.resource_type === 'podcast'" class="content-container" v-html="currentResource.video_embed"></div>
 
 				<div  v-else-if="currentResource.resource_type === 'graphic'" div class="content-container"><img :src="currentResource.image.url"></div>
 
-				<div v-else-if="currentResource.no_iframe === false">
+				<div v-else-if="currentResource.no_iframe === true">
 					<span v-html="currentResource.analysis_content"></span>
-				    <a :href="currentResource.source_url" alt="resource link" class="button is-orange" target="_blank">Click here to read more about it</a>
+				    <a :href="currentResource.source_url" alt="resource link" class="button" target="_blank">Click here to read more about it</a>
 				</div>
 
 				<div v-else>
-					<div class="iframe-head"><b>From the website of the resource</b></div>
+					<div class="iframe-head"><b>from</b> {{origin}}</div>
 					<iframe :srcdoc="currentResource.article_content" class="resource-iframe"></iframe>
 				</div>
 			</div>
 			<div v-else>
-
-				<div class="card" class="column small-12 medium-9 large-9">
-				  <div class="card-divider">
-				    {{currentResource.title}}
-				  </div>
-				  <div class="card-section">
-				    <span v-html="currentResource.analysis_content"></span>
-				    <a :href="currentResource.source_url" alt="resource link" class="button is-orange" target="_blank">Click here to read more about it</a>
-				  </div>
+				<div class="card stream-resource-card" class="column small-12 medium-9 large-9">
+					<div class="card-divider">{{currentResource.title}}</div>
+						<div class="card-section">
+						    <span v-html="currentResource.analysis_content"></span>
+						    <a :href="currentResource.source_url" alt="resource link" class="button" target="_blank">Click here to read more about it</a>
+			    	</div>
 				</div>
-				
-
 			</div>
-
-
+	
 	    </div>
 	    <div class="column small-12 small-order-1 medium-6 medium-order-1 large-3 large-order-2">
 	    	<div class="resource-syllabus-frame-head">Resources</div>
 			<div class="resource-syllabus-frame">
-				<div v-for="resource in currentLesson.resource_items" class="resource-syllabus-item" v-on:click="showResource(resource)"><small>{{resource.title}}</small></div>
+				<div v-for="(resource, index) in currentLesson.resource_items" :class="['resource-syllabus-item', activeResourceIndex === index ? 'resource-is-active' : '']" v-on:click="showResource(resource, index)"><small>{{resource.title}}</small></div>
 			</div>
 		</div>
 
