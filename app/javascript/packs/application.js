@@ -73,11 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         var currentScrollPosition = e.srcElement.scrollingElement.scrollTop;
         // console.log('scrolling', currentScrollPosition)
-        if (currentScrollPosition > this.scrollPosition && currentScrollPosition > 85) {
-         document.getElementById('ls-top-bar').classList.add('nav-up');
-        } else {
-         document.getElementById('ls-top-bar').classList.remove('nav-up')
+        if(document.getElementById('ls-top-bar') !== null && document.getElementById('ls-top-bar') !== undefined) {
+          if (currentScrollPosition > this.scrollPosition && currentScrollPosition > 85) {
+          document.getElementById('ls-top-bar').classList.add('nav-up');
+          } else {
+            document.getElementById('ls-top-bar').classList.remove('nav-up')
+          }
         }
+      
         this.scrollPosition = currentScrollPosition;
       }
       

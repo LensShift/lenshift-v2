@@ -20,14 +20,14 @@
   </div>
 
 
-  <div class="grid-x grid-padding-x small-up-1 medium-up-3 large-up-4 library-items">  
+  <div class="grid-x grid-margin-x small-up-1 medium-up-3 large-up-4 library-items">  
       <div class="cell" v-for="resource in sortedResources">
         <div class='card resource-card'>
           <div class="image-holder">
             <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
             <i v-if="!resource.image.url" :class="'fa fa-' + icons[resource.resource_type]"></i>
           </div>
-          <a :href="'/resource_items/' + resource.id" alt="link to resource">
+          <a :href="'/library/' + resource.id" alt="link to resource">
               <div class='card-section'>
               <h6>{{resource.title}}</h6>
               <p class="text-justify card-text" v-html="$options.filters.truncate(resource.short_summary, 200)"></p>

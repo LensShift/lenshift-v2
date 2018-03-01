@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Resource Hub Responsible Social Impact - LensShift" %></title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <%= stylesheet_link_tag "application" %>
+    <%= include_gon %>
+    <%= javascript_pack_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+   
+    <div id="app" class="landing-app">
+        <div class='grid-container fluid' id='landing-container'>
+
+        <%= yield %>
+       
+       </div>
+       <div id="landing-push"></div>
+       <%= render partial: 'layouts/footer' %>
+    </div>
+    
+
+  </body>
+</html>

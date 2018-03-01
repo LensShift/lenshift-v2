@@ -2,6 +2,7 @@ export default {
 	data: function () {
 		return {
 			longOptions: {
+				targetBlank: true,
 		        toolbar: {
 		          buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4', 'html']
 		        }

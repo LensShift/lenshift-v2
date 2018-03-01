@@ -42,7 +42,6 @@ class ProfilesController < ApplicationController
 
   	respond_to do |format|
       if @profile.update(profile_params)
-        flash[:notice] = 'Thanks! your profile was successfully updated.' 
         format.html { redirect_to dashboard_path, notice: 'Thanks! your profile was successfully updated.' }
         format.json { render json: @profile.to_json, status: :ok }
       else

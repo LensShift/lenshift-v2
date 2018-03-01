@@ -35,8 +35,8 @@ class Fellow::StaticPagesController < ApplicationController
 	end
 
 	def destroy
-		return render json: render_errors("Cannot find the stream"), status: :not_found if @page.blank?
-    	return render json: render_errors("you can't"), status: :forbidden if @page.lens_shifter != current_lens_shifter
+		# return render json: render_errors("Cannot find the stream"), status: :not_found if @page.blank?
+  #   	return render json: render_errors("you can't"), status: :forbidden if @page.lens_shifter != current_lens_shifter
     
    		@page.destroy
    		redirect_to fellow_static_pages_path

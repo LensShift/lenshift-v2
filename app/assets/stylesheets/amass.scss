@@ -14,7 +14,7 @@
 
 html, body {
 	height: 100%;
-	// overflow-x: hidden;
+	width: 100%;
 }
 
 .is-orange {
@@ -33,8 +33,17 @@ html, body {
 	height: 100%;
 	min-height: 800px;
 	padding: 25px 25px;
-	margin-top: 75px;
+	margin-top: 85px;
 	margin-bottom: -200px;
+	overflow-x: hidden;
+}
+
+#landing-container {
+	height: 100%;
+	min-height: 800px;
+	padding: 25px 25px;
+	margin-bottom: -200px;
+	overflow-x: hidden;
 }
 
 .hero {
@@ -72,7 +81,7 @@ img {
 	padding: 0px !important;
 	height: 85px;
 	position: fixed;
-	border-bottom: 10px solid #00baba;
+	border-bottom: 10px solid $lens-shift-turqoise;
 	top: 0;
 	z-index: 996;
 	transition: top 0.2s ease-in-out, left 1s ease-in-out;
@@ -85,6 +94,21 @@ img {
 
 .menu {
 	align-items: center;
+}
+
+.menu-border {
+	border-bottom: 5px solid $lens-shift-turqoise;
+}
+
+.menu-border li {
+	margin-bottom: 5px;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	font-weight: 700;
+}
+
+.admin-menu li {
+	margin-top: 3px;
 }
 
 .vertical.menu a {
@@ -155,7 +179,13 @@ img {
 	display: flex !important;
 	align-items: center;
 	justify-content: center;
-	background: $lens-shift-turqoise;
+	background: $dark-gray;
+	color: $lens-shift-gray;
+	overflow: hidden;
+}
+
+.avatar:hover {
+	color: $white !important;
 }
 
 .avatar-icon {
@@ -201,9 +231,7 @@ img {
 }
 
 .avatar a > img {
-	max-height: 100% !important;
-	width: auto;
-	border-radius: 50%;
+	width: 100% !important;
 }
 
 .inline-form {
@@ -214,8 +242,16 @@ img {
 	width: 100px;
 }
 
+.push {
+	height: 300px;
+}
+
+#landing-push {
+	height: 200px;
+}
+
 .footer-logo {
-	width: 70px;
+	width: 85px;
 }
 
 .footer {
@@ -223,9 +259,11 @@ img {
 	background-color: $lens-shift-gray;
 }
 
-.push {
-	height: 300px;
+.footer-item {
+	margin-bottom: 15px;
+	display: block;
 }
+
 
 .no-padding-left {
 	padding-left: 0 !important;
@@ -440,12 +478,16 @@ img {
 		justify-content: space-between;
 	}
 
-	.menu .link:hover, .link a:hover, .link i:hover {
+	.menu .link:hover, .link a:hover {
 		color: $white !important;
 		background: $lens-shift-orange;
 	}
 
-	.navbar-small .link a {
+	.link i:hover {
+		color: $white !important;
+	}
+
+	.navbar-small .link > a {
 		padding-left: 0px !important;
 		padding-right: 15px !important;
 	}
@@ -454,6 +496,11 @@ img {
 //mobile 40em and below
 
 @media print, screen and (max-width: 40em) {
+
+	#main-container {
+		padding: 25px 0px;
+	}
+
 	.navbar-small {
 		display:flex;
 		justify-content: space-between;
@@ -464,9 +511,11 @@ img {
 		background: $lens-shift-orange;
 	}
 
+	.grid-margin-x > .cell {
+		margin-right: 0px !important;
+	}
 
-
-	.navbar-small .link a {
+	.navbar-small .link > a {
 		padding-left: 0px !important;
 		padding-right: 15px !important;
 	}

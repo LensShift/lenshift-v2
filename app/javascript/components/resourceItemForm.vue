@@ -1,12 +1,14 @@
 <script>
 import editor from 'vue2-medium-editor';
 import axios from 'axios';
+import mediumEditorMixin from '../mixins/mediumEditorMixin'
 
 export default {
   name: 'resourceItemForm',
   components: {
     'medium-editor': editor
   },
+  mixins: [mediumEditorMixin],
   data: function () {
     return {
       title: gon.resource_item.title,
@@ -16,28 +18,12 @@ export default {
       image: null,
       lensShifter: null,
       resourceType: null,
-      longOptions: {
-        toolbar: {
-          buttons: ['bold','italic','underline','strikethrough','anchor','image','orderedlist','unorderedlist', 'indent', 'outdent','justifyLeft','justifyCenter','justifyRight', 'h2','h3','h4', 'html']
-        }
-      },
       article: {},
       articleScraped: false,
-      shortOptions: {
-        toolbar: {
-          buttons: ['bold','italic','underline','anchor','unorderedlist']
-        }
-      },
       notice: null
     }
   },
   methods: {
-    applyChanges: function(operation) {
-      // console.log("i am being edited")
-      // console.log(operation.api.origElements.attributes['data-source'].value)
-      let source = operation.api.origElements.attributes['data-source'].value
-      this[source] = operation.api.origElements.innerHTML
-    },
     addImage: function(imageLink) {
       // console.log(imageLink)
       this.image = imageLink

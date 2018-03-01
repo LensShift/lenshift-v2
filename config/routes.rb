@@ -5,10 +5,16 @@ Rails.application.routes.draw do
 
   resources :profiles, except: [:index]
   
-  resources :resource_items, only: [:index, :show]
+  resources :resource_items, path: 'library', only: [:index, :show]
   resources :streams, only: [:index, :show]
   resources :guides, only: [:index]
+
+  get '/landing', to: "static_pages#landing", as: :landing
+  get '/home', to: "static_pages#home", as: :home
+
   resources :static_pages, path: '/', only: [:show]
+
+
 
   namespace :fellow do
     resources :resource_items do

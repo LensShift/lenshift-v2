@@ -24,12 +24,12 @@ export default {
   methods: {
     infiniteHandler($state) {
       this.page += 1
-      console.log(this.page)
+      // console.log(this.page)
       // this.resources.length / 8 + 1
-      axios.get('/resource_items.json?page=' + this.page, 
+      axios.get('/library.json?page=' + this.page, 
         {headers: {'Content-Type':  'application/json', responseType: 'json'}})
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           if (res.data.length > 0) {
             this.resources = this.resources.concat(res.data)
             $state.loaded();

@@ -11,7 +11,7 @@
         <li class="side-link"><%= link_to 'Upcoming Features', '#' %></li>
         <li class="side-link"><%= link_to 'Contacts', '#' %></li>
       <% if lens_shifter_signed_in? %>
-        <li class="link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
+        <li class="side-link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
       <% end %>
 
       </ul>

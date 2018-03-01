@@ -1,5 +1,13 @@
 class StaticPagesController < ApplicationController
+  layout "landing", only: [:landing]
+
   def index
+  end
+
+  def landing
+  end
+
+  def home
   end
 
   def show

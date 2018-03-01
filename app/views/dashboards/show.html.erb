@@ -1,55 +1,55 @@
 <dashboard inline-template>
   <div class="row align-center">
-    <div class="column small-12 medium-10 large-10">
+    <div class="column small-12 medium-10 large-8">
       <h2>My Dashboard</h2>
-          <div class="dashboard-row row">
-          <div class="column small-12 medium-3 large-3 align-self-middle">
+          <div class="row align-center">
+          <div class="column small-12 medium-4 large-4 align-self-middle">
 
             <input ref="imageUpload" type="file" name="profile[avatar]" id="profile_avatar" style="display: none;" class="image_preview optional" v-on:change="onFileChange($event, 'profile')">
             <div>
               <div class="profile-avatar profile-avatar-padding" v-on:click="onPickFile()">
+                
                 <img v-if="imageURL" :src="imageURL" alt="image preview" />
-                <i v-else class="fa fa-user avatar-icon"></i>
+                <i v-if="!imageURL" class="fa fa-user avatar-icon"></i>
+                
               </div>
             </div>
-            <transition>
-              <div v-show="newImage" class="button image-save-button" v-on:click="saveImage(<%= current_lens_shifter.profile.id %>)">Save</div>
-            </transition>
           </div>
     
           <div class="column align-self-middle text-center dashboard-name">
               <h2><%= current_lens_shifter.full_name %></h2>
           </div>
         </div>
+        <div class="row dashboard-row align-left image-button-row">
+          <transition v-on:enter="buttonEnter" v-on:leave="buttonLeave">
+              <div v-if="newImage" class="button column small-12 medium-4 large-4 align-self-middle" v-on:click="saveImage($event, <%= current_lens_shifter.profile.id %>)">Save Image</div>
+          </transition>
+        </div>
+        <div class="row align-center">
+          <div class="column small-12 medium-12 large-12">
+            <ul class="menu menu-border">
+              <li v-on:click="component = 'profile-form'">Edit Profile</li>
+              <li><%= link_to "Change password", edit_lens_shifter_registration_path %></li>
+            </ul>
+            <ul class="menu admin-menu align-right">
+                <li><i>Admin:</i></li>
+                <% if current_lens_shifter.try(:admin?) %>
+                  <li><%= link_to 'All Resources', fellow_resource_items_path %></li>
+                  <li><%= link_to 'Google Drive', import_google_fellow_resource_items_path %></li>
+                  <li><%= link_to 'Guides', fellow_guides_path %></li>
+                  <li><%= link_to 'Streams', fellow_streams_path %></li>
+                  <li><%= link_to 'Static Pages', fellow_static_pages_path %></li>
+                <% end %>
+              </ul>
+          </div>
+        </div>
 
-        <div class="dashboard-row row">
+        <div class="dashboard-row row align-center">
 
-          <div class="column small-12 medium-9 large-9">
+          <div class="column small-12 medium-12 large-12">
             <component :is="component" :profile="<%= current_lens_shifter.profile.to_json %>"></component>  
           </div>
 
-
-
-          <div class="column small-12 medium-3 large-2">
-            <%= link_to 'Edit Profile', '#' %> <br />
-            <%= link_to "Change password", edit_lens_shifter_registration_path %>
-              <% if current_lens_shifter.try(:admin?) %> <br />
-                <%= link_to 'All Resources', fellow_resource_items_path %> <br />
-                <%= link_to 'Google Drive', import_google_fellow_resource_items_path %> <br />
-                <%= link_to 'Guides', fellow_guides_path %> <br />
-                <%= link_to 'Streams', fellow_streams_path %> <br />
-                <%= link_to 'Static Pages', fellow_static_pages_path %> <br />
-                <br />
-                <%= link_to 'Export CSV', export_csv_fellow_resource_items_path(format: 'csv'), class: 'button small' %> <br />
-                
-                <div class="inline-form">
-                  <%= form_tag import_csv_fellow_resource_items_path, multipart: true do %>
-                    <%= file_field_tag :file, class: "show-for-sr" %>
-                    <%= submit_tag "Import CSV", class: 'button small' %>
-                  <% end %>
-                </div>
-              <% end %>
-          </div>
         </div>
 
     </div>

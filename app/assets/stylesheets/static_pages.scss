@@ -1,3 +1,39 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./settings";
+
+#app.landing-app {
+	background-image: image-url('landing.jpg');
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.landing-hero {
+	width: 80%;
+	background-color: rgba(0, 0, 0, 0.8); //lens-shift-gray
+	margin: 60px auto;
+	color: $white;
+	text-align: center;
+	padding: 40px 20px;
+}
+
+.hero-logo {
+	width: 80%;
+	margin: auto auto;
+}
+
+
+#mc_embed_signup {
+	width: 80%;
+	margin: auto auto;
+}
+
+@media print, screen and (max-width: 40em) { 
+	.landing-hero {
+		width: 100%;
+	}
+
+}
