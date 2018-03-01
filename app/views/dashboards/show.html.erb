@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="row dashboard-row align-left image-button-row">
-          <transition v-on:enter="buttonEnter" v-on:leave="buttonLeave">
+          <transition v-on:enter="buttonEnter" v-leave="buttonLeave" v-bind:css="false">
               <div v-if="newImage" class="button column small-12 medium-4 large-4 align-self-middle" v-on:click="saveImage($event, <%= current_lens_shifter.profile.id %>)">Save Image</div>
           </transition>
         </div>

@@ -53,7 +53,7 @@ export default {
     buttonEnter: function (el, done) {
       Velocity(el, "transition.slideDownIn", {duration: 1000}, {complete: done})
     },
-    buttonleave: function (el, done) {
+    buttonLeave: function (el, done) {
       Velocity(el, "transition.bounceUpOut", {duration: 1000}, {complete: done})
     }
   },
