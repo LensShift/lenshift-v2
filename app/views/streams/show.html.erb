@@ -26,7 +26,7 @@
 				<stream-resource :resource="currentResource"></stream-resource>
 			</div>
 		</div>
-		<div class="column small-12 small-order-1 medium-6 medium-order-2 large-3 large-order-2">
+		<div class="column small-12 small-order-1 medium-6 medium-order-1 large-3 large-order-2">
 	        <div class="resource-syllabus-frame-head">Resources</div>
 	      	<div class="resource-syllabus-frame">
 	        	<div v-for="(resource, index) in resources" :class="['resource-syllabus-item', activeResourceIndex === index ? 'resource-is-active' : '']" v-on:click="showResource(index)"><small>{{resource.title}}</small></div>
