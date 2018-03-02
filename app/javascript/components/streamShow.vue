@@ -1,33 +1,35 @@
 <script>
+import streamOverview from './streamOverview'
+import streamResource from './streamResource'
 
 export default {
   data: function () {
     return {
-      stream: JSON.parse(gon.stream),
-      currentLesson: null,
+      stream: gon.stream,
+      lessonsCount: gon.lessons.length + 1,
+      resourcesCount: gon.resourcesCount,
+      resources: gon.firstResources,
+      lessons: gon.lessons,
+      currentLesson: gon.lessons[0],
       activeLessonIndex: 0,
       activeResourceIndex: 0,
-      currentResource: null,
-      safeURL: null,
-      origin: null
+      currentResource: null
     }
   },
+  components: {
+    'stream-overview': streamOverview,
+    'stream-resource': streamResource
+  },
   computed: {
-  	resourcesCount: function() {
-  		var n = 0
-  		this.stream.lessons.forEach(lesson => {
-  			n += lesson.resource_items.length
-  		})
-  		return n
-  	}
+  	
   },
   methods: {
     showResource: function (resource, index) {
-      this.currentResource = resource
-      let resourceURL = new URL(resource.source_url)
-      this.activeResourceIndex = index
-      this.safeURL = resourceURL.protocol === 'https:'
-      this.origin = resourceURL.origin
+      // this.currentResource = resource
+      // let resourceURL = new URL(resource.source_url)
+      // this.activeResourceIndex = index
+      // this.safeURL = resourceURL.protocol === 'https:'
+      // this.origin = resourceURL.origin
     },
     showLesson: function (lesson, index) {
       this.currentLesson = lesson
@@ -37,12 +39,10 @@ export default {
     }
   },
   created () {
-    const currentStream = JSON.parse(gon.stream)
-    this.stream = currentStream
-    this.currentLesson = currentStream.lessons[0]
-    this.currentResource = this.currentLesson.resource_items[0]
-    let resourceURL = new URL(this.currentResource.source_url)
-    this.safeURL = resourceURL.protocol === 'https:'
+    console.log(gon)
+    // this.currentLesson = this.stream.lessons[0]
+    this.currentResource = this.resources[0]
+
   }
 }
 </script>

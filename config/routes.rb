@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+
   resource :dashboard, only: [:show]
 
   root 'static_pages#landing'
 
   resources :profiles, except: [:index]
   resources :resource_items, path: 'library', only: [:index, :show]
-  resources :streams, only: [:index, :show]
+  resources :streams, only: [:index, :show] do
+    resources :lessons, only: [:show]
+  end
   resources :guides, only: [:index]
 
   get '/landing', to: "static_pages#landing", as: :landing

@@ -1,13 +1,29 @@
 class StreamsController < ApplicationController
-  before_action :authenticate_lens_shifter!
+  # before_action :authenticate_lens_shifter!, only: [:show]
 
   def index
-  	gon.streams = Stream.published_before(Time.zone.now).to_json({include: :lessons})
+  	gon.streams = Stream.published_before(Time.zone.now).to_json({include: {lessons: { only: [:title]}}})
   end
 
   def show
   	stream = Stream.friendly.find(params[:id])
-    gon.stream = stream.to_json(include: {lessons: {include: :resource_items}})
+    gon.stream = stream
+
+    lessons = stream.lessons.order(:row_order)
+
+    gon.lessons = lessons
+    gon.firstResources = lessons.first.resource_items
+
+    gon.lessonsCount = lessons.size
+    resourcesCount = 0
+
+    stream.lessons.each do |lesson|
+      resourcesCount += lesson.resource_items.size
+    end
+
+    gon.resourcesCount = resourcesCount
+
+
   	if request.path != stream_path(stream)
       redirect_to stream, status: :moved_permanently
     end

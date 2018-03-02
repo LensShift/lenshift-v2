@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         var currentScrollPosition = e.srcElement.scrollingElement.scrollTop;
         // console.log('scrolling', currentScrollPosition)
         if(document.getElementById('ls-top-bar') !== null && document.getElementById('ls-top-bar') !== undefined) {
-          console.log('trigger top bar')
+          // console.log('trigger top bar')
           if (currentScrollPosition > this.scrollPosition && currentScrollPosition > 85) {
           document.getElementById('ls-top-bar').classList.add('nav-up');
           } else {
