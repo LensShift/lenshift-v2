@@ -1,8 +1,5 @@
 class StaticPagesController < ApplicationController
-  layout "landing", only: [:landing]
-
-  def index
-  end
+  layout :static_layout
 
   def landing
   end
@@ -14,6 +11,19 @@ class StaticPagesController < ApplicationController
   	@page = StaticPage.friendly.find(params[:id])
   	if request.path != static_page_path(@page)
       redirect_to @page, status: :moved_permanently
+    end
+  end
+
+  private
+
+  def static_layout
+    case action_name
+    when 'landing'
+      'landing'
+    when 'home'
+      'home'
+    else
+      "application"
     end
   end
 end

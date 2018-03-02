@@ -17,50 +17,6 @@ html, body {
 	width: 100%;
 }
 
-.is-orange {
-	background: $lens-shift-orange !important;
-}
-
-.is-lightgray {
-	background: $light-gray !important;
-}
-
-.lens-shift-turqoise {
-	background: $lens-shift-turqoise !important;
-}
-
-#main-container {
-	height: 100%;
-	min-height: 800px;
-	padding: 25px 25px;
-	margin-top: 85px;
-	margin-bottom: -200px;
-	overflow-x: hidden;
-}
-
-#landing-container {
-	height: 100%;
-	min-height: 800px;
-	padding: 25px 25px;
-	margin-bottom: -200px;
-	overflow-x: hidden;
-}
-
-.hero {
-	background: $light-gray;
-	height: 250px;
-	margin-bottom: 25px;
-	padding: 50px;
-}
-
-.hero-content {
-	margin: auto;
-}
-
-.inline-title {
-	display: inline;
-}
-
 select {
 	border-radius: 0;
 }
@@ -77,7 +33,69 @@ img {
 	width: 100%;
 }
 
-.top-bar {
+//utilities
+
+.is-orange {
+	background: $lens-shift-orange !important;
+}
+
+.is-lightgray {
+	background: $light-gray !important;
+}
+
+.lens-shift-turqoise {
+	background: $lens-shift-turqoise !important;
+}
+
+.inline-title {
+	display: inline;
+}
+
+// body containers
+
+#main-container {
+	height: 100%;
+	min-height: 800px;
+	padding: 25px 25px;
+	margin-top: 85px;
+	margin-bottom: -200px;
+	overflow-x: hidden;
+}
+
+#landing-container {
+	height: 100%;
+	min-height: 800px;
+	padding: 25px 25px;
+	margin-bottom: -200px;
+}
+
+#home-app {
+	min-height: 100%;
+}
+
+#home-container {
+	height: 100%;
+	min-height: 800px;
+	padding: 25px 0px;
+	margin-bottom: -200px;
+}
+
+// hero containers
+
+.hero {
+	width: 100%;
+	height: 350px;
+	background-image: image-url('landing.jpg');
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+
+// navigation containers
+// regular
+
+#ls-top-bar {
 	padding: 0px !important;
 	height: 85px;
 	position: fixed;
@@ -88,27 +106,17 @@ img {
   	-webkit-transition: top 0.2s ease-in-out, left 1s ease-in-out;
 }
 
+#landing-top-bar {
+	padding: 0px !important;
+	height: 75px;
+}
+
 .nav-up {
   top: -100px !important;
 }
 
 .menu {
 	align-items: center;
-}
-
-.menu-border {
-	border-bottom: 5px solid $lens-shift-turqoise;
-}
-
-.menu-border li {
-	margin-bottom: 5px;
-	margin-left: 1rem;
-	margin-right: 1rem;
-	font-weight: 700;
-}
-
-.admin-menu li {
-	margin-top: 3px;
 }
 
 .vertical.menu a {
@@ -125,12 +133,12 @@ img {
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	height: 75px;
 }
 
 .menu .link:hover {
 	color: $lens-shift-gray !important;
 	background: $white;
-	height: 75px;
 }
 
 .menu .side-link {
@@ -164,11 +172,25 @@ img {
 	color: $lens-shift-orange;
 }
 
-// .menu li {
-// 	display: flex !important;
-// 	align-items: center;
-// 	justify-content: center;
-// }
+// menu utilities used in Dashboard
+
+.menu-border {
+	border-bottom: 5px solid $lens-shift-turqoise;
+}
+
+.menu-border li {
+	margin-bottom: 5px;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	font-weight: 700;
+}
+
+.admin-menu li {
+	margin-top: 3px;
+}
+
+
+// avatars
 
 .avatar {
 	border-radius: 50%;
@@ -250,6 +272,8 @@ img {
 	height: 200px;
 }
 
+// footers
+
 .footer-logo {
 	width: 85px;
 }
@@ -259,9 +283,19 @@ img {
 	background-color: $lens-shift-gray;
 }
 
+.footer-cell {
+	padding: 50px 50px !important;
+	color: $white;
+}
+
 .footer-item {
 	margin-bottom: 15px;
 	display: block;
+	color: $white;
+}
+
+a.footer-item:hover {
+	color: $lens-shift-orange;
 }
 
 
@@ -271,10 +305,6 @@ img {
 
 .no-padding-right {
 	padding-right: 0 !important;
-}
-
-.align-right {
-	justify-content: flex-end;
 }
 
 .clr {
@@ -343,9 +373,7 @@ img {
 	font-size: 20px;
 }
 
-.card-text {
-	margin-bottom: 0px !important;
-}
+// resource library card image holders
 
 .image-holder {
 	background: $light-gray;
@@ -380,15 +408,6 @@ img {
 	align-items: center;
 	color: $white;
 	background: $lens-shift-orange;
-}
-
-.footer-cell {
-	padding: 50px 50px !important;
-	color: $white;
-}
-
-.footer-cell a {
-	color: $white !important;
 }
 
 .menu-hamburger {
@@ -478,6 +497,8 @@ img {
 		justify-content: space-between;
 	}
 
+
+
 	.menu .link:hover, .link a:hover {
 		color: $white !important;
 		background: $lens-shift-orange;
@@ -485,6 +506,11 @@ img {
 
 	.link i:hover {
 		color: $white !important;
+	}
+
+	.link.small-link {
+		padding-left: 5px;
+		padding-right: 5px;
 	}
 
 	.navbar-small .link > a {
@@ -506,9 +532,15 @@ img {
 		justify-content: space-between;
 	}
 
+
 	.menu .link:hover, .link a:hover, .link i:hover {
 		color: $white!important;
 		background: $lens-shift-orange;
+	}
+
+	.link.small-link a {
+		padding-left: 0px;
+		padding-right: 10px;
 	}
 
 	.grid-margin-x > .cell {

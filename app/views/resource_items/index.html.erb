@@ -27,13 +27,15 @@
             <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
             <i v-if="!resource.image.url" :class="'fa fa-' + icons[resource.resource_type]"></i>
           </div>
-          <a :href="'/library/' + resource.id" alt="link to resource">
+          
               <div class='card-section'>
+              <a :href="'/library/' + resource.id" alt="link to resource">
               <h6>{{resource.title}}</h6>
-              <p class="text-justify card-text" v-html="$options.filters.truncate(resource.short_summary, 200)"></p>
+              <div class="text-justify" v-html="$options.filters.truncate(resource.short_summary, 200)"></div>
               <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
+              </a>
             </div>
-          </a>
+       
         </div>
       </div>
   </div>

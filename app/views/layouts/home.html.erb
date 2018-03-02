@@ -14,12 +14,15 @@
 
   <body>
    
-    <div id="app" class="landing-app">
-        <div class='grid-container fluid' id='landing-container'>
+    <div id="app" class="home-app">
+      <%= render partial: "layouts/home_navbar" %>
+        <div id='home-container'>
 
         <%= yield %>
        
        </div>
+       <div class="push"></div>
+       <%= render partial: 'layouts/footer' %>
     </div>
     
 

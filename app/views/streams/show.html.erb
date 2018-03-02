@@ -14,9 +14,11 @@
     	</div>
 
     	<div class="column small-12 small-order-2 medium-12 medium-order-2 large-9 large-order-1 lesson-container">
-    		<div class='lesson-glance'>
-    		<h5>At a Glance</h5>
-			<p v-if="currentLesson" class="lesson-paragraph"> {{currentLesson.analysis}}</p>
+    		<h4 v-if="currentLesson">Lesson: {{currentLesson.title}}</h4>
+	    	<div class='lesson-glance'>
+
+	    		<h5>At a Glance</h5>
+				<p v-if="currentLesson" class="lesson-paragraph"> {{currentLesson.analysis}}</p>
 			</div>
 
     		<div v-if="safeURL">

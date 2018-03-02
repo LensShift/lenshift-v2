@@ -1,19 +1,15 @@
 Rails.application.routes.draw do
   resource :dashboard, only: [:show]
 
-  root 'resource_items#index'
+  root 'static_pages#landing'
 
   resources :profiles, except: [:index]
-  
   resources :resource_items, path: 'library', only: [:index, :show]
   resources :streams, only: [:index, :show]
   resources :guides, only: [:index]
 
   get '/landing', to: "static_pages#landing", as: :landing
   get '/home', to: "static_pages#home", as: :home
-
-  resources :static_pages, path: '/', only: [:show]
-
 
 
   namespace :fellow do
@@ -38,6 +34,8 @@ Rails.application.routes.draw do
   devise_for :lens_shifters, controllers: {
     registrations: "lens_shifters/registrations"
   }
+
+  resources :static_pages, path: '/', only: [:show]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

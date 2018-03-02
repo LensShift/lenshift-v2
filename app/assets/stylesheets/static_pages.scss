@@ -25,6 +25,86 @@
 	margin: auto auto;
 }
 
+//hompage styles
+
+.home-logo {
+	width: 30%;
+	margin: auto auto;
+}
+
+.hero-content {
+	font-family: 'League Spartan', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+	color: $white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 350px;
+	text-align: center;
+}
+
+.hero-heading {
+	font-size: 40px;
+}
+
+.hero-heading-secondary {
+	font-size: 30px;
+}
+
+.secondary-call {
+	font-family: 'League Spartan', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+	font-size: 20px;
+	padding: 50px 50px;
+	text-align: center;
+}
+
+.turqoise-line {
+	display: block;
+	margin: 0px 0px;
+	width: 60%;
+	border: 10px solid $lens-shift-turqoise;
+}
+
+.orange-line {
+	display: block;
+	margin: 0px 0px;
+	width: 60%;
+	border: 10px solid $lens-shift-orange;
+	margin-left: 40%;
+}
+
+.feature-row {
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.feature-column {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	text-align: center;
+	padding: 25px 50px 0px 50px;
+}
+
+.feature-column img {
+	height: 100px;
+	width: auto;
+	margin-bottom: 25px;
+}
+
+.border-right {
+	border-right: 3px solid $lens-shift-gray;
+}
+
+.sign-up-button {
+	margin-left: 25px;
+}
+
+.social-icon {
+	font-size: 30px;
+}
+
+//mailchimp
 
 #mc_embed_signup {
 	width: 80%;
@@ -34,6 +114,14 @@
 @media print, screen and (max-width: 40em) { 
 	.landing-hero {
 		width: 100%;
+	}
+
+	.home-logo {
+		width: 50%;
+	}
+
+	.border-right {
+	border-right: none;
 	}
 
 }
