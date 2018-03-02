@@ -2,16 +2,16 @@
   <div data-sticky-container>
     <transition v-on:enter="openMenu" v-on:leave="closeMenu">
     <div v-show="showMenu" class="side-menu">
-      <i class="fa fa-times menu-close" v-on:click="showMenu = false"></i>
       <ul class="vertical menu">
-        <li class="side-link"><%= link_to 'About', '#' %></li>
-        <li class="side-link"><%= link_to 'Library', resource_items_path %></li>
-        <li class="side-link"><%= link_to 'Streams', streams_path %></li>
-        <li class="side-link"><%= link_to 'Practical Guides', guides_path %></li>
-        <li class="side-link"><%= link_to 'Upcoming Features', '#' %></li>
-        <li class="side-link"><%= link_to 'Contacts', '#' %></li>
+        <li><i class="fa fa-times side-link" v-on:click="showMenu = false"></i></li>
+        <li><%= link_to 'About', '#', class: "side-link" %></li>
+        <li><%= link_to 'Library', resource_items_path, class: "side-link" %></li>
+        <li><%= link_to 'Streams', streams_path, class: "side-link" %></li>
+        <li><%= link_to 'Practical Guides', guides_path, class: "side-link" %></li>
+        <li><%= link_to 'Upcoming Features', '#', class: "side-link" %></li>
+        <li><%= link_to 'Contacts', '#', class: "side-link" %></li>
       <% if lens_shifter_signed_in? %>
-        <li class="side-link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
+        <li><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete, class: "side-link" %></li>
       <% end %>
 
       </ul>
@@ -19,7 +19,7 @@
     </transition>
   
 
-  <div class="top-bar" id="ls-top-bar" data-options="marginTop:0;" style="width:100%">
+  <div class="top-bar" id="ls-top-bar" style="width:100%">
     <div class="top-bar-left">
       <ul class="menu hide-for-large navbar-small">
         <li><%= link_to image_tag('lensshift_beta_logo_black.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
@@ -42,11 +42,11 @@
 
       <ul class="menu show-for-large">
         <li><%= link_to image_tag('lensshift_beta_logo_black.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
-        <li class="link"><%= link_to 'About', '#' %></li>
-        <li class="link"><%= link_to 'Library', resource_items_path %></li>
-        <li class="link"><%= link_to 'Streams', streams_path %></li>
-        <li class="link"><%= link_to 'Practical Guides', guides_path %></li>
-        <li class="link"><%= link_to 'Upcoming Features', '#' %></li>
+        <li><%= link_to 'About', '#', class: "link" %></li>
+        <li><%= link_to 'Library', resource_items_path, class: "link" %></li>
+        <li><%= link_to 'Streams', streams_path, class: "link" %></li>
+        <li><%= link_to 'Practical Guides', guides_path, class: "link" %></li>
+        <li><%= link_to 'Upcoming Features', '#', class: "link" %></li>
       </ul>
     </div>
 
@@ -62,10 +62,10 @@
               <% end %>  
             </li>
           <% end %>
-          <li class="link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
+          <li><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete, class: "link" %></li>
         <% else %>
-          <li class="link"><%= link_to 'Sign In', new_lens_shifter_session_path %></li>
-          <li class="link"><%= link_to 'Sign Up', new_lens_shifter_registration_path %></li>
+          <li><%= link_to 'Sign In', new_lens_shifter_session_path, class: "link" %></li>
+          <li><%= link_to 'Sign Up', new_lens_shifter_registration_path, class: "link" %></li>
         <% end %>
       </ul>
     </div>

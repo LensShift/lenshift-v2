@@ -69,10 +69,6 @@ img {
 	margin-bottom: -200px;
 }
 
-#home-app {
-	min-height: 100%;
-}
-
 #home-container {
 	height: 100%;
 	min-height: 800px;
@@ -108,7 +104,6 @@ img {
 
 #landing-top-bar {
 	padding: 0px !important;
-	height: 75px;
 }
 
 .nav-up {
@@ -119,41 +114,27 @@ img {
 	align-items: center;
 }
 
-.vertical.menu a {
-	color: $white;
-}
-
-.menu a {
+.menu .link {
 	color: $lens-shift-gray;
 	font-weight: 700;
-}
-
-.menu .link {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	cursor: pointer;
 	height: 75px;
 }
 
 .menu .link:hover {
-	color: $lens-shift-gray !important;
+	color: $lens-shift-turqoise;
 	background: $white;
 }
 
-.menu .side-link {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 50px;
-}
 
-.vertical.menu .side-link a:hover {
-	color: $lens-shift-orange;
+.vertical.menu li {
+	width: 100%;
 }
 
 .side-menu {
-	position: absolute;
+	position: fixed;
 	background: $lens-shift-gray;
 	left: 1400px;
 	top: 0;
@@ -161,7 +142,25 @@ img {
 	height: 100%;
 	padding: 25px 25px !important;
 	z-index: 999;
+
 }
+
+.menu .side-link {
+	width: 100%;
+	color: $white;
+	font-weight: 700;
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 50px;
+	cursor: pointer;
+}
+
+.vertical.menu .side-link:hover {
+	color: $lens-shift-orange;
+}
+
+
 
 .menu-close {
 	color: $white;
@@ -170,6 +169,14 @@ img {
 
 .menu-close:hover {
 	color: $lens-shift-orange;
+}
+
+#down-menu-toggle, #home-menu {
+	display: none
+}
+
+#down-menu-toggle:checked + #home-menu {
+	display: flex;
 }
 
 // menu utilities used in Dashboard
@@ -207,7 +214,8 @@ img {
 }
 
 .avatar:hover {
-	color: $white !important;
+	opacity: 0.8;
+	background: $lens-shift-turqoise;
 }
 
 .avatar-icon {

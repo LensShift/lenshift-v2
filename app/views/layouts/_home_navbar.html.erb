@@ -1,16 +1,16 @@
 <div class="home-logo">
   <%= link_to image_tag('lensshift_beta_logo_black.png', alt:'lensShift logo'), root_path %>
 </div>
-<div class="top-bar" id="landing-top-bar" data-options="marginTop:0;" style="width:100%">
+<div class="top-bar" id="landing-top-bar">
     
 
   <div class="top-bar-left show-for-large">
     <ul class="menu">
-      <li class="link"><%= link_to 'About', '#' %></li>
-      <li class="link"><%= link_to 'Library', resource_items_path %></li>
-      <li class="link"><%= link_to 'Streams', streams_path %></li>
-      <li class="link"><%= link_to 'Practical Guides', guides_path %></li>
-      <li class="link"><%= link_to 'Upcoming Features', '#' %></li>
+      <li><%= link_to 'About', '#', class: "link" %></li>
+      <li><%= link_to 'Library', resource_items_path, class: "link" %></li>
+      <li><%= link_to 'Streams', streams_path, class: "link" %></li>
+      <li><%= link_to 'Practical Guides', guides_path, class: "link" %></li>
+      <li><%= link_to 'Upcoming Features', '#', class: "link" %></li>
     </ul>
   </div>
 
@@ -26,10 +26,10 @@
             <% end %>  
           </li>
         <% end %>
-        <li class="link"><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete %></li>
+        <li><%= link_to 'Sign Out', destroy_lens_shifter_session_path, method: :delete , class: "link" %></li>
       <% else %>
-        <li class="link"><%= link_to 'Sign In', new_lens_shifter_session_path %></li>
-        <li class="link"><%= link_to 'Sign Up', new_lens_shifter_registration_path %></li>
+        <li><%= link_to 'Sign In', new_lens_shifter_session_path , class: "link" %></li>
+        <li><%= link_to 'Sign Up', new_lens_shifter_registration_path , class: "link" %></li>
       <% end %>
     </ul>
   </div>
@@ -37,29 +37,28 @@
   <div class="top-bar-right hide-for-large">
     <ul class="menu align-right">
       <% if lens_shifter_signed_in? && current_lens_shifter.profile.avatar.present? %>
-        <li class="link"><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
-        <li class="link"><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
+        <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
+        <li><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
       
       <% elsif lens_shifter_signed_in? %>
-        <li class="link">
-          <%= link_to dashboard_path do %>
+        <li>
+          <%= link_to dashboard_path , class: "link" do %>
             <div class="avatar"><i class="fa fa-user fa-2x"></i></div>
           <% end %> 
-        </li>
-        <li class="link"><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
-        
+        </li>     
       <% else %>
-        <li class="link small-link"><%= link_to 'Sign In', new_lens_shifter_session_path %></li>
-        <li class="link small-link"><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
+        <li><%= link_to 'Sign In', new_lens_shifter_session_path, class: "link small-link" %></li>
       <% end %>
+        <li><label class="hamburger" for="down-menu-toggle"><i class="fa fa-bars menu-hamburger link small-link"></i></label></li>
       
     </ul>
-    <ul class="vertical menu">
-      <li class="link"><%= link_to 'About', '#' %></li>
-      <li class="link"><%= link_to 'Library', resource_items_path %></li>
-      <li class="link"><%= link_to 'Streams', streams_path %></li>
-      <li class="link"><%= link_to 'Practical Guides', guides_path %></li>
-      <li class="link"><%= link_to 'Upcoming Features', '#' %></li>
+    <input id="down-menu-toggle" type="checkbox">
+    <ul id="home-menu" class="vertical menu align-bottom">
+      <li><%= link_to 'About', '#', class: "link" %></li>
+      <li><%= link_to 'Library', resource_items_path, class: "link" %></li>
+      <li><%= link_to 'Streams', streams_path, class: "link" %></li>
+      <li><%= link_to 'Practical Guides', guides_path, class: "link" %></li>
+      <li><%= link_to 'Upcoming Features', '#', class: "link" %></li>
     </ul>
   </div>
 </div>
