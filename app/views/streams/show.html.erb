@@ -14,8 +14,8 @@
     	</div>
     	
     	<div class="column small-12 small-order-2 medium-12 medium-order-2 large-9 large-order-1 lesson-container">
-    		<i v-if="loading" class="fa fa-circle-o-notch fa-spin loading" style="font-size:90px;"></i>
-    		<div v-if="!loading">
+    		<i v-if="resourceLoading" class="fa fa-circle-o-notch fa-spin loading" style="font-size:90px;"></i>
+    		<div v-if="!resourceLoading">
 	    		<h4 v-if="currentLesson">Lesson: {{currentLesson.title}}</h4>
 		    	<div class='lesson-glance'>
 
