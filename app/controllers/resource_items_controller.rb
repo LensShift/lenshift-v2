@@ -1,8 +1,9 @@
 class ResourceItemsController < ApplicationController
+  before_action :authenticate_lens_shifter!
   before_action :set_resource_item, only: [:show]
   
   def index
-      resources = ResourceItem.published_before(Time.zone.now).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(16)
+      resources = ResourceItem.published_before(Time.zone.now).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(12)
       gon.resources = resources
       gon.icons = ResourceItem::RESOURCE_TYPE
 

@@ -1,6 +1,8 @@
 class LensShifters::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :one_user_registered?, only: [:new, :create]
+  layout 'landing', only: [:new]
 
   # GET /resource/sign_up
   # def new
@@ -36,7 +38,7 @@ class LensShifters::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
@@ -51,6 +53,14 @@ class LensShifters::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     new_profile_path
+  end
+
+  def one_user_registered?
+    if((LensShifter.count == 500) & (lens_shifter_signed_in?))
+      redirect_to root_path
+    elsif LensShifter.count == 500
+      redirect_to new_user_session_path
+    end
   end
 
   # The path used after sign up for inactive accounts.

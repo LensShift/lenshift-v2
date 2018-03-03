@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :authenticate_lens_shifter!
   layout :static_layout
 
   def landing
