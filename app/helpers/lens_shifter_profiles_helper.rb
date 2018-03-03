@@ -1,2 +1,0 @@
-module LensShifterProfilesHelper
-end
