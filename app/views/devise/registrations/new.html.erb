@@ -8,19 +8,19 @@
 					LensShift Beta is now live and exclusively open to beta users. Capacity is limited. Once capacity is exceeded you'll be added to the waitlist and will be the first to know about our official launch.</p>
 
 				<p class="hero-heading-secondar">Join Us as a Beta User!</p>
-				<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+					<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
 
-				  <div class="form-inputs">
-				    <%= f.input :email, required: true, autofocus: true %>
-				    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-				    <%= f.input :password_confirmation, required: true %>
-				  </div>
+					  <div class="form-inputs">
+					    <%= f.input :email, required: true, autofocus: true %>
+					    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+					    <%= f.input :password_confirmation, required: true %>
+					  </div>
 
-				  <div class="form-actions">
-				    <%= f.button :submit, "Sign up" %>
-				  </div>
-				<% end %>
+					  <div class="form-actions">
+					    <%= f.button :submit, "Sign up" %>
+					  </div>
+					<% end %>
 				</div>
 			</div>
 		</div>
