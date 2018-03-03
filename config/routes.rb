@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   get '/landing', to: "static_pages#landing", as: :landing
   get '/home', to: "static_pages#home", as: :home
-
+  get '/contact', to: "static_pages#contact", as: :contact
 
   namespace :fellow do
     resources :resource_items do

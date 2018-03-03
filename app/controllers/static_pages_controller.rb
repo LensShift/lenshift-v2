@@ -14,6 +14,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def contact
+  end
+
+
   private
 
   def static_layout

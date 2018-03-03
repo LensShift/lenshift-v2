@@ -9,9 +9,17 @@ class ApplicationController < ActionController::Base
   
   private
   def authenticate_fellow!
-	unless current_lens_shifter.try(:admin?)
-		flash[:error] = "Sorry, this is a fellow only section"
-		redirect_to root_path
-	end
+  	unless current_lens_shifter.try(:admin?)
+  		flash[:error] = "Sorry, this is a fellow only section"
+  		redirect_to root_path
+  	end
+  end
+
+  def after_sign_out_path_for(scope)
+    URI.parse(request.referer).path if request.referer
+  end
+
+  def after_sign_in_path_for(scope)
+    resource_items_path
   end
 end

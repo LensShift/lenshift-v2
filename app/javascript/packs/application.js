@@ -25,6 +25,7 @@ import streamFellowList from '../components/streamFellowList'
 import staticPageForm from '../components/staticPageForm'
 import dashboard from '../components/dashboard'
 import profileForm from '../components/profileForm'
+import contactForm from '../components/contactForm'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -65,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'stream-fellow-list': streamFellowList,
       'static-page-form': staticPageForm,
       'dashboard': dashboard,
-      'profile-form': profileForm
+      'profile-form': profileForm,
+      'contact-form': contactForm
   	},
     created() {
       // console.log('I am created', document.body)
