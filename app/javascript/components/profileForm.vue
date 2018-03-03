@@ -1,11 +1,19 @@
 <template>
 	<form novalidate="novalidate" id="edit_profile_6" enctype="multipart/form-data" action="/profiles/6" accept-charset="UTF-8" method="post" class="simple_form edit_profile" @submit.prevent="profileUpdate($event)">
 		<div class="form-inputs">
-				
+			<div v-if="notice" class="callout success">{{notice}}</div>
 			<div class="input date optional profile_birthdate">
 				<label for="profile_birthdate" class="date optional">Birthdate</label>
 				<input type="date" name="profile[birthdate]" id="profile_birthdate" class="date optional" v-model="updatedProfile.birthdate">
 			</div> 
+
+			<div class="input date optional profile_gender">
+				<label for="profile_birthdate" class="date optional">Gender</label>
+				<select name="profile[gender]" id="profile_gender" class="select optional" v-model="updatedProfile.gender">
+					<option value=""></option> 
+					<option v-for="gender in genders" :value="gender">{{gender}}</option> 
+				</select>
+			</div>
 			
 			<div class="input string optional profile_location relative-block">
      			<label for="profile_location" class="string optional">Location</label>
@@ -28,22 +36,12 @@
 					<option v-for="sector in sectors" :value="sector">{{sector}}</option> 
 				</select>
 			</div> 
-			
-			<div class="input text optional profile_referral">
-				<label for="profile_referral" class="text optional">Referral</label>
-				<textarea name="profile[referral]" id="profile_referral" class="text optional" v-model="updatedProfile.referral"></textarea>
-			</div> 
-			
-			<div class="input text optional profile_comment">
-				<label for="profile_comment" class="text optional">Comment</label>
-				<textarea name="profile[comment]" id="profile_comment" class="text optional" v-model="updatedProfile.comment"></textarea>
-			</div> 
-			
+						
 			<div class="input boolean optional profile_contact_consent">
 				<input value="0" type="hidden" name="profile[contact_consent]">
-				<label for="profile_contact_consent" class="boolean optional checkbox" v-model="updatedProfile.contact_consent">
+				<label for="profile_contact_consent" class="boolean optional checkbox">
 			
-				<input type="checkbox" value="1" name="profile[contact_consent]" id="profile_contact_consent" class="boolean optional">Keep me updated about LensShift</label>
+				<input type="checkbox" v-model="updatedProfile.contact_consent" name="profile[contact_consent]" id="profile_contact_consent" class="boolean optional">Keep me updated about LensShift</label>
 			</div>
 		</div> 
 				
@@ -65,15 +63,16 @@ export default {
 	mixins: [profileFormMixin],
   	data: function () {
 	    return {
+	    	loading: false,
 		    sectors: gon.sectors,
 		    updatedProfile: {
 		     	birthdate: null,
 		      	address: null,
+		      	location: null,
 		      	sector: null,
-		      	referral: null,
-		      	comment: null,
 		      	contact_consent: true
-	      }
+	    	},
+	    	notice: null
     }
   },
   methods: {
@@ -82,6 +81,7 @@ export default {
     	var meta = document.getElementsByTagName('meta')
     	var token = meta['csrf-token'].content
     	this.profile.address = this.address
+    	this.profile.location = this.location
   		axios.patch(`/profiles/${this.profile.id}.json`,  {'utf8': '✓','authenticity_token': token, profile: this.updatedProfile })
   			.then(res => {
   				console.log(res)
@@ -89,6 +89,7 @@ export default {
   					this.profile[key] = res.data[key]
   				})
   				event.target.elements.commit.disabled = false
+  				this.notice = "Your profile is updated!"
   			}, error => {
   				console.log(error)
   			})
@@ -97,6 +98,7 @@ export default {
   created() {
 	this.updatedProfile = this.profile
 	this.location = this.profile.location
+	this.genders = gon.genders
   }
 }
 </script>

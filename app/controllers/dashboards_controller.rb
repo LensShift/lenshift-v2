@@ -3,6 +3,7 @@ class DashboardsController < ApplicationController
 	  def show
 	  	profile = current_lens_shifter.profile.avatar
 	  	gon.sectors = Profile::SECTORS
+	  	gon.genders = Profile::GENDERS
 	  	gon_mapquest_key
 	  	gon.avatar = current_lens_shifter.profile.avatar
 

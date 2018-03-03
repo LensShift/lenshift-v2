@@ -70,7 +70,7 @@ class ProfilesController < ApplicationController
 
   def profile_params
       params.require(:profile).permit(:first_name, :last_name, :birthdate,
-        :ethnicity, :location, :address, :sector, :referral, :comment, :contact_consent, :avatar)
+        :ethnicity, :location, :address, :sector, :referral, :comment, :contact_consent, :avatar, :gender)
   end
 
   def gon_mapquest_key

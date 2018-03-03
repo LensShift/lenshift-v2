@@ -3,6 +3,7 @@ import axios from 'axios'
 export default {
   data: function () {
     return {
+      genders: null,
       location: null,
       suggestions: null,
       address: null,

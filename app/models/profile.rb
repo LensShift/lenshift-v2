@@ -22,4 +22,22 @@ class Profile < ApplicationRecord
       'wholesale, retail & repair of motor vehicles',
       'other services']
 
+  REFERRERS = [
+    'Facebook',
+    'Twitter',
+    'LinkedIn',
+    'TEDx Talks Oxford',
+    'TEDx Talks Online',
+    'Social-Digital Innovation',
+    'Other, please specify'
+  ]
+
+  GENDERS = [
+    'male',
+    'female',
+    'non-binary',
+    'other'
+  ]
+
+
 end

@@ -7,6 +7,8 @@
       <%= f.input :last_name, wrapper_html: {class: 'column small-12 medium-6 large-6'} %>
     </div>
     <%= f.input :birthdate, as: :date, html5: true %>
+
+    <%= f.input :gender, as: :select, collection: Profile::GENDERS %>
     
     <div class="input string optional profile_location relative-block">
       <label for="profile_location" class="string optional">Location</label>
@@ -21,7 +23,7 @@
     
     
     <%= f.input :sector, as: :select, collection: Profile::SECTORS %>
-    <%= f.input :referral %>
+    <%= f.input :referral, as: :check_boxes, collection: Profile::REFERRERS, label: "How did you hear about us?" %>
     <%= f.input :comment %>
     <%= f.input :avatar, label: 'Upload Profile Image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
     <%= f.input :contact_consent, label: "Keep me updated about LensShift by subscribing me to LensShift's newsletter" %>
