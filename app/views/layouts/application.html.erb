@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%= google_tag_manager_script_tag(:lensShift) %>
+    <%= google_tag_manager_script_tag(:lensshift) %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Resource Hub Responsible Social Impact - LensShift" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Resource Hub for Responsible Social Impact - LensShift" %></title>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag "application" %>
     <%= include_gon %>
@@ -14,7 +14,7 @@
   </head>
 
   <body infinite-wrapper>
-    <%= google_tag_manager_noscript_tag(:lensShift) %>
+    <%= google_tag_manager_noscript_tag(:lensshift) %>
    
     <div id="app">
        <%= render partial: "layouts/navbar" %>

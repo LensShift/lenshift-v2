@@ -1,4 +1,4 @@
 production:
-  lensShift: GTM-MXHNRWB
+  lensshift: GTM-MXHNRWB
 development:
-  lensShiftDev: GTM-55PTS9X
+  lensshiftDev: GTM-55PTS9X
