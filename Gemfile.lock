@@ -149,6 +149,8 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
+    gtm_rails (0.5.0)
+      rails (>= 4.1.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
@@ -361,6 +363,7 @@ DEPENDENCIES
   geocoder
   gon
   google_drive
+  gtm_rails
   jbuilder (~> 2.5)
   kaminari
   listen (>= 3.0.5, < 3.2)
