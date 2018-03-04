@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
 
-  root 'static_pages#landing'
+  devise_scope :lens_shifter do
+    root 'lens_shifters/registrations#new'
+  end
 
   resources :profiles, except: [:index]
   resources :resource_items, path: 'library', only: [:index, :show]
