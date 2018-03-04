@@ -30,22 +30,22 @@
 .home-logo {
 	width: 30%;
 	margin: auto auto;
-	height: 100%;
 	display: block;
 }
 
 .hero-content {
-	font-family: 'League Spartan', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
-	color: $white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 350px;
-	text-align: center;
+	width: 80%;
+	padding: 25px 0px;
 }
 
 .hero-heading {
 	font-size: 40px;
+}
+
+.hero-text {
+	font-family: 'Hind Siliguri', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+	font-size: 25px;
+	font-weight: 500;
 }
 
 .hero-heading-secondary {
@@ -59,6 +59,11 @@
 	text-align: center;
 }
 
+.homepage-line {
+	width: 100%;
+	overflow-x: hidden;
+	height: 70px;
+}
 .turqoise-line {
 	display: block;
 	margin: 0px 0px;
@@ -114,6 +119,22 @@
 }
 
 @media print, screen and (max-width: 40em) { 
+	.hero-content {
+		width: 90%;
+		padding: 25px 0px;
+	}
+
+	.hero-heading {
+		font-size: 35px;
+	}
+
+	.hero-text {
+		font-size: 20px;
+	}
+
+	.hero-heading-secondary {
+		font-size: 25px;
+	}
 	.landing-hero {
 		width: 100%;
 	}

@@ -15,7 +15,9 @@
   <body>
    
     <div id="app" class="home-app">
-      <%= render partial: "layouts/home_navbar" %>
+        <div class="home-logo">
+          <%= link_to image_tag('lensshift_beta_logo_black.png', alt:'lensShift logo'), root_path %>
+        </div>
         <div id='home-container'>
 
         <%= yield %>

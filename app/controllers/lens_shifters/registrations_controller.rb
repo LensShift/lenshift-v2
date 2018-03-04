@@ -2,7 +2,7 @@ class LensShifters::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :one_user_registered?, only: [:new, :create]
-  layout 'landing', only: [:new]
+  layout 'home', only: [:new]
 
   # GET /resource/sign_up
   # def new
@@ -57,9 +57,9 @@ class LensShifters::RegistrationsController < Devise::RegistrationsController
 
   def one_user_registered?
     if((LensShifter.count == 500) & (lens_shifter_signed_in?))
-      redirect_to root_path
+      redirect_to resource_items_path
     elsif LensShifter.count == 500
-      redirect_to new_user_session_path
+      redirect_to home_path
     end
   end
 
