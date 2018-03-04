@@ -1,0 +1,2 @@
+module Fellow::LensShiftersHelper
+end
