@@ -1,5 +1,5 @@
 @import "./settings";
-@import url('https://fonts.googleapis.com/css?family=Hind+Siliguri:400,700');
+@import url('https://fonts.googleapis.com/css?family=Hind+Siliguri:400,500,700');
 @font-face {
     font-family: 'League Spartan';
     src: url('leaguespartan-bold.eot');
@@ -71,7 +71,7 @@ img {
 
 #home-container {
 	height: 100%;
-	min-height: 800px;
+	min-height: 1200px;
 	padding: 25px 0px;
 	margin-bottom: -200px;
 }
@@ -80,11 +80,16 @@ img {
 
 .hero {
 	width: 100%;
-	height: 350px;
 	background-image: image-url('landing.jpg');
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;
+	font-family: 'League Spartan', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+	color: $white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 
 .signup-hero {
@@ -105,6 +110,11 @@ img {
 	width: 90%;
 	color: white;
 	padding: 20px 20px;
+	margin: auto auto;
+}
+
+.signup-hero-form {
+	width: 50%;
 	margin: auto auto;
 }
 
@@ -553,6 +563,9 @@ a.footer-item:hover {
 //mobile 40em and below
 
 @media print, screen and (max-width: 40em) {
+	.signup-hero-form {
+		width: 100%;
+	}
 
 	#main-container {
 		padding: 25px 0px;
@@ -562,7 +575,6 @@ a.footer-item:hover {
 		display:flex;
 		justify-content: space-between;
 	}
-
 
 	.menu .link:hover, .link a:hover, .link i:hover {
 		color: $white!important;
