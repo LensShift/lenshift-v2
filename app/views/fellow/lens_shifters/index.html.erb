@@ -9,8 +9,9 @@
       <tr>
         <th>id</th>
         <th>User</th>
-        <th>Confirmed Date</th>
-        <th>Last Signed In</th>
+        <th>Signed up date</th>
+        <th>Confirmed date</th>
+        <th>Last signed in</th>
         <th>Admin?</th>
       </tr>
     </thead>
@@ -20,6 +21,7 @@
         <tr>
           <td><%= user.id %></td>
           <td><%= user.full_name %></td>
+          <td><%= user.created_at.strftime("%m-%d-%Y") %></td>
           <td><%= user.confirmed_at.strftime("%m-%d-%Y") if !user.confirmed_at.nil? %></td>
           <td><%= user.last_sign_in_at.strftime("%m-%d-%Y") if !user.last_sign_in_at.nil? %></td>
           <td><%= user.admin? ? 'admin' : '' %></td>
