@@ -1,0 +1,32 @@
+<div class='row align-center'>
+
+<div class="column small-12 medium-12 large-12">
+
+  <h1>LensShifters</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>User</th>
+        <th>Confirmed Date</th>
+        <th>Last Signed In</th>
+        <th>Admin?</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @lens_shifters.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.full_name %></td>
+          <td><%= user.confirmed_at.strftime("%m-%d-%Y") if !user.confirmed_at.nil? %></td>
+          <td><%= user.last_sign_in_at.strftime("%m-%d-%Y") if !user.last_sign_in_at.nil? %></td>
+          <td><%= user.admin? ? 'admin' : '' %></td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <br />
+</div>
+</div>

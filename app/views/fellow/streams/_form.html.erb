@@ -1,6 +1,8 @@
 <%= simple_form_for @stream, url: fellow_stream_path do |f| %>
+  <%= f.button :submit %>
   <%= f.input :title %>
   <%= f.input :description, input_html: {class: "shorter-summary-text"} %>
+  <%= f.input :image %>
   <div class="row">
     <div class="column small-12 medium-3 large-3">
       <%= f.input :estimated_reading_time, label: 'Reading time' %>
@@ -15,6 +17,7 @@
   <%= f.input :guiding_questions, input_html: {class: "shorter-summary-text"} %>
   <%= f.input :tag_list, input_html: {value: @stream.tag_list.to_s} %>
   <%= f.association :lens_shifter, label: 'LensShifter', label_method: :full_name, value_method: :id, include_blank: true, selected: f.object.lens_shifter_id %>
+  <%= image_tag f.object.image %>
 
     <% @stream.lessons.order(:row_order).each_with_index do |lesson, index| %>
       <%= f.simple_fields_for :lessons, lesson do |l| %>
@@ -34,5 +37,5 @@
       <% end %>
     <% end %>
 
-  <%= f.button :submit %>
+ 
 <% end %>
