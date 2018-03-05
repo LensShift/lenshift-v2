@@ -99,10 +99,14 @@
 	padding: 25px 50px 0px 50px;
 }
 
-.feature-column img {
+.feature-column .landing-icon {
 	height: 100px;
 	width: auto;
 	margin-bottom: 25px;
+}
+
+.feature-column .landing-image {
+	margin: auto auto;
 }
 
 .border-right {
