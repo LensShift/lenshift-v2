@@ -1,5 +1,12 @@
 <resource-list inline-template>
 <div class="library-container">
+  <%  set_meta_tags og: {
+        title: @page_title,
+        url: resource_items_url,
+      }, twitter: {
+        card: @page_title,
+        site: 'LensShift',
+      } %>
   
   <div class="row align-center">
     <div class="column small-12 medium-7 large-8">

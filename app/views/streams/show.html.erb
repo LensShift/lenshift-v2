@@ -1,5 +1,13 @@
 <stream-show inline-template>
 	<div class="row">
+		<%  set_meta_tags og: {
+				title: @page_title,
+				url: stream_url(@stream_id),
+				image: @stream_image_url
+			}, twitter: {
+				card: @page_title,
+				site: 'LensShift',
+			}, image_src: @stream_image_url %>
 	    <div class="column small-12 medium-12 large-12">
 	    	<h1>{{stream.title}}</h1>
 	    	<p class="lesson-paragraph">{{stream.description}}</p>

@@ -5,12 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Resource Hub for Responsible Social Impact - LensShift" %></title>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag "application" %>
     <%= include_gon %>
     <%= javascript_pack_tag 'application' %>
     <%= csrf_meta_tags %>
+    <%= display_meta_tags site: 'Resource Hub for Responsible Social Impact - LensShift' %>
   </head>
 
   <body infinite-wrapper>

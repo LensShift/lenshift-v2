@@ -2,11 +2,20 @@ class StreamsController < ApplicationController
   before_action :authenticate_lens_shifter!
 
   def index
+
+    @page_title = 'Streams'
+    @page_description = 'Our structured streams will walk you through 15-20 resources from the library to unpack topics fundamental to social impact. Learn more about important topics in a structured way' 
+    @page_keywords = 'learn, stream, guided, curated, social impact'
   	gon.streams = Stream.published_before(Time.zone.now).to_json({include: {lessons: { only: [:title]}}})
   end
 
   def show
   	stream = Stream.friendly.find(params[:id])
+    @page_title = stream.title
+    @page_description = stream.description
+    @page_keywords = stream.tag_list
+    @stream_id = stream.id
+    @stream_image_url = stream.image.url
     gon.stream = stream
 
     lessons = stream.lessons.order(:row_order)

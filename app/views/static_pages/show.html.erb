@@ -1,3 +1,11 @@
+<%  set_meta_tags og: {
+        title: @page_title,
+        url: static_page_url(@page),
+      }, twitter: {
+        card: @page_title,
+        site: 'LensShift',
+      } %>
+
 <div class="row align-center">
 	<div class="column small-12 medium-10 large-10">
 		<h1><%= @page.title %></h1>

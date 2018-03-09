@@ -10,6 +10,8 @@ class StaticPagesController < ApplicationController
 
   def show
   	@page = StaticPage.friendly.find(params[:id])
+    @page_title = @page.title
+    @page_description = truncate(@page.content, length: 140)
   	if request.path != static_page_path(@page)
       redirect_to @page, status: :moved_permanently
     end
