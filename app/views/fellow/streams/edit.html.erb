@@ -1,31 +1,25 @@
-<div class="row align-center">
-	<div class="column small-12 medium-6 large-6 window-scroll">
-		<h1>Editing Stream</h1>
+<stream-edit inline-template>
+	<div class="row align-center">
+		<div class="column small-12 medium-6 large-6">
+			<h3 class="inline-heading">Editing Stream</h3>
+			<%= link_to 'Show', @stream %> |
+			<%= link_to 'Back', fellow_streams_path %>
+			<br />
+			<br />
+			<div v-if="notice" :class="['callout', noticeType, 'small']">{{notice}}</div>
+			<i v-if="streamLoading" class="fa fa-circle-o-notch fa-spin loading" style="font-size:90px;"></i>
+			<stream-form v-if="!streamLoading" :current-stream="stream" :lens-shifters="lensShifters" :action="'update'" v-on:stream-update="updateStream($event)"></stream-form>
+		</div>
+		
 
-		<%= render 'form', stream: @stream %>
-
-		<%= link_to 'Show', @stream %> |
-		<%= link_to 'Back', fellow_streams_path %>
-	</div>
-	
-	<stream-edit inline-template>
   		<div class="column small-12 medium-6 large-6">
- 			<button id="show-modal" v-on:click="showLessonForm = true" class="button">add lesson</button>
- 			<table v-for="lesson in newLessons">
-					<thead>
-						<th colspan="2">Lesson: {{lesson.title}}</th>
-					</thead>
-					<tbody>
-					<tr><td colspan="2">{{lesson.analysis}}</td></tr>
-					<tr><td colspan="2"><b>Resources</b></td></tr>
-					<tr v-for="resource_item in lesson.resource_items">
-						<td>{{resource_item.google_doc_id}}</td>
-						<td>{{resource_item.title}}</td>
-					</tr>
-					</tbody>
-			</table>
- 			<lesson-form v-if="showLessonForm" :stream-id="<%= @stream.id %>" :token="'<%= form_authenticity_token %>'" v-on:lesson="addLesson($event)" ></lesson-form>
+  			<lessons-list :lessons="lessons" :stream-id="stream.id" v-on:edit-lesson="lessonEdit($event)"></lessons-list>
+  			<br />
+  			<button id="show-modal" v-on:click="newLesson" class="button">Add lesson</button>
+ 			
+ 			
+ 			<lesson-form v-if="showLessonForm" :stream-id="<%= @stream.id %>" v-on:lesson="addLesson($event)" :current-lesson="currentLesson" v-on:lesson-change="updateLessonsList($event)" v-on:close="showLessonForm = false"></lesson-form>
  		</div>
-	</stream-edit>
-	
-</div>
+		
+	</div>
+</stream-edit>

@@ -80,8 +80,9 @@ class Fellow::ResourceItemsController < ApplicationController
 		    respond_to do |format|
 		    if @resource_item.valid?
 		        format.html { redirect_to @resource_item, notice: 'Resource item was successfully created.' }
-		        
-		        RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
+		        if Rails.env.production?
+		        	RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
+		    	end
 		        format.json { render :show, status: :created, location: @resource_item }
 		      else
 		        format.html { render :new }
@@ -99,7 +100,9 @@ class Fellow::ResourceItemsController < ApplicationController
 	      if @resource_item.update(resource_item_params)
 	      	gon.resource_item = @resource_item
 	        format.html { redirect_to @resource_item, notice: 'Resource item was successfully updated.' }
-	        RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
+	        if Rails.env.production?
+	        	RestClient.patch("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
+	        end
 	        format.json { render json: @resource_item.to_json, status: :ok, location: @resource_item }
 	      else
 	      	gon.resource_item = resource_item_params
@@ -112,8 +115,10 @@ class Fellow::ResourceItemsController < ApplicationController
 	  # DELETE /resource_items/1
 	  # DELETE /resource_items/1.json
 	def destroy
-		RestClient.patch("https://lensshift-drive.firebaseio.com/resources_deleted/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
-		RestClient.delete("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json")
+		if Rails.env.production?
+			RestClient.patch("https://lensshift-drive.firebaseio.com/resources_deleted/#{@resource_item.google_doc_id}.json", @resource_item.to_json)
+			RestClient.delete("https://lensshift-drive.firebaseio.com/resources/#{@resource_item.google_doc_id}.json")
+		end
 		@resource_item.destroy
 	    respond_to do |format|
 	      format.html { redirect_to fellow_resource_items_url, notice: 'Resource item was successfully destroyed.' }

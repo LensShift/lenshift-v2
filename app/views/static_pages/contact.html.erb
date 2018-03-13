@@ -5,7 +5,7 @@
 	<div class="row align-center">
 		<div class="column small-12 medium-8 large-8">
 			<h1>Contact Us</h1>
-			<div v-for="note in notice" class="call-out warning">{{note}}</div>
+			<div v-for="note in notice" class="callout alert small">{{note}}</div>
 			<i v-if="loading" class="fa fa-circle-o-notch fa-spin loading" style="font-size:90px;"></i>
 			<form v-if="!loading && !submitted" submit.prevent="submitQuery">
 				<input type="text" v-model="query.name" placeholder="name" @focus="notice = null" />

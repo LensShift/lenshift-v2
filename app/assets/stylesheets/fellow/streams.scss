@@ -1,6 +1,6 @@
 @import "./settings";
 
-  .resource-destination-window, .resource-selection-window {
+  .resource-destination-window {
     height: 500px;
     min-height: 500px;
     overflow-y: scroll;
@@ -8,8 +8,55 @@
   	box-shadow: 1px 1px 10px -2px $light-gray inset;
   }
 
-  .resource-item {
-  	cursor: pointer;
+  .resource-selection-window {
+    height: 445px;
+    min-height: 445px;
+    overflow-y: scroll;
+    border: 1px solid $light-gray;
+    box-shadow: 1px 1px 10px -2px $light-gray inset;
+  }
+
+  .sort-tabs {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sort-tabs li {
+    width: 100%;
+    padding: 10px 20px;
+    border: 3px solid $dark-gray;
+    background: $lens-shift-orange;
+  }
+
+  .draggable-resource-item, .draggable-resource-item-destination {
+    width: 100%;
+    padding: 10px 20px;
+    border: 3px solid $dark-gray;
+    background: $lens-shift-orange;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+  }
+
+  .draggable-resource-item-destination {
+    background: $lens-shift-turqoise;
+  }
+
+  .drag-icon {
+    margin-right: 25px;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+  }
+
+  .edit-icon {
+    float: right;
+    cursor: pointer;
+    margin-top: 3px;
   }
 
   .ghost {

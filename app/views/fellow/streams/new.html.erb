@@ -1,36 +1,52 @@
 <stream-new inline-template>
 	<div class="row align-center" ref="newStream">
+		<lesson-form v-if="showLessonForm" :stream-id="stream.id" v-on:lesson="addLesson($event)" v-on:close="showLessonForm = false" :current-lesson="currentLesson" v-on:lesson-change="updateLessonsList($event)"></lesson-form>
+
 		<transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-bind:css="false">
-			<div v-if="showNewStream" class="column small-12 medium-6 large-6">
-				<h1>{{stream.title}}</h1>
+			<div v-if="showNewStream" class="column small-12 medium-4 large-6">
+				<h3 class="inline-heading">{{stream.title}}</h3>
+				
 				<p><b>Description:</b> <br />{{stream.description}}</p>
 				<p>
        				<span v-for="tag in stream.tags" class="label secondary">{{tag.name}}</span>
     			</p>
-				<table v-for="lesson in stream.lessons">
-					<thead>
-						<th colspan="2">Lesson: {{lesson.title}}</th>
-					</thead>
-					<tbody>
-					<tr><td colspan="2">{{lesson.analysis}}</td></tr>
-					<tr><td colspan="2"><b>Resources</b></td></tr>
-					<tr v-for="resource_item in lesson.resource_items">
-						<td>{{resource_item.google_doc_id}}</td>
-						<td>{{resource_item.title}}</td>
-					</tr>
-					</tbody>
-				</table>
+    			<table class="unstriped">
+		          <thead>
+		              <th><small>Reading Time</small></th>
+		              <th><small>LensShifter</small></th>
+		              <th><small>Published At</small></th>
+		          </thead>
+		          <tr>
+		              <td>{{stream.estimated_reading_time}}</td>
+		              <td>{{lensShifterName}}</td>
+		              <td>{{stream.published_at | moment("MM-DD-YYYY")}}</td>
+		          </tr>
+		      	</table>
+		      	<img :src="stream.image.url" />
+		      	<br />
+		      	<br />
+		      	<a href="/fellow/streams" alt="streams index" class="button warnin">Finished</a>
 			</div>
 		</transition>
-		<div class="column small-12 medium-6 large-6">
-			<h1 v-if="!newStream">{{stream.title}}</h1>
-			<keep-alive>
-				<transition v-on:before-enter="beforeFormEnter" v-on:enter="formEnter" v-on:leave="formLeave">
-					<component :is="component" :token="'<%= form_authenticity_token %>'" v-on:stream="newStream($event)" v-on:lesson="addLesson($event)" :stream-id="stream.id"></component>
-				</transition>
-			</keep-alive>
+
+		<div class="column small-12 medium-8 large-6">
+
+			<div v-if="notice" class="callout alert small">{{notice}}</div>
+			<i v-if="streamLoading" class="fa fa-circle-o-notch fa-spin loading" style="font-size:90px;"></i>
+			<div v-if="!streamLoading">
+				<h3 v-if="!showNewStream">New Stream</h3>
+				<keep-alive>
+					<transition v-on:before-enter="beforeFormEnter" v-on:enter="formEnter" v-on:leave="formLeave">
+						<stream-form v-if="!showNewStream" v-on:stream-create="newStream($event)" :action="'create'" :lens-shifters="lensShifters"></stream-form>
+
+					</transition>
+				</keep-alive>
+			</div>
+			<lessons-list v-if="showNewStream" :lessons="lessons" :stream-id="stream.id" v-on:edit-lesson="lessonEdit($event)"></lessons-list>
+			<br />
+			<button v-if="showNewStream" v-on:click="newLesson" class="button small">Add Lesson</button>
 		</div>
 	</div>
 </stream-new>
-<%= link_to 'Back', fellow_streams_path %>
+
 

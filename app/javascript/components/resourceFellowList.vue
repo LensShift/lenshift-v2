@@ -15,13 +15,13 @@ export default {
       var token = meta['csrf-token'].content
       let now = new Date();
       axios.patch(`/fellow/resource_items/${id}.json`, {'utf8': '✓', authenticity_token: token, resource_item: {published_at: now}}).then(res => {
-        console.log(res)
-        this.$refs['resourceStatus' + res.data.id].innerHTML = "<span class='label success'>published</span>"
-        this.$refs['resourcePublishDate' + res.data.id].innerHTML = moment(res.data.published_at).format('MM/DD/YYYY')
-      }, error => {
-        console.log(error)
-        event.target.disabled = false
-      })
+            console.log(res)
+            this.$refs['resourceStatus' + res.data.id].innerHTML = "<span class='label success'>published</span>"
+            this.$refs['resourcePublishDate' + res.data.id].innerHTML = moment(res.data.published_at).format('MM/DD/YYYY')
+          }, error => {
+            console.log(error)
+            event.target.disabled = false
+          })
     }
   },
   created () {

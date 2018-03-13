@@ -10,14 +10,17 @@ class Fellow::StreamsController < ApplicationController
 
   # GET /fellow/streams/new
   def new
+    lens_shift_fellows
     @stream = Stream.new
-    gon.lens_shifters = LensShifter.all.map {|x| {full_name: x.full_name, id: x.id}}
     gon.resources = ResourceItem.select(:id, :google_doc_id, :title).order(:google_doc_id)
   end
 
   # GET /fellow/streams/1/edit
   def edit
+    gon.stream = @stream
+    gon.lessons = @stream.lessons.order(:row_order).to_json(include: {syllabuses: {include: {resource_item: {:only => [:id, :google_doc_id, :title]}}}})
     gon.resources = ResourceItem.select(:id, :google_doc_id, :title).order(:google_doc_id)
+    lens_shift_fellows
   end
 
   def show
@@ -29,7 +32,9 @@ class Fellow::StreamsController < ApplicationController
   def create
     stream = Stream.new(stream_params)
       if stream.save
-        RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{stream.id}.json", stream.to_json)
+        if Rails.env.production?
+          RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{stream.id}.json", stream.to_json)
+        end
         render json: stream, status: :created, notice: 'Stream was successfully created.'
       else
         render json: render_errors(stream.errors), status: :unprocessable_entity
@@ -42,9 +47,12 @@ class Fellow::StreamsController < ApplicationController
     respond_to do |format|
       if @stream.update(stream_params)
         gon.stream = @stream.to_json(include: {lessons: {include: :resource_items}})
-        RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json", gon.stream)
+        
+        if Rails.env.production?
+          RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json", gon.stream)
+        end
         format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}) }
-        format.html { render :show, status: :created, notice: 'Stream was successfully updated.' }
+        format.html { render :edit, status: :success, notice: 'Stream was successfully updated.' }
       else
         format.json { render json: render_errors(@stream.errors), status: :unprocessable_entity }
       end
@@ -57,13 +65,13 @@ class Fellow::StreamsController < ApplicationController
     return render json: render_errors("Cannot find the stream"), status: :not_found if @stream.blank?
     return render json: render_errors("you can't"), status: :forbidden if @stream.lens_shifter != current_lens_shifter
     
-    RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", gon.stream)
-    RestClient.delete("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json")
-
+    if Rails.env.production?
+      RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", gon.stream)
+      RestClient.delete("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json")
+    end
     @stream.destroy
 
     # head :no_contsent
-
     redirect_to fellow_streams_path
   end
 
@@ -76,10 +84,14 @@ class Fellow::StreamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def stream_params
       params.require(:stream).permit(:title, :description, :estimated_reading_time, :guiding_questions, :published_at,
-        :tags, :tag_list, :slug, :image, :lens_shifter_id, lessons_attributes: [:id, :tittle, :_destroy, :row_order, :analysis, :_destroy])
+        :tags, :tag_list, :slug, :image, :lens_shifter_id, lessons_attributes: [:id, :tittle, :_destroy, :row_order, :analysis, :_destroy, :row_order_position])
     end
 
     def render_errors(errors)
       { errors: errors }
+    end
+
+    def lens_shift_fellows
+      gon.lens_shifters = LensShifter.where(admin: true).map {|x| {full_name: x.full_name, id: x.id}}
     end
 end

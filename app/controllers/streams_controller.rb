@@ -11,11 +11,14 @@ class StreamsController < ApplicationController
 
   def show
   	stream = Stream.friendly.find(params[:id])
+
+    # SEO meta tags
     @page_title = stream.title
     @page_description = stream.description
     @page_keywords = stream.tag_list
     @stream_id = stream.id
     @stream_image_url = stream.image.url
+
     gon.stream = stream
 
     lessons = stream.lessons.order(:row_order)

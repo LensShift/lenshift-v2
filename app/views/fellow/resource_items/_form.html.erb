@@ -34,12 +34,15 @@
               <th class="horizontal-table-head"><small>Reading Time</small></th>
               <td><%= f.input :estimated_reading_time, label: false, input_html: {class: "table-input"} %></td>
           </tr>
+          <tr>
               <th class="horizontal-table-head"><small>Author</small></th>
               <td><%= f.input :author_list, label: false, input_html: {value: @resource_item.author_list.to_s.downcase, class: "table-input"} %></td>
           </tr>
+          <tr>
               <th class="horizontal-table-head"><small>Article Date</small></th>
               <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {class: "table-input"} %></td>
           </tr>
+          <tr>
               <th class="horizontal-table-head"><small>Source</small></th>
               <td><small><%= f.input :source_url, label: false, input_html: {class: "table-input"} %></small></td>
           </tr>

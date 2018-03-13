@@ -20,7 +20,9 @@ class Fellow::GuidesController < ApplicationController
 	    if @guide.valid?
 	        format.html { redirect_to @guide, notice: 'Guide was successfully created.' }
 	        
-	        RestClient.patch("https://lensshift-drive.firebaseio.com/guides/#{@guide.id}.json", @guide.to_json)
+	        if Rails.env.production?
+	        	RestClient.patch("https://lensshift-drive.firebaseio.com/guides/#{@guide.id}.json", @guide.to_json)
+	        end
 	        format.json { render :show, status: :created, location: @guide }
 	      else
 	        format.html { render :new }
@@ -33,7 +35,9 @@ class Fellow::GuidesController < ApplicationController
 		respond_to do |format|
 	      if @guide.update(guide_params)
 	        format.html { redirect_to @guide, notice: 'Guide was successfully updated.' }
-	        RestClient.patch("https://lensshift-drive.firebaseio.com/guides/#{@guide.id}.json", @guide.to_json)
+	        if Rails.env.production?
+	        	RestClient.patch("https://lensshift-drive.firebaseio.com/guides/#{@guide.id}.json", @guide.to_json)
+	        end
 	        format.json { render :show, status: :ok, location: @guide }
 	      else
 	        format.html { render :doc }
@@ -43,8 +47,10 @@ class Fellow::GuidesController < ApplicationController
 	end
 
 	def destroy
-		RestClient.patch("https://lensshift-drive.firebaseio.com/guides_deleted/#{guide.id}.json", @guide.to_json)
-		RestClient.delete("https://lensshift-drive.firebaseio.com/guides/#{@guide.id}.json")
+		if Rails.env.production?
+			RestClient.patch("https://lensshift-drive.firebaseio.com/guides_deleted/#{guide.id}.json", @guide.to_json)
+			RestClient.delete("https://lensshift-drive.firebaseio.com/guides/#{@guide.id}.json")
+		end
 		@@guide.destroy
 		respond_to do |format|
 	      format.html { redirect_to fellow_guides_url, notice: 'Guide was successfully destroyed.' }

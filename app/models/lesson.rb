@@ -4,5 +4,5 @@ class Lesson < ApplicationRecord
   has_many :resource_items, through: :syllabuses
   accepts_nested_attributes_for :syllabuses, allow_destroy: true
   include RankedModel
-  ranks :row_order
+  ranks :row_order, with_same: :stream_id
 end

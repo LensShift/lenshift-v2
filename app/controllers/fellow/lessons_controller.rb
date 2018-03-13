@@ -5,7 +5,7 @@ class Fellow::LessonsController < ApplicationController
   	# resource_ids = lesson_params[:resources].map{|x| x[:id]}
   	lesson = Lesson.new(lesson_params)
       if lesson.save
-        render json: lesson.to_json(include: :resource_items), status: :created, notice: 'Lesson was successfully created.'
+        render json: lesson.to_json(include: {syllabuses: {include: {resource_item: {:only => [:id, :google_doc_id, :title]}}}}), status: :created, notice: 'Lesson was successfully created.'
       else
         render json: render_errors(lesson.errors), status: :unprocessable_entity
       end
@@ -13,9 +13,10 @@ class Fellow::LessonsController < ApplicationController
 
   def update
   		# resource_ids = lesson_params[:resources].map{|x| x[:id]} if lesson_params[:resources].present?
-      stream = Stream.friendly.find(lesson_params[:stream_id])
-      if stream.lesson.find(params[:id]).update(lesson_params)
-        render json: lesson, status: :created, notice: 'Lesson was successfully updated.'
+      stream = Stream.friendly.find(params[:stream_id])
+      lesson = stream.lessons.find(params[:id])
+      if lesson.update(lesson_params)
+        render json: lesson.to_json(include: {syllabuses: {include: {resource_item: {:only => [:id, :google_doc_id, :title]}}}}), status: :ok, notice: 'Lesson was successfully updated.'
       else
         render json: render_errors(lesson.errors), status: :unprocessable_entity
       end
@@ -32,7 +33,7 @@ class Fellow::LessonsController < ApplicationController
   private
 
   def lesson_params
-  	params.require(:lesson).permit(:title, :analysis, :stream_id, :resource_item_ids => [], :syllabuses_attributes => [:row_order_position])
+  	params.require(:lesson).permit(:title, :analysis, :stream_id, :row_order, :row_order_position, :resource_item_ids => [], :syllabuses_attributes => [:id, :row_order_position, :resource_item_id])
   end
 
   def render_errors(errors)

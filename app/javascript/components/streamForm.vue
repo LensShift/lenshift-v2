@@ -1,5 +1,5 @@
 <template>
-  <form novalidate="novalidate" id="new_stream" enctype="multipart/form-data"accept-charset="UTF-8" class="new_stream" ref="streamData" v-on:submit.prevent="createStream($event)">
+  <form novalidate="novalidate" id="new_stream" enctype="multipart/form-data"accept-charset="UTF-8" class="new_stream" ref="streamData" v-on:submit.prevent="streamAction(action, $event)">
     <input name="utf8" type="hidden" value="✓"> 
 
     <input type="hidden" name="authenticity_token" id="authenticity_token" ref="authToken" :value="token"> 
@@ -59,29 +59,32 @@
     <div>
       <img :src="imageURL">
     </div>
-
+    <br />
    
     <div class="form-actions">
 
-    <input type="submit" name="commit" value="Create Stream" data-disable-with="Create Stream" class="button">
+    <input type="submit" name="commit" :value="action + ' Stream'" data-disable-with="Stream" class="button">
     </div>
   </form>
 </template>
 <script>
-import axios from 'axios'
 import fileUploadMixin from '../mixins/fileUploadMixin'
 
 export default {
   props: {
-    token: String
+    action: String,
+    currentStream: {
+      type: Object,
+      required: false
+    },
+    lensShifters: Array
   },
   components: {
   },
   mixins: [fileUploadMixin],
   data: function () {
     return {
-      message: "Hello Vue! Everyone two",
-      authToken: null,
+      token: null,
       stream: {
         title: null,
         description: null,
@@ -92,44 +95,30 @@ export default {
         lens_shifter_id: null,
         published_at: null
       },
-      lensShifters: gon.lens_shifters,
       imageURL: null
     }
   },
   methods: {
-    createStream: function(event) {
-      event.target.elements.commit.disabled = true
-      console.log(event.target.elements)
+    streamAction: function(callAction, event) {
+      // console.log(event.target.elements)
       // console.log('create')
       // console.log(this.token)
-
-
       const formData = new FormData(this.$refs.streamData)
-
       formData.append(
           'stream[image]',
           this.stream.image
         )
-
       // console.log(formData)
-      
-      axios.post('/fellow/streams', formData)
-        .then(res => {
-          // console.log(res)
-          this.$emit('stream', res)
-        }, error => {
-          console.log(error)
-          event.target.elements.commit.disabled = false
-        })
+      this.$emit('stream-' + callAction, formData)
     }
   },
   created() {
-
-
-    // gon.lens_shifters.forEach((element) => {
-    //   profile.push(element.profile)
-    // })
-    // console.log(profile)
+    if(this.currentStream) {
+      this.stream = this.currentStream
+      this.imageURL = this.stream.image.url
+    }
+    var meta = document.getElementsByTagName('meta')
+    this.token = meta['csrf-token'].content
   }
 }
 </script>
