@@ -3,5 +3,6 @@ FactoryBot.define do
     title "MyString"
     content "MyText"
     slug "MyString"
+    lens_shifter
   end
 end

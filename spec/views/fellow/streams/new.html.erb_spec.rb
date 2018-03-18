@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "fellow/streams/new", type: :view do
-  before(:each) do
-    assign(:stream, Stream.new())
-  end
+
 
   # it "renders new fellow_stream form" do
   #   render

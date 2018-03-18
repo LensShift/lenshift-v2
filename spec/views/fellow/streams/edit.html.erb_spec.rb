@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "fellow/streams/edit", type: :view do
-  before(:each) do
-  	fellow = FactoryBot.create(:fellow)
-    @stream = assign(:stream, fellow.streams.create!())
-  end
+  # before(:each) do
+  # 	fellow = FactoryBot.create(:fellow)
+  #   @stream = assign(:stream, fellow.streams.create!())
+  # end
 
   # it "renders the edit fellow_stream form" do
   #   render

@@ -68,7 +68,9 @@ export default {
           this.stream.image = formObject.get('stream[image]')
           this.streamLoading = false
           this.showNewStream = false
-          this.notice = "Problem creating the stream"
+          this.noticeType = 'alert'
+          let field = Object.keys(error.response.data.errors)
+          this.notice = `${field} ${error.response.data.errors[field]}`
         })
 
     },

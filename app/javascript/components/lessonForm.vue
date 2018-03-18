@@ -2,6 +2,7 @@
   <modal novalidate="novalidate" id="new_lesson" class="new_lesson" ref="lessonData" @close="$emit('close')">
 
     <h3 slot="header">Add Lesson</h3>
+    <div v-if="notice" :class="['callout', noticeType, 'small']">{{notice}}</div>
     <input name="utf8" type="hidden" value="✓"> 
 
     <div slot="body" class="form-inputs">
@@ -80,7 +81,9 @@ export default {
         stream_id: this.streamId
       },
       newResourceList: [],
-      resources: gon.resources
+      resources: gon.resources,
+      noticeType: null,
+      notice: null
     }
   },
   computed: {
@@ -127,21 +130,29 @@ export default {
           this.newResourceList = []
         }, error => {
           console.log(error)
+          this.noticeType = 'alert'
+          let field = Object.keys(error.response.data.errors)
+          this.notice = `${field} ${error.response.data.errors[field]}`
         })
     },
     updateLesson: function() {
        axios.patch(`/fellow/streams/${this.streamId}/lessons/${this.lesson.id}.json`, {'utf8': '✓','authenticity_token': this.token, 'lesson': this.lesson})
         .then(res => {
           // console.log('lesson response', res)
-          this.$emit('lesson-change', res.data)
-          this.$emit('close')
           this.lesson.title = null
           this.lesson.analysis = null
           this.resource_item_ids = []
           this.syllabuses_attributes = []
           this.newResourceList = []
+          this.noticeType = 'success'
+          this.notice = 'The lesson is updated!'
+          this.$emit('lesson-change', res.data)
+          this.$emit('close')
         }, error => {
           console.log(error)
+          this.noticeType = 'alert'
+          let field = Object.keys(error.response.data.errors)
+          this.notice = `${field} ${error.response.data.errors[field]}`
         })
     }
   },

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :lens_shifter do
-    email 'dummyEmail@gmail.com'
+    sequence(:email) {|n| "dummyEmail#{n}@gmail.com" } 
     password 'MyString'
     password_confirmation "MyString"
     admin false

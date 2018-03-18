@@ -24,22 +24,26 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe Fellow::StreamsController, type: :controller do
-
+  before(:each) do
+      @user = FactoryBot.create(:fellow)
+      sign_in @user
+  end
   # This should return the minimal set of attributes required to create a valid
   # Stream. As you add validations to Fellow::Stream, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {stream: FactoryBot.create(:stream, lens_shifter: @user).to_param}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {stream: { title: ''}}
   }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # Fellow::StreamsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+  # let(:valid_session) { {} }
+
 
 
   describe "GET #index" do
@@ -72,51 +76,35 @@ RSpec.describe Fellow::StreamsController, type: :controller do
           post :create, params: {stream: valid_attributes}
         }.to change(Stream, :count).by(1)
       end
-
-      it "redirects to the created fellow_stream" do
-        post :create, params: {stream: valid_attributes}
-        expect(response).to redirect_to(Stream.last)
-      end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
         post :create, params: {stream: invalid_attributes}
-        expect(response).to be_success
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe "PUT #update" do
     before(:each) do
-      @stream = FactoryBot.create(:stream)
+      @stream = FactoryBot.create(:stream, lens_shifter: @user)
     end
 
-
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
 
       it "updates the requested fellow_stream" do
-        
-        put :update, params: {id: @stream.to_param, stream: new_attributes}
-        @stream.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the fellow_stream" do
-        
-        put :update, params: {id: @stream.to_param, stream: valid_attributes}
-        expect(response).to redirect_to(stream)
+        put :update, params: {format: 'json', id: @stream.id, stream: {title: 'Stream Updated', description: 'Updated description'}}
+        json = JSON.parse(response.body)
+        expect(json['title']).to eq('Stream Updated')
       end
     end
 
     context "with invalid params" do
-      it "returns a success response (i.e. to display the 'edit' template)" do
+      it "should properly validate title" do
         
-        put :update, params: {id: @stream.to_param, stream: invalid_attributes}
-        expect(response).to be_success
+        put :update, params: {format: 'json', id: @stream.id, stream: {title: ''}}
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

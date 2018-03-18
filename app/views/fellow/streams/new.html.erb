@@ -31,7 +31,7 @@
 
 		<div class="column small-12 medium-8 large-6">
 
-			<div v-if="notice" class="callout alert small">{{notice}}</div>
+			<div v-if="notice" :class="['callout', noticeType, 'small']">{{notice}}</div>
 			<i v-if="streamLoading" class="fa fa-circle-o-notch fa-spin loading" style="font-size:90px;"></i>
 			<div v-if="!streamLoading">
 				<h3 v-if="!showNewStream">New Stream</h3>

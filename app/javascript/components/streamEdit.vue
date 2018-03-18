@@ -38,8 +38,8 @@ export default {
           this.notice = 'Wohoo! This stream has been successfully updated'
           this.stream = res.data
           // console.log(this.stream.sid)
-        }, error => {
-          console.log('error', error)
+        }).catch(error => {
+          console.log('error', error.response)
 
           this.stream.title = formObject.get('stream[title]')
           this.stream.description = formObject.get('stream[description]')
@@ -51,7 +51,8 @@ export default {
           this.stream.image = formObject.get('stream[image]')
           this.streamLoading = false
           this.noticeType = 'alert'
-          this.notice = "Problem updating the stream"
+          let field = Object.keys(error.response.data.errors)
+          this.notice = `${field} ${error.response.data.errors[field[0]]}`
         })
     }
   }

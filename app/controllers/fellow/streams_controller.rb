@@ -51,10 +51,11 @@ class Fellow::StreamsController < ApplicationController
         if Rails.env.production?
           RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json", gon.stream)
         end
-        format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}) }
+        format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}), status: :success }
         format.html { render :edit, status: :success, notice: 'Stream was successfully updated.' }
       else
         format.json { render json: render_errors(@stream.errors), status: :unprocessable_entity }
+        format.html { render :edit, notice: @stream.errors.messages, status: :unprocessable_entity}
       end
     end
   end
@@ -62,8 +63,8 @@ class Fellow::StreamsController < ApplicationController
   # DELETE /fellow/streams/1
   # DELETE /fellow/streams/1.json
   def destroy
-    return render json: render_errors("Cannot find the stream"), status: :not_found if @stream.blank?
-    return render json: render_errors("you can't"), status: :forbidden if @stream.lens_shifter != current_lens_shifter
+    return render json: render_errors({stream: "Cannot find the stream"}), status: :not_found if @stream.blank?
+    # return render json: render_errors("you can't"), status: :forbidden if @stream.lens_shifter != current_lens_shifter
     
     if Rails.env.production?
       RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", gon.stream)
