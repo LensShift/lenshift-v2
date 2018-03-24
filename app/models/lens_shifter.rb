@@ -9,6 +9,7 @@ class LensShifter < ApplicationRecord
   has_many :guides
   has_many :streams
   has_many :static_pages
+  has_many :blogs
 
   def full_name
   	self.profile.nil? ? self.email : "#{self.profile.first_name} #{self.profile.last_name}" 

@@ -1,0 +1,41 @@
+  <%  set_meta_tags og: {
+        title: @page_title,
+        url: resource_items_url,
+      }, twitter: {
+        card: @page_title,
+        site: 'LensShift',
+      } %>
+
+<div class="grid-y grid-padding-x grid-frame">
+	<div class="cell shrink header medium-cell-block-container">
+		<h1>LensShift Blogs</h1>
+		<p>This is where you find out the inner workings of LensShift. Come along with us on our journey to build LensShfit</p>
+	</div>
+	<br />
+	<div class="cell medium-auto medium-cell-block-container">
+		<div class="grid-x grid-margin-x">
+			<div class="cell medium-8 large-8 medium-cell-block-y">
+				<% @blogs.each do |blog| %>
+					<%= link_to blog_path(blog) do %>
+					<div>
+						<h3><%= blog.title %></h3>
+						<%= truncate(blog.content, length: 400) %>
+						<%= blog.published_at.strftime("%m/%d/%Y") if !blog.published_at.nil?%>
+					</div>
+					<% end %>
+					<hr />
+				<% end %>
+			</div>
+			<div class="cell hide-for-small-only medium-4 large-4 medium-cell-block-y">
+				<h5>Most Recent Blogs</h5>
+				<ul>
+				<% @blogs.order(:published_at).each do |blog| %>
+					<li><%= link_to blog_path(blog) do %><small><i><%= blog.published_at.strftime("%m/%d/%Y") if !blog.published_at.nil?%></i> <%= blog.title %></small><% end %></li>
+				<% end %>
+				</ul>
+				<h5>Tags</h5>
+			</div>
+		</div>
+	</div>
+
+</div>

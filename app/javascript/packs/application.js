@@ -14,7 +14,6 @@ import resourceDocForm from '../components/resourceDocForm'
 import resourceItemForm from '../components/resourceItemForm'
 import resourceList from '../components/resourceList'
 import streamNew from '../components/streamNew'
-import streamForm from '../components/streamForm'
 import streamFellowShow from '../components/streamFellowShow'
 import streamShow from '../components/streamShow'
 import streamList from '../components/streamList'
@@ -26,6 +25,8 @@ import staticPageForm from '../components/staticPageForm'
 import dashboard from '../components/dashboard'
 import profileForm from '../components/profileForm'
 import contactForm from '../components/contactForm'
+import blogsList from '../components/blogsList'
+import blogForm from '../components/blogForm'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -56,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
       'resource-item-form': resourceItemForm,
       'resource-list': resourceList,
       'stream-new': streamNew,
-      'stream-form': streamForm,
       'stream-fellow-show': streamShow,
       'stream-list': streamList,
       'stream-show': streamShow,
@@ -67,7 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'static-page-form': staticPageForm,
       'dashboard': dashboard,
       'profile-form': profileForm,
-      'contact-form': contactForm
+      'contact-form': contactForm,
+      'blogs-list': blogsList,
+      'blog-form': blogForm
   	},
     created() {
       // console.log('I am created', document.body)

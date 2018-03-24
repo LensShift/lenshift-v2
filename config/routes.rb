@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     root 'lens_shifters/registrations#new'
   end
 
+  resources :blogs, only: [:index, :show]
+
   resources :profiles, except: [:index]
   resources :resource_items, path: 'library', only: [:index, :show]
   resources :streams, only: [:index, :show] do
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :blogs, except: [:show]
     resources :guides, except: [:show]
     resources :streams do
       resources :lessons, only: [:new, :create, :update, :destroy]
