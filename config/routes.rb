@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         post :import_csv
       end
     end
-
+    resources :photos, except: [:show]
     resources :blogs, except: [:show]
     resources :guides, except: [:show]
     resources :streams do

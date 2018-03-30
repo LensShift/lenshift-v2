@@ -27,6 +27,7 @@ import profileForm from '../components/profileForm'
 import contactForm from '../components/contactForm'
 import blogsList from '../components/blogsList'
 import blogForm from '../components/blogForm'
+import photoList from '../components/photoList'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -69,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'profile-form': profileForm,
       'contact-form': contactForm,
       'blogs-list': blogsList,
-      'blog-form': blogForm
+      'blog-form': blogForm,
+      'photo-list': photoList
   	},
     created() {
       // console.log('I am created', document.body)
