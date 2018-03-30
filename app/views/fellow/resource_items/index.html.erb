@@ -2,16 +2,16 @@
 	<div class="grid-x grid-margin-x">
 		<div class="cell">
 		
-			<h1>Resource Library Admin</h1>
-			<%= link_to 'New Resource', new_fellow_resource_item_path, class: 'button' %>
+			<h1 class="inline-heading">Resource Library Admin</h1>
+			<%= link_to 'New Resource', new_fellow_resource_item_path, class: 'button' %><br />
+			Total No. of Resources: <%= @resource_items.size %>
 			<table>
 		        <thead>
 		          <tr>
-		          	<th>no. </th>
-		          	<th><%= link_to fellow_resource_items_path(sort: 'id') do %>id<i v-if="sortParams === 'id'" class="fa fa-sort-down"></i><% end %></i></th>
-		            <th><%= link_to fellow_resource_items_path(sort: 'google_doc_id') do %>GD ID<i v-if="sortParams === 'google_doc_id'" class="fa fa-sort-down"></i><% end %></th>
-		            <th><%= link_to fellow_resource_items_path(sort: 'title') do %>Title<i v-if="sortParams === 'title'" class="fa fa-sort-down"></i><% end %></th>
-		            <th>Publish Date</th>
+		          	<th><%= link_to fellow_resource_items_path(sort: 'id') do %>id <i v-if="sortParams === 'id'" class="fa fa-sort-down"></i><% end %></i></th>
+		            <th><%= link_to fellow_resource_items_path(sort: 'google_doc_id') do %>GD id<i v-if="sortParams === 'google_doc_id'" class="fa fa-sort-down"> </i><% end %></th>
+		            <th><%= link_to fellow_resource_items_path(sort: 'title') do %>Title <i v-if="sortParams === 'title'" class="fa fa-sort-down"></i><% end %></th>
+		            <th><%= link_to fellow_resource_items_path(sort: 'published_at') do %>Publish Date <i v-if="sortParams === 'published_at'" class="fa fa-sort-down"></i><% end %></th>
 		            <th>LS Author</th>
 		            <th>Featured</th>
 		            <th>Streams</th>
@@ -24,7 +24,6 @@
 		        <tbody>
 					<% @resource_items.each_with_index do |resource_item, index| %>
 						<tr>
-							<td><%= index + 1 %></td>
 							<td><%= resource_item.id %></td>
 							<td><%= resource_item.google_doc_id %></td>
 							<td><%= resource_item.title %></td>
