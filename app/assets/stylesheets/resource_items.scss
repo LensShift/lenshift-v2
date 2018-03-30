@@ -45,3 +45,21 @@
 	align-items: center;
 	justify-content: center;
 }
+
+.publish-status {
+	min-width: 100px;
+	width: 100px;
+	margin: 0px;
+}
+
+.publish-status:hover .published-tag {
+	display: none
+}
+
+.publish-status .unpublish-button {
+	display: none
+}
+
+.publish-status:hover .unpublish-button {
+	display: block;
+}

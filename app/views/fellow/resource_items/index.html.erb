@@ -32,20 +32,23 @@
 							<td><%= resource_item.lens_shifter.full_name %></td>
 							<td><%= resource_item.feature ? "<span class='success label'>featured</span>".html_safe : '' %></td>
 							<td><% resource_item.lessons.each do |lesson| %>
-								No. <%= lesson.stream.id %>, 
+								No. <%= lesson.stream.id %>  
 								<% end %>
 							</td>
 							<td><%= link_to 'Edit', edit_fellow_resource_item_path(resource_item.id) %></td>
 							<td ref="resourceStatus<%= resource_item.id %>" key="resourceKey<%= resource_item.id %>">
 								<% if resource_item.published_at? && resource_item.published_at <= Time.zone.now %>
-									<span class="label success">published</span>
+									<div class="publish-status">
+										<span class="label success published-tag">published</span>
+										<button class="button table-button warning unpublish-button small" v-on:click="unpublishNow(<%= resource_item.id %>, $event)">Unpublish</button>
+									</div>
 								<% elsif resource_item.published_at? && resource_item.published_at > Time.zone.now %>
 									<span  class="label success">date set</span>
 								<% else %>
-									<button class="button table-button" v-on:click="publishNow(<%= resource_item.id %>, $event)">Publish</button>
+									<button class="button table-button small" v-on:click="publishNow(<%= resource_item.id %>, $event)">Publish</button>
 								<% end %>
 							</td>
-							<td><%= delete_button_to 'Delete', fellow_resource_item_path(resource_item), data: {confirm: 'Are you sure?'}, class: 'button table-button alert' %></td>
+							<td><%= delete_button_to 'Delete', fellow_resource_item_path(resource_item), data: {confirm: 'Are you sure?'}, class: 'button table-button alert small' %></td>
 						</tr>
 					<% end %>
 				</tbody>
