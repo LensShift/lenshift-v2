@@ -1,0 +1,2 @@
+module Fellow::BlogsHelper
+end

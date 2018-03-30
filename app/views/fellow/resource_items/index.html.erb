@@ -14,6 +14,7 @@
 		            <th>Publish Date</th>
 		            <th>LS Author</th>
 		            <th>Featured</th>
+		            <th>Streams</th>
 		            <th></th>
 		            <th></th>
 		            <th></th>
@@ -30,6 +31,10 @@
 							<td ref="resourcePublishDate<%= resource_item.id %>"><%= resource_item.published_at.strftime("%m/%d/%Y") if resource_item.published_at? %></td>
 							<td><%= resource_item.lens_shifter.full_name %></td>
 							<td><%= resource_item.feature ? "<span class='success label'>featured</span>".html_safe : '' %></td>
+							<td><% resource_item.lessons.each do |lesson| %>
+								No. <%= lesson.stream.id %>, 
+								<% end %>
+							</td>
 							<td><%= link_to 'Edit', edit_fellow_resource_item_path(resource_item.id) %></td>
 							<td ref="resourceStatus<%= resource_item.id %>" key="resourceKey<%= resource_item.id %>">
 								<% if resource_item.published_at? && resource_item.published_at <= Time.zone.now %>

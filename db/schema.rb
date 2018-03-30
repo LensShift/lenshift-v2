@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180303213642) do
+ActiveRecord::Schema.define(version: 20180324112338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "slug"
+    t.bigint "lens_shifter_id"
+    t.string "tags"
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lens_shifter_id"], name: "index_blogs_on_lens_shifter_id"
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -73,6 +85,14 @@ ActiveRecord::Schema.define(version: 20180303213642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stream_id"], name: "index_lessons_on_stream_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.string "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -186,6 +206,7 @@ ActiveRecord::Schema.define(version: 20180303213642) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  add_foreign_key "blogs", "lens_shifters"
   add_foreign_key "guides", "lens_shifters"
   add_foreign_key "lessons", "streams"
   add_foreign_key "profiles", "lens_shifters"

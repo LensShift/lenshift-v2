@@ -34,11 +34,12 @@
             <ul class="menu admin-menu align-right">
                 <li><i>Admin:</i></li>
                 <% if current_lens_shifter.try(:admin?) %>
-                  <li><%= link_to 'All Resources', fellow_resource_items_path %></li>
+                  <li><%= link_to 'Resources', fellow_resource_items_path %></li>
                   <li><%= link_to 'Google Drive', import_google_fellow_resource_items_path %></li>
                   <li><%= link_to 'Guides', fellow_guides_path %></li>
                   <li><%= link_to 'Streams', fellow_streams_path %></li>
                   <li><%= link_to 'Static Pages', fellow_static_pages_path %></li>
+                  <li><%= link_to 'Blogs', fellow_blogs_path %></li>
                 <% end %>
               </ul>
           </div>

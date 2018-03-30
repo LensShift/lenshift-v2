@@ -1,0 +1,2 @@
+module Fellow::PhotosHelper
+end

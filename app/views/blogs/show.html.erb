@@ -1,0 +1,20 @@
+<%  set_meta_tags og: {
+    title: @page_title,
+    url: resource_items_url,
+  }, twitter: {
+    card: @page_title,
+    site: 'LensShift',
+  } %>
+
+<div class="row align-center">
+	<div class="column small-12 medium-10 large-10">
+		<h1><%= @blog.title %></h1>
+		<p><%= @blog.published_at %>
+		<p>
+	      <% @blog.tag_list.each do |tag| %>
+	        <span class="label primary"><%= tag %></span>
+	      <% end %>
+   		 </p>
+   		<%= @blog.content.html_safe %>
+	</div>
+</div>
