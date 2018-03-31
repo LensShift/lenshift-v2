@@ -67,7 +67,7 @@ class Fellow::StreamsController < ApplicationController
     # return render json: render_errors("you can't"), status: :forbidden if @stream.lens_shifter != current_lens_shifter
     
     if Rails.env.production?
-      RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", gon.stream)
+      RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", @stream.to_json)
       RestClient.delete("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json")
     end
     @stream.destroy
