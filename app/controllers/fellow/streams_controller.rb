@@ -33,7 +33,7 @@ class Fellow::StreamsController < ApplicationController
     stream = Stream.new(stream_params)
       if stream.save
         if Rails.env.production?
-          RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{stream.id}.json", stream.to_json)
+          RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{stream.id}.json", stream.to_json(include: {lessons: {include: :resource_items}})
         end
         render json: stream, status: :created, notice: 'Stream was successfully created.'
       else
@@ -67,7 +67,7 @@ class Fellow::StreamsController < ApplicationController
     # return render json: render_errors("you can't"), status: :forbidden if @stream.lens_shifter != current_lens_shifter
     
     if Rails.env.production?
-      RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", @stream.to_json)
+      RestClient.patch("https://lensshift-drive.firebaseio.com/streams_deleted/#{@stream.id}.json", @stream.to_json(include: {lessons: {include: :resource_items}})
       RestClient.delete("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json")
     end
     @stream.destroy
