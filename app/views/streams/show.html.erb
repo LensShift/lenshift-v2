@@ -18,21 +18,18 @@
     			<div v-for="(lesson, index) in lessons" :class="['tabs-hover','tabs-title', activeLessonIndex === index ? 'lesson-is-active' : '' ]" :id="'tab' + index" v-on:click="showLesson(lesson, index, lesson.id)"><strong><small>Lesson {{index + 1}}</small></strong></div>
     		</div>
     		<br />
-    		<br class="clr" />
+    		<h4 v-if="currentLesson">Lesson: {{currentLesson.title}}</h4>
+	    	<div class='lesson-glance'>
+
+	    		<h5>At a Glance</h5>
+				<p v-if="currentLesson" class="lesson-paragraph"> {{currentLesson.analysis}}</p>
+			</div>
+    		
     	</div>
     	
     	<div class="column small-12 small-order-2 medium-12 medium-order-2 large-9 large-order-1 lesson-container">
     		<i v-if="resourceLoading" class="fa fa-circle-o-notch fa-spin loading" style="font-size:90px;"></i>
-    		<div v-if="!resourceLoading">
-	    		<h4 v-if="currentLesson">Lesson: {{currentLesson.title}}</h4>
-		    	<div class='lesson-glance'>
-
-		    		<h5>At a Glance</h5>
-					<p v-if="currentLesson" class="lesson-paragraph"> {{currentLesson.analysis}}</p>
-				</div>
-				
-				<stream-resource :resource="currentResource"></stream-resource>
-			</div>
+			<stream-resource v-if="!resourceLoading" :resource="currentResource"></stream-resource>
 		</div>
 		<div class="column small-12 small-order-1 medium-6 medium-order-1 large-3 large-order-2">
 	        <div class="resource-syllabus-frame-head">Resources</div>

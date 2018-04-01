@@ -72,6 +72,7 @@
 	border-left: 3px solid $dark-gray;
 	border-right: 3px solid $dark-gray;
     background: $white;
+    margin-bottom: 1rem;
 }
 
 .resource-syllabus-frame-head {
@@ -218,10 +219,6 @@
 	and (-webkit-min-device-pixel-ratio: 1) {
 	.lesson-glance {
 		margin-top: 50px;
-	}
-
-	.resource-syllabus-frame-head {
-		margin-top: 25px;
 	}
 
 	.resource-syllabus-frame {
