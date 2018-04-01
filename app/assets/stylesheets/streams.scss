@@ -39,6 +39,7 @@
 
 .stream-side-frame {
 	height: 200px;
+	border: 2px solid $lens-shift-gray;
 	overflow: scroll;
 	background: white;
 	color: black;
@@ -58,8 +59,8 @@
 }
 
 .syllabus-button {
-	margin-top: 1rem;
-	margin-bottom: 0;
+	margin-bottom: 1rem;
+	width: 50%;
 }
 
 .lesson-container {
@@ -93,6 +94,15 @@
 
 .stream-resource-card {
 	border: 0px;
+}
+
+.stream-resource-card .card-divider {
+	border: 3px solid $dark-gray;
+	background: $lens-shift-orange;
+}
+
+.stream-resource-card .card-divider h6 {
+	color: white;
 }
 
 .stream-resource-card .card-section {
@@ -195,7 +205,6 @@
 	}
 
 	.resource-syllabus-frame {
-		
 		max-height: 250px;
 		overflow-y: scroll;
 	}

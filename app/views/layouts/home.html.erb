@@ -11,6 +11,24 @@
     <%= javascript_pack_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= display_meta_tags site: 'Resource Hub for Responsible Social Impact - LensShift' %>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+    <script>
+    window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#00baba"
+        },
+        "button": {
+          "background": "#2B2D2E"
+        }
+      },
+      "content": {
+        "href": "/terms-and-conditions"
+      }
+    })});
+    </script>
   </head>
 
   <body>

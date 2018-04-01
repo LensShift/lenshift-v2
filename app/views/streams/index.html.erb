@@ -40,12 +40,12 @@
 		    			<div :ref="'streamImage' + stream.id" class="stream-thumbnail" style="display:block;">
 		    				<img :src="stream.image.thumb.url" alt="stream image" />	
 		    			</div>
-		    			<div :ref="'streamFrame' + stream.id" class="stream-side-frame" :id="'syllabus-dropdown' + stream.id" style="display:none;">		    				
+		    			<div :ref="'streamFrame' + stream.id" class="stream-side-frame" :id="'syllabus-dropdown' + stream.id" style="display:none;">
 	    					<ul>
 	    						<li v-for="(lesson, index) in stream.lessons">Lesson {{index + 1}}: {{lesson.title}}</li>
 	    					</ul>
 		    			</div>
-		    			<button class="button syllabus-button" type="button" :data-toggle="'syllabus-dropdown' + stream.id" v-on:click="syllabusShow(stream.id)">Syllabus</button>
+		    			<button class="button syllabus-button" type="button" :data-toggle="'syllabus-dropdown' + stream.id" v-on:click="syllabusShow(stream.id)"><small>Syllabus</small></button>
 		    		</div>
 	    		</div>
 	    	</div>

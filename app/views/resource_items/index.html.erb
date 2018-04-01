@@ -9,11 +9,8 @@
       } %>
   
   <div class="row align-center">
-    <div class="column small-12 medium-7 large-8">
+    <div class="column small-12 medium-7 large-9">
       <h1>Library</h1>
-      <p class="lead">Welcome our comprehensive library of resources including articles, videos, podcasts, infographics, etc. We bring together powerful content about social impact for you so that you can find them in one place.</p>
-      <br />
-      <br />
     </div>
     <div class="small-4 medium-2 large-1 column">
       <label for="sort_by" class="text-right middle">sort by:</label>
@@ -26,10 +23,15 @@
         <option value="estimated_reading_time">reading time</option>
       </select>
     </div>
+    <div class="column small-12 medium-12 large-12">
+      <p class="lead">Welcome our comprehensive library of resources including articles, videos, podcasts, infographics, etc. We bring together powerful content about social impact for you so that you can find them in one place.</p>
+      <br />
+      <br />
+    </div>
   </div>
 
   <div class="row align-center">
-    <div class="column small-12 medium-12 large-10">
+    <div class="column small-12 medium-12 large-12">
     <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 library-items">  
         <div class="cell" v-for="resource in sortedResources">
           <div class='card resource-card'>
