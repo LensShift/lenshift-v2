@@ -2,7 +2,7 @@
     <div class="lesson-container">
 
         <div class="card stream-resource-card">
-          <div class="card-divider"><h6>From LensShift Library on:  {{resource.title}}</h6></div>
+          <div class="card-divider"><span class="stream-resource-title"><i>from LensShift Library on:</i></span>{{resource.title}}</div>
             <div class="card-section">
                 <span v-html="resource.analysis_content"></span>
  

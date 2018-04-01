@@ -99,10 +99,12 @@
 .stream-resource-card .card-divider {
 	border: 3px solid $dark-gray;
 	background: $lens-shift-orange;
+	font-weight: bold;
 }
 
-.stream-resource-card .card-divider h6 {
+.stream-resource-card .card-divider .stream-resource-title {
 	color: white;
+	margin-right: 1rem;
 }
 
 .stream-resource-card .card-section {
