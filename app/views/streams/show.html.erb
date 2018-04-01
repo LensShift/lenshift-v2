@@ -13,7 +13,7 @@
 	    	<p class="lesson-paragraph">{{stream.description}}</p>
 	    
 		</div>		
-	   	<div class="column small-12 medium-12 large-9">
+	   	<div class="column small-12 medium-12 large-12">
     		<div class="tabs">
     			<div v-for="(lesson, index) in lessons" :class="['tabs-hover','tabs-title', activeLessonIndex === index ? 'lesson-is-active' : '' ]" :id="'tab' + index" v-on:click="showLesson(lesson, index, lesson.id)"><strong><small>Lesson {{index + 1}}</small></strong></div>
     		</div>

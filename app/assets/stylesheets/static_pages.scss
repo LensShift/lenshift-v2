@@ -128,7 +128,7 @@
 	margin: auto auto;
 }
 
-@media print, screen and (max-width: 40em) { 
+@media all and (min-width: 0em)  and (max-width: 40em) { 
 	.hero-content {
 		width: 90%;
 		padding: 25px 0px;

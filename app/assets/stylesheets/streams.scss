@@ -124,6 +124,7 @@
 .tabs-hover:hover {
 	background: $dark-gray;
 	color: $white;
+	border: 1px solid $dark-gray;
 }
 
 .tabs-hover:hover.tabs-title:after {
@@ -132,15 +133,12 @@
 
 .tabs-title {
 	position: relative;
-	background: $white;
+	background: $light-gray;
 	color: $dark-gray;
-	border: 1px solid $lens-shift-gray;
+	border: 1px solid $light-gray;
 	display: inline-block;
-	height: 60px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 40px;
-	padding-right: 10px;
+	height: 50px;
+	padding: 10px 10px 10px 40px;
 	cursor: pointer;
 }
 
@@ -162,15 +160,15 @@
 
 .tabs-title:after {
 	border-color: rgba(0, 0, 0, 0);
-	border-left-color: $white;
-	border-width: 30px;
-	margin-top: -30px;
+	border-left-color: $light-gray;
+	border-width: 24px;
+	margin-top: -24px;
 }
 .tabs-title:before {
 	border-color: rgba(230, 230, 230, 0);
-	border-left-color: $lens-shift-gray;
-	border-width: 31px;
-	margin-top: -31px;
+	border-left-color: $light-gray;
+	border-width: 25px;
+	margin-top: -25px;
 }
 
 .lesson-paragraph {
@@ -179,17 +177,20 @@
 
 .lesson-is-active {
 	color: $white !important;
-	background: $lens-shift-gray;
+	background: $lens-shift-turqoise;
+	border: 1px solid $lens-shift-turqoise;
+}
+
+.lesson-is-active.tabs-title:after {
+	border-left-color: $lens-shift-turqoise;
 }
 
 .resource-is-active { 
 	color: $white !important;
-	background: $dark-gray;
+	background: $lens-shift-turqoise;
 }
 
-.lesson-is-active.tabs-title:after {
-	border-left-color: $lens-shift-gray;
-}
+
 
 .lesson-glance {
 	margin-top: 25px;
@@ -197,8 +198,7 @@
 
 //mobile 40em and below
 
-@media print, screen and (max-width: 40em)
-	and (-webkit-min-device-pixel-ratio: 3)  {
+@media all and (max-width: 40em) {
 	.lesson-glance {
 		margin-top: 50px;
 	}
@@ -208,21 +208,43 @@
 	}
 
 	.resource-syllabus-frame {
-		max-height: 250px;
+		max-height: 200px;
 		overflow-y: scroll;
 	}
+
+	.tabs-title {
+		height: 40px;
+		padding: 7px 10px 7px 25px;
+		margin-bottom: 2px;
+	}
+	
+	.tabs-title:after {
+		border-width: 19px;
+		margin-top: -19px;
+	}
+
+	.tabs-title:first-child {
+		padding-left: 15px;
+	}
+
+	.tabs-title:before {
+		border-width: 20px;
+		margin-top: -20px;
+	}
+
 }
 
-//tablet 40em and above
+//tablet
 
-@media print, screen and (min-width: 40em) 
+@media all and (min-width: 40em) 
+	and (max-width: 64em)
 	and (-webkit-min-device-pixel-ratio: 1) {
 	.lesson-glance {
 		margin-top: 50px;
 	}
 
 	.resource-syllabus-frame {
-		max-height: 250px;
+		max-height: 200px;
 		overflow-y: scroll;
 	}
 }

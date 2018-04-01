@@ -537,7 +537,7 @@ a.footer-item:hover {
 
 //tablet
 
-@media print, screen and (min-width: 40em) 
+@media all and (min-width: 40em) 
 	and (max-width: 64em)
 	and (-webkit-min-device-pixel-ratio: 1) {
 	.navbar-small {
@@ -569,7 +569,7 @@ a.footer-item:hover {
 
 //mobile 40em and below
 
-@media print, screen and (max-width: 40em) {
+@media all and (min-width: 0em) and (max-width: 40em) {
 	.signup-hero-form {
 		width: 100%;
 	}

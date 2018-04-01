@@ -7,13 +7,14 @@
         site: 'LensShift',
       }, image_src: @resource_item.image.url %>
 <div class="grid-x grid-padding-x">
-  <div class="small-12 medium-auto large-auto cell">
-     <p>
+  <div class="small-12 medium-12 large-12 cell">
       <h1><%= @resource_item.title %></h1>
       <% if current_lens_shifter.try(:admin?) %>
         <%= link_to 'edit resource', edit_fellow_resource_item_path(@resource_item), class: 'button' %>
       <% end %>
-    </p>
+  </div>
+  <div class="small-12 medium-auto large-auto cell">
+
     <p><small><i>Added: <%= @resource_item.published_at.strftime("%m-%d-%Y") if !@resource_item.published_at.nil? %></i></small></p>
 
     <p>
