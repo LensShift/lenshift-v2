@@ -69,7 +69,9 @@ export default {
   		}
   	},
   	created () {
-  		this.blogPost = this.blog
+      if(this.blog) {
+        this.blogPost = this.blog
+      }
   	}
 }
 </script>
