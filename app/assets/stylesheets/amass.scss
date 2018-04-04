@@ -79,7 +79,7 @@ input[type="search"] {
 #home-container {
 	height: 100%;
 	min-height: 1200px;
-	padding: 25px 0px;
+	padding: 0px 0px;
 	margin-bottom: -200px;
 }
 
@@ -88,6 +88,7 @@ input[type="search"] {
 .hero {
 	width: 100%;
 	background-image: image-url('landing.jpg');
+	min-height: 450px;
 	background-size: cover;
 	background-position: center center;
 	background-repeat: no-repeat;

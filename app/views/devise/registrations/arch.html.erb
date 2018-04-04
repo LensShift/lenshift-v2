@@ -1,7 +1,9 @@
-<% set_meta_tags title: 'LensShift', description: 'The hub for shifting narratives around social impact.', keyword: 'social impact, lens shift, international devleopment, community', og: {
-        title: 'LensShift',
-        url: 'https://www.lensshift.org/',
-      }, twitter: {
+<% set_meta_tags title: 'Sign up LensShift', description: 'LensShifter sign up page', keyword: 'Site, Sign up, Members, LensShifter', 
+	og: {
+        title: 'Sign up LensShift',
+        url: 'https://www.lensshift.org/lens_shifter/sign_up'
+      }, 
+     twitter: {
         card: 'Sign up to LensShift',
         site: 'LensShift',
       }, image_src: "https://www.lensshift.org/assets/lensshift_beta_logo_black.png" %>
@@ -11,14 +13,29 @@
 		<div class="hero">
 			<div class="hero-content">
 				<p class="hero-heading">Passionate about social impact done right?</p>
+				<p class="hero-text"><span class="highlight">
+					LensShift Beta is now live and exclusively open to Beta Users. Capacity is limited. Once capacity is exceeded you'll be added to the waitlist and will be the first to know about our official launch.</span></p>
 
-				<p class="hero-heading-secondary">Join Us!</p>
-				
-				<%= link_to 'Sign Up Now', new_lens_shifter_registration_path, class: "button" %>
+				<p class="hero-heading-secondary">Join Us as a Beta User!</p>
+				<div class="signup-hero-form">
+					<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+					  <div class="form-inputs">
+			    		<%= f.input :email, required: true, autofocus: true, label: false, input_html: {placeholder: "email"} %>
+			    		<%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), label: false, input_html: {placeholder: "password"} %>
+			    		<%= f.input :password_confirmation, required: true, label: false, input_html: {placeholder: "confirm password"} %>
+
+					  </div>
+
+					  <div class="form-actions">
+					    <%= f.button :submit, "Sign up" %><br />
+					    or <%= link_to 'sign in', new_lens_shifter_session_path %> here
+					  </div>
+					<% end %>
+				</div>
 			</div>
 		</div>
 		<div class="secondary-call">
-			The hub for shifting narratives around social impact.
+			The GO-TO hub for responsible social impact in the global development sphere.
 		</div>
 
 		<div class="homepage-line">
@@ -30,25 +47,26 @@
 			<div class="column small-12 medium-4 large-4 feature-column">
 				<%= image_tag 'library.png', alt: "resource library icon", class: "landing-icon" %>
 				<h5>Library</h5>
-				<p>Our Library brings together an ever-growing collection of LensShift-curated resources including articles, videos, podcasts, infographics, and more.</p>
+				<p>A comprehensive library of existing resources including articles, videos, podcasts, infographics, etc.</p>
 			</div>
 			<div class="column small-12 medium-4 large-4 feature-column">
 				<%= image_tag 'stream.png', alt: "resource library icon", class: "landing-icon" %>
-				<h5>Streams</h5>
-				<p>These structured Streams walk LensShifters through 15-20 resources from the Library to unpack topics fundamental to challenging mainstream narratives.</p>
+				<h5>Resource Streams</h5>
+				<p>Our structured streams will walk you through 15-20 resources from the library to unpack topics fundamental to social impact.</p>
 			</div>
 			<div class="column small-12 medium-4 large-4 feature-column">
 				<%= image_tag 'guide.png', alt: "resource library icon", class: "landing-icon" %>
 				<h5>Practical Guides</h5>
-				<p>Practical Guides distill the knowledge from our Library and Streams into bite-size references that can be tangibly applied in daily work and conversations.</p>
+				<p>Compact practical guides to distill the learnings from our library and streams into bite-size references that can be tangibly applied in daily work and conversations.</p>
 			</div>
 		</div>
 		<hr />
 		<div class="row feature-row align-center">
 			<div class="column small-12 medium-8 large-8 feature-column align-center">
 				<h4>Launching at TEDxOxford</h4>
-				<p>Our beta site was launched at <%= link_to 'TEDxOxford', "http://www.tedxoxford.co.uk/" %> on March 4, 2018. <br /> Exciting day! Now you can watch our TEDx talk here</p>
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/ns18b4LRXbM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+				<p>Our beta site was launched at <%= link_to 'TEDxOxford', "http://www.tedxoxford.co.uk/" %> on March 4, 2018. <br /> Exciting day! Keep an eye out for our TEDx talk video, coming soon...</p>
+				<%= image_tag 'lensshift-launch.jpeg', class: 'image' %>
+
 			</div>
 		</div>
 		<hr />
@@ -83,11 +101,9 @@
 			<div class="column small-12 medium-6 large-6 text-center">
 				<h4>Follow Us</h4>
 				<div class="social-icon">
-					<%= link_to 'https://www.facebook.com/lensshift/', target: "_blank" do %><i class="fa fa-facebook-official" aria-hidden="true"></i><% end %>
-					<%= link_to 'https://twitter.com/lensshift_org', target: "_blank" do %><i class="fa fa-twitter-square" aria-hidden="true"></i><% end %>
+					<%= link_to 'https://www.facebook.com/lensshift/' do %><i class="fa fa-facebook-official" aria-hidden="true"></i><% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-

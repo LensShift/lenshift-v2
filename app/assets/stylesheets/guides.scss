@@ -1,3 +1,18 @@
 // Place all the styles related to the guides controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./settings";
+
+.guide-container {
+	height: 250px;
+	border: 8px solid $lens-shift-gray;
+	background: $white;
+	color: $lens-shift-gray;
+	margin-bottom: 25px;
+	padding: 25px 25px;
+	overflow: hidden;
+}
+
+.guide-description {
+	padding-left: 25px;
+}

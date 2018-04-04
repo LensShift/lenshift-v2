@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
 
+  root 'static_pages#home'
+
   devise_scope :lens_shifter do
-    root 'lens_shifters/registrations#new'
+    root 'resources_items#index'
   end
 
   resources :blogs, only: [:index, :show]

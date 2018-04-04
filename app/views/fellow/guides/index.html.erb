@@ -10,7 +10,6 @@
 	            <th>Title</th>
 	            <th>Published</th>
 	            <th>LS Author</th>
-	            <th>Featured</th>
 	            <th></th>
 	            <th></th>
 	          </tr>
@@ -19,13 +18,11 @@
 	        <tbody>
 				<% @guides.each do |guide| %>
 					<tr>
-					<td><%= guide.google_doc_id %></td>
-					<td><%= guide.title %></td>
-					<td><%= guide.published_at %></td>
-					<td><%= guide.lens_shifter.full_name %></td>
-					<td><%= guide.feature ? "<span class='success label>feature</span".html_safe : '' %></td>
-					<td><%= link_to 'Edit', edit_fellow_guide_path(guide.id) %></td>
-					<td><%= delete_button_to 'Delete', fellow_guide_path(guide), data: {confirm: 'Are you sure?'}, class: 'button table-button alert' %></td>
+						<td><%= guide.title %></td>
+						<td><%= guide.published_at %></td>
+						<td><%= guide.lens_shifter.full_name %></td>
+						<td><%= link_to 'Edit', edit_fellow_guide_path(guide.id) %></td>
+						<td><%= delete_button_to 'Delete', fellow_guide_path(guide), data: {confirm: 'Are you sure?'}, class: 'button table-button alert' %></td>
 					</tr>
 				<% end %>
 			</tbody>

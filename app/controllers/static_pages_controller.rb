@@ -1,11 +1,14 @@
 class StaticPagesController < ApplicationController
-  before_action :authenticate_lens_shifter!, except: [:home, :landing]
+  # before_action :authenticate_lens_shifter!, except: [:home, :landing]
   layout :static_layout
 
-  def landing
-  end
+  # def landing
+  # end
 
   def home
+    if lens_shifter_signed_in?
+      redirect_to resource_items_path
+    end
   end
 
   def show

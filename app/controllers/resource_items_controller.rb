@@ -1,10 +1,10 @@
 class ResourceItemsController < ApplicationController
-  before_action :authenticate_lens_shifter!
+  # before_action :authenticate_lens_shifter!
   before_action :set_resource_item, only: [:show]
   
   def index
       @page_title = 'Library'
-      @page_description = 'Welcome our comprehensive library of resources including articles, videos, podcasts, infographics, etc. We bring together powerful content about social impact for you so that you can find them in one place.'
+      @page_description = 'Our Library brings together an ever-growing collection of LensShift-curated resources including articles, videos, podcasts, infographics, and more.'
       @page_keywords = 'Resource, Library, International Development, Social Impact'
 
       resources = ResourceItem.published_before(Time.zone.now).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(12)

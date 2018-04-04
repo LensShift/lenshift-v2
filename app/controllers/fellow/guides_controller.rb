@@ -34,7 +34,7 @@ class Fellow::GuidesController < ApplicationController
 	def update
 		respond_to do |format|
 	      if @guide.update(guide_params)
-	        format.html { redirect_to @guide, notice: 'Guide was successfully updated.' }
+	        format.html { redirect_to  edit_fellow_guide_path, notice: 'Guide was successfully updated.' }
 	        if Rails.env.production?
 	        	RestClient.patch("https://lensshift-drive.firebaseio.com/guides/#{@guide.id}.json", @guide.to_json)
 	        end

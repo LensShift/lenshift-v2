@@ -1,5 +1,41 @@
 <photo-list inline-template>
 	<div>
-		<button class="button">upload new photo</button>
+		<h1>Image Gallery</h1>
+		<table v-if="imageURL">
+			<tr>
+				<td>
+					<img :src="imageURL" class="table-image" />
+				</td>
+				<td>
+					<input type="text" v-model="photo.title" placeholder="title" class="table-input"/>
+				</td>
+				<td>
+					<input type="text" v-model="photo.desc" placeholder="description" class="table-input" />
+				</td>
+				<td>
+					<button class="button table-input" v-on:click="saveImage($event)"><small>save image</small></button>
+				</td>
+			</tr>
+		</table>
+		<input ref="imageUpload" type="file" style="display: none;" class="image_preview optional" v-on:change="onFileChange($event, 'photo')">
+		<button class="button" v-on:click="onPickFile">Add new photo</button>
+
+
+		      <div class="grid-x grid-margin-x small-up-1 medium-up-4 large-up-5">  
+		        <div class="cell" v-for="photo in photos">
+		          <div class='card resource-card'>
+		            <div class="image-holder">
+		              <img :src="photo.image.thumb.url" alt="resource thumbnail" />
+		            </div>
+		            
+		            <div class='card-section'>
+		                <b>{{photo.title}}</b><br />
+		                {{photo.desc}}
+		                <p><small>{{photo.image.url}}</small></p>
+		             </div>
+		          </div>
+		        </div>
+		      </div>
+
 	</div>
 </photo-list>
