@@ -10,7 +10,7 @@
     <div class="small-12 medium-12 large-12 cell">
       <h1>Practical Guide</h1>
       <div class="small-12 medium-12 large-12 cell">
-      <p class="lead">These compact Guides distill the knowledge from our Library and Streams into bite-size references that can be tangibly applied in daily work and conversations. Each month, we’ll be introducing a new practical Guide.</p>
+      <p class="lead">These compact Guides distill the knowledge from our Library and Streams into bite-size references that can be tangibly applied in daily work and conversations. Each month, we’ll be introducing a new Practical Guides.</p>
     </div></div>
 
 	    <div class="small-12 medium-12 large-12 cell">
@@ -20,13 +20,13 @@
 		    			<div class="small-12 medium-2 large-2 cell"><%= image_tag guide.image.thumb %></div>
 		    			<div class="small-12 medium-2 large-10 cell guide-description">
 		    				<h3><%= guide.title %></h3>
-		    				<p><%= guide.description %></p>
-		    				<p>
 			    				<% guide.tag_list.each do |tag| %>
+			    					<p>
 		        					<span class="label secondary"><%= tag %></span>
+		        					</p>
 		      					<% end %>
-	      					</p>
-		    				<%= link_to 'download here', guide.file.url %>
+	      					
+		    				<p><%= guide.description %> <%= link_to 'download here', guide.file.url %></p>
 		    			</div>
 		    		</div>
 		    	</div>
