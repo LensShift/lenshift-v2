@@ -25,7 +25,8 @@
     </div>
     <div class="column small-12 medium-12 large-12">
       <p class="lead">Below you’ll  find LensShift-curated resources, which when opened, reveal our summary of the resource and a link to, or iframe containing, the original content at the bottom. Resourced material includes articles, videos, podcasts, speeches, academic papers, blogs, etc.</p>
-      <br />
+      <div v-if="currentTag"><b>Resources with the tag:</b>  <span class="label primary">{{currentTag}}</span><br />
+      <%= link_to 'show all', resource_items_path %></div>
       <br />
     </div>
   </div>

@@ -10,7 +10,8 @@ export default {
       resources: gon.resources,
       sortBy: null,
       icons: gon.icons,
-      page: 1
+      page: 1,
+      currentTag: null
     }
   },
   components: {
@@ -73,7 +74,8 @@ export default {
     }
   },
   created () {
-
+    var currentParams = this.parsedQueryString()
+    this.currentTag = currentParams.tag.split("+").join(" ")
   } 
 }
 </script>
