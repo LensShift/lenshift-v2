@@ -7,7 +7,12 @@ class ResourceItemsController < ApplicationController
       @page_description = 'Our Library brings together an ever-growing collection of LensShift-curated resources including articles, videos, podcasts, infographics, and more.'
       @page_keywords = 'Resource, Library, International Development, Social Impact'
 
-      resources = ResourceItem.published_before(Time.zone.now).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(12)
+      if params[:tag].present?
+        resources = ResourceItem.tagged_with(params[:tag]).published_before(Time.zone.now).page(params[:page]).per(12)
+      else
+        resources = ResourceItem.published_before(Time.zone.now).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(12)
+      end
+
       gon.resources = resources
       gon.icons = ResourceItem::RESOURCE_TYPE
 

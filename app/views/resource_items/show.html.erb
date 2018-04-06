@@ -23,7 +23,7 @@
 
     <p>
       <% @resource_item.tag_list.each do |tag| %>
-        <span class="label primary"><%= tag %></span>
+        <span class="label primary"><%= link_to tag, resource_items_path(:tag => tag) %></span>
       <% end %>
     </p>
     <table class="unstriped hide-for-small-only">

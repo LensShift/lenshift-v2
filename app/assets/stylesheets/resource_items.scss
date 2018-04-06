@@ -32,6 +32,14 @@
 	border-right: 1px solid $medium-gray;
 }
 
+.label a {
+	color: $white;
+}
+
+.label a:hover {
+	color: $lens-shift-orange;
+}
+
 .card-section p {
 	font-size: 14px;
 }
