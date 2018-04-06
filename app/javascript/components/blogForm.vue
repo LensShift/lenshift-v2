@@ -6,17 +6,17 @@
   	<h1>{{blogPost.title}}</h1>
   	<label for="blog_title" class="string required"><abbr title="required">*</abbr> Title</label>
     <input type="text" id="blog_title" v-model="blogPost.title" placeholder="title" />
-    <label for="blog_published_at" class="string required">Tags</label>
-    <input type="text" id="blog_published_at" v-model="blogPost.tag_list" />
+    <label for="blog_tags" class="string required">Tags</label>
+    <input type="text" id="blog_tags" v-model="blogPost.tag_list" />
     <label for="blog_published_at" class="string required">Published Date</label>
     <input type="date" id="blog_published_at" v-model="blogPost.published_at" />
     <label for="blog_content" class="string required">Content</label>
-    <input type="hidden" id="blog_content" v-model="blogPost.content" />
-    <medium-editor :text="blogPost.content" data-source="blogPost.content" :options="longOptions" custom-tag="div" v-on:edit="applyChanges" class="long-summary-text"></medium-editor>
+    <medium-editor :text="blogPostContent" data-source="blogPostContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges" class="long-summary-text"></medium-editor>
 	</div>
     <br />
-    <br />
-    <button v-on:click="createBlog" class="button">Create</button>
+    <button v-if="blogPost.created_at" v-on:click="updateBlog" class="button">Update</button>
+    <button v-if="!blogPost.created_at" v-on:click="createBlog" class="button">Create</button> 
+    <a href="/fellow/blogs" alt="back to blogs list">back</a>
   </div>
 </template>
 
@@ -24,6 +24,8 @@
 import editor from 'vue2-medium-editor';
 import mediumEditorMixin from '../mixins/mediumEditorMixin'
 import axios from 'axios'
+import moment from 'moment'
+
 export default {
 	mixins: [mediumEditorMixin],
 	components: {
@@ -41,9 +43,10 @@ export default {
     		blogPost: {
     			title: null,
     			content: null,
-    			tags: null,
+    			tag_list: null,
     			published_at: null
     		},
+        blogPostContent: null,
     		noticeType: null,
     		notice: null
     	}
@@ -53,10 +56,15 @@ export default {
   			this.blogLoading = true
   			var meta = document.getElementsByTagName('meta')
     		var token = meta['csrf-token'].content
-  			axios.post('/fellow/blogs', {'utf8': '✓','authenticity_token': token, blog: this.blogPost}).then(res => {
+
+        this.blogPost.content =  this.blogPostContent
+        this.blogPost.published_at = new Date(this.blogPost.published_at)
+  			axios.post('/fellow/blogs.json', {'utf8': '✓','authenticity_token': token, blog: this.blogPost}).then(res => {
   				console.log(res.data)
   				this.blogLoading = false
   				this.blogPost = res.data
+          this.blogPost.tag_list = res.data.tags.map(tag => tag.name).join("; ")
+          moment(res.data.published_at).format('YYYY-MM-DD')
   				this.noticeType = 'success'
   				this.notice = "blog created"
   			}).catch(error => {
@@ -66,11 +74,40 @@ export default {
           		let field = Object.keys(error.response.data.errors)
           		this.notice = `${field} ${error.response.data.errors[field]}`
   			})
-  		}
+  		},
+      updateBlog: function() {
+        this.blogLoading = true
+        var meta = document.getElementsByTagName('meta')
+        var token = meta['csrf-token'].content
+
+        this.blogPost.content =  this.blogPostContent
+        axios.patch(`/fellow/blogs/${this.blogPost.id}.json`, {'utf8': '✓','authenticity_token': token, blog: this.blogPost}).then(res => {
+          console.log(res.data)
+          this.blogLoading = false
+          this.blogPost = res.data
+          this.blogPost.tag_list = res.data.tags.map(tag => tag.name).join("; ")
+          moment(res.data.published_at).format('YYYY-MM-DD')
+          this.noticeType = 'success'
+          this.notice = "blog updated"
+        }).catch(error => {
+          console.log(error)
+          this.blogLoading = false
+          this.noticeType = 'alert'
+              let field = Object.keys(error.response.data.errors)
+              this.notice = `${field} ${error.response.data.errors[field]}`
+        })
+      }
   	},
   	created () {
       if(this.blog) {
         this.blogPost = this.blog
+        console.log(this.blog.published_at)
+        this.blogPost.published_at = moment(this.blog.published_at).format('YYYY-MM-DD')
+
+        console.log(this.blogPost.published_at)
+        this.blogPostContent = this.blog.content
+        this.blogPost.tag_list = this.blog.tags.map(tag => tag.name).join("; ")
+
       }
   	}
 }

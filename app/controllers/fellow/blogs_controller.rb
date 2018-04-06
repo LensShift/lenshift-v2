@@ -6,14 +6,11 @@ class Fellow::BlogsController < ApplicationController
 		@blogs = Blog.all
 	end
 
-	def new
-	end
-
 	def edit
 	end
 
 	def update
-		return render json: @blog, errors: "You can't. You didn't create the blog", status: :unprocessable_entity if @blog.lens_shifter != current_lens_shifter
+		# return render json: @blog, errors: "You can't. You didn't create the blog", status: :unprocessable_entity if @blog.lens_shifter != current_lens_shifter
 
 		if @blog.update_attributes(blog_params)
 			# flash[:notice] = "Well done!, you have updated the blog"
@@ -25,8 +22,8 @@ class Fellow::BlogsController < ApplicationController
 	end
 
 	def create
-		blog = current_lens_shifter.blogs.create(blog_params)
-		if blog.valid?
+		@blog = current_lens_shifter.blogs.create(blog_params)
+		if @blog.valid?
 			render json: blog, status: :created
 		else
 			render json: render_errors(blog.errors), status: :unprocessable_entity
@@ -47,7 +44,7 @@ class Fellow::BlogsController < ApplicationController
 	private
 
 	def blog_params
-		params.require(:blog).permit(:title, :content, :published_at, :tags, :tag_list, :lens_shift_id, :slug)
+		params.require(:blog).permit(:title, :content, :published_at, :tags, :tag_list, :lens_shifter_id, :slug)
 	end
 
 	def set_blog

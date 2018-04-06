@@ -43,8 +43,11 @@ RSpec.describe Fellow::BlogsController, type: :controller do
 	    		sign_in @user
 	    		blogCount = Blog.count
 	    		post :create, params: {blog: {title: 'New Blog', content: "Blog Content"}}
+	    		json = JSON.parse(response.body)
 	    		expect(response).to have_http_status(:created)
 	    		expect(Blog.count).to be > blogCount 
+	    		expect(json['title']).to eq('New Blog')
+	    		expect(json['content']).to eq('Blog Content')
 	    	end
 	    end
 
