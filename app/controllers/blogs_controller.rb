@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
 		@page_title = 'Blogs'
       	@page_description = 'LensShift blog, learn about the inner workings of the organisation'
       	@page_keywords = 'Resource, Library, International Development, Social Impact, Blogs'
-		@blogs = Blog.all
+		@blogs = Blog.published_before(Time.zone.now)
 	end
 
 	def show

@@ -19,8 +19,8 @@
 					<%= link_to blog_path(blog) do %>
 					<div>
 						<h3><%= blog.title %></h3>
-						<%= truncate(blog.content, length: 400) %>
-						<%= blog.published_at.strftime("%m/%d/%Y") if !blog.published_at.nil?%>
+						<%= truncate(blog.content.html_safe, length: 400) %>
+						<%= blog.published_at.strftime("%m/%d/%Y") if !blog.published_at.nil? %>
 					</div>
 					<% end %>
 					<hr />
@@ -30,7 +30,7 @@
 				<h5>Most Recent Blogs</h5>
 				<ul>
 				<% @blogs.order(:published_at).each do |blog| %>
-					<li><%= link_to blog_path(blog) do %><small><i><%= blog.published_at.strftime("%m/%d/%Y") if !blog.published_at.nil?%></i> <%= blog.title %></small><% end %></li>
+					<li><%= link_to blog_path(blog) do %><small><i><%= blog.published_at.strftime("%m/%d/%Y") if !blog.published_at.nil? %></i> <%= blog.title %></small><% end %></li>
 				<% end %>
 				</ul>
 				<h5>Tags</h5>
