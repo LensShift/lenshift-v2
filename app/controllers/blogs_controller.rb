@@ -12,7 +12,7 @@ class BlogsController < ApplicationController
 
 		return render_not_found if @blog.blank?
 		@page_title = @blog.title
-	    @page_description = truncate(@blog.content, length: 140)
+	    @page_description = truncate(@blog.content.html_safe, length: 140)
 	    
 	  	if request.path != blog_path(@blog)
 	      redirect_to @blog, status: :moved_permanently
