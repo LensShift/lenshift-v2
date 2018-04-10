@@ -15,7 +15,7 @@
 <div class="row align-center">
 	<div class="column small-12 medium-10 large-10">
 		<h1><%= @page.title %></h1>
-    <% if @page.image? %>
+    <% if @page.image? && @page.show_image? %>
       <div class="feature-image row align-cente"><%= image_tag @page.image %></div>
     <% end %>
 		<p><%= @page.content.html_safe %></p>
