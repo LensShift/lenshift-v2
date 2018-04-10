@@ -1,15 +1,23 @@
 <%  set_meta_tags og: {
         title: @page_title,
         url: static_page_url(@page),
+        image: @page.image_url
       }, twitter: {
         card: @page_title,
         site: 'LensShift',
+        image: {
+          _: @page.image_url,
+          width: 100,
+          height: 100
+        }
       } %>
 
 <div class="row align-center">
 	<div class="column small-12 medium-10 large-10">
 		<h1><%= @page.title %></h1>
-		<br />
+    <% if @page.image? %>
+      <div class="feature-image row align-cente"><%= image_tag @page.image %></div>
+    <% end %>
 		<p><%= @page.content.html_safe %></p>
 	</div>
 </div>

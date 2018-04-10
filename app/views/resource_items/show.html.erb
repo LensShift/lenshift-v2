@@ -1,11 +1,11 @@
 <%  set_meta_tags og: {
         title: @page_title,
         url: resource_item_url(@resource_item),
-        image: @resource_item.image.url
+        image: @resource_item.image_url
       }, twitter: {
         card: @page_title,
         site: 'LensShift',
-      }, image_src: @resource_item.image.url %>
+      }, image_src: @resource_item.image_url %>
 <div class="grid-x grid-padding-x">
   <div class="small-12 medium-12 large-12 cell">
       <h1><%= @resource_item.title %></h1>

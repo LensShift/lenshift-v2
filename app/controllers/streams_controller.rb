@@ -17,7 +17,7 @@ class StreamsController < ApplicationController
     @page_description = stream.description
     @page_keywords = stream.tag_list
     @stream_id = stream.id
-    @stream_image_url = stream.image.url
+    @stream_image_url = stream.image_url
 
     gon.stream = stream
 

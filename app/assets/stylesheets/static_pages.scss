@@ -109,6 +109,11 @@
 	margin: auto auto;
 }
 
+.feature-image img {
+	width: auto;
+	height: 400px;
+}
+
 .border-right {
 	border-right: 3px solid $lens-shift-gray;
 }

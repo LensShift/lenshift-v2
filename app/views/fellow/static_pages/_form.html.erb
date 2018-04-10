@@ -6,7 +6,9 @@
 		</div>
 
 		<%= f.input :title, input_html: {'v-model': "pageTitle"} %>
-
+		<%= f.input :image %>
+		<%= f.input :show_image %>
+		<%= image_tag f.object.image_url if f.object.image? %>
 		<%= f.input :content, as: :hidden, input_html: {'v-model': "pageContent"} %>
 		<b>Content:</b>
 		<medium-editor :text="pageContent" data-source="pageContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges" class="long-summary-text"></medium-editor>
