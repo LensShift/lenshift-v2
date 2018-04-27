@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410223857) do
+ActiveRecord::Schema.define(version: 20180413152902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -206,6 +206,16 @@ ActiveRecord::Schema.define(version: 20180410223857) do
     t.string "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "team_members", force: :cascade do |t|
+    t.string "name"
+    t.string "function"
+    t.string "role"
+    t.jsonb "info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["function"], name: "index_team_members_on_function"
   end
 
   add_foreign_key "blogs", "lens_shifters"
