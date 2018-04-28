@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413152902) do
+ActiveRecord::Schema.define(version: 20180427223332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20180413152902) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lens_shifter_id"], name: "index_blogs_on_lens_shifter_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "title"
+    t.string "file"
+    t.string "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

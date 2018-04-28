@@ -1,30 +1,33 @@
 export default {
 	data: function () {
 		return {
-			imageURL: null
+			fileURL: null,
+			fileType: null,
+			fileName: null
 		}
 	},
 	methods: {
-		onPickFile() {
-			this.$refs.imageUpload.click()
+		onPickFile(input) {
+			this.$refs[input].click()
 		},
-		onFileChange(e, object) {
-	      console.log('file uploading')
+		onFileChange(e) {
+	      // console.log('file uploading')
 	      var file = e.target.files[0]
-	      let filename = file.name
-	      // console.log(filename)
-	      if (filename.lastIndexOf('.') <= 0) {
+	      console.log('file uploading', file)
+	      this.fileName = file.name
+	      this.fileType = file.type.split("/")[0]
+	      // console.log(fileName)
+	      if (this.fileName.lastIndexOf('.') <= 0) {
 	        return alert('Please add a file with valid extension')
 	      }
 
 	      const fileReader = new FileReader()
 	      fileReader.addEventListener('load', () => {
-	        this.imageURL = fileReader.result
+	        this.fileURL = fileReader.result
 	      })
 	      fileReader.readAsDataURL(file)
 
-	      this[object].image = file
-	      this.newImage = true
+	      this.fileObject.file = file
 	    }
 	}
 }

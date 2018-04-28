@@ -1,0 +1,2 @@
+module Fellow::DocumentsHelper
+end
