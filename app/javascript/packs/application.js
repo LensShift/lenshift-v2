@@ -47,9 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Vue.filter('timing', function(value) {
     var a = moment(value) 
-    var b = moment(Date.now())
 
-    if (b.diff(a, "days") >= 7) {
+    if (moment(Date.now()).diff(a, "days") >= 7) {
       return moment(value).format("MM-DD-YYYY")
     } else {
       return moment(value).fromNow();

@@ -74,8 +74,7 @@ export default {
     }
   },
   created () {
-    var currentParams = this.parsedQueryString()
-    this.currentTag = currentParams.tag.split("+").join(" ")
+   
   } 
 }
 </script>
