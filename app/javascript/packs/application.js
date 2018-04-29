@@ -28,7 +28,8 @@ import contactForm from '../components/contactForm'
 import blogsList from '../components/blogsList'
 import blogForm from '../components/blogForm'
 import photoList from '../components/photoList'
-import moment from 'moment'
+import moment from 'moment';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))

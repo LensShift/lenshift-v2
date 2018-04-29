@@ -10,7 +10,7 @@ class ResourceItemsController < ApplicationController
       if params[:tag].present?
         resources = ResourceItem.tagged_with(params[:tag]).published_before(Time.zone.now).order(published_at: :desc).page(params[:page]).per(12)
       else
-        resources = ResourceItem.published_before(Time.zone.now).order(published_at: :desc).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(12)
+        resources = ResourceItem.published_before(Time.zone.now).order(published_at: :desc).select(:id, :title, :image, :short_summary, :resource_type, :published_at).page(params[:page]).per(12)
       end
 
       gon.resources = resources
