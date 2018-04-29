@@ -6,9 +6,7 @@ class StaticPagesController < ApplicationController
   # end
 
   def home
-    if lens_shifter_signed_in?
-      redirect_to resource_items_path
-    end
+
   end
 
   def show

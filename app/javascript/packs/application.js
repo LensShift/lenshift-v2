@@ -28,6 +28,7 @@ import contactForm from '../components/contactForm'
 import blogsList from '../components/blogsList'
 import blogForm from '../components/blogForm'
 import photoList from '../components/photoList'
+import moment from 'moment'
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
@@ -43,6 +44,17 @@ document.addEventListener('DOMContentLoaded', () => {
   Vue.use(draggable);
   Vue.use(require('vue-moment'));
   var velocity = require('velocity-animate');
+
+  Vue.filter('timing', function(value) {
+    var a = moment(value) 
+    var b = moment(Date.now())
+
+    if (b.diff(a, "days") >= 7) {
+      return moment(value).format("MM-DD-YYYY")
+    } else {
+      return moment(value).fromNow();
+    }
+  })
 
   const app = new Vue({
   	el: '#app',
