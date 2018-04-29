@@ -8,9 +8,9 @@ class ResourceItemsController < ApplicationController
       @page_keywords = 'Resource, Library, International Development, Social Impact'
 
       if params[:tag].present?
-        resources = ResourceItem.tagged_with(params[:tag]).published_before(Time.zone.now).page(params[:page]).per(12)
+        resources = ResourceItem.tagged_with(params[:tag]).published_before(Time.zone.now).order(published_at: :desc).page(params[:page]).per(12)
       else
-        resources = ResourceItem.published_before(Time.zone.now).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(12)
+        resources = ResourceItem.published_before(Time.zone.now).order(published_at: :desc).select(:id, :title, :image, :short_summary, :resource_type).page(params[:page]).per(12)
       end
 
       gon.resources = resources
