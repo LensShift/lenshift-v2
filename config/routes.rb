@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :lens_shifters, only: [:index] do
       collection do 
         get :export_csv
+        get :export_profile_csv
       end
     end
     resources :resource_items do
