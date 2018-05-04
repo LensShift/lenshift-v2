@@ -32,25 +32,28 @@
   </div>
 
   <div class="row align-center">
+    
     <div class="column small-12 medium-12 large-12">
       <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 library-items">  
         <div class="cell" v-for="resource in sortedResources">
+          
           <div class='card resource-card'>
-            <div class="image-holder">
+            <div class="card-image-holder">
               <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
               <i v-if="!resource.image.url" :class="'fa fa-' + icons[resource.resource_type]"></i>
             </div>
-            
-                <div class='card-section'>
-                <a :href="'/library/' + resource.id" alt="link to resource">
-                <h6>{{resource.title}}</h6>
-                <div class="text-justify" v-html="$options.filters.truncate(resource.short_summary, 200)"></div>
-                <br />
-                <span><i><small><b>Added:</b> {{resource.published_at | timing}}</small></i></span>
-                <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
 
-                </a>
-              </div>
+            <div v-if="newResource(resource.published_at)" class="new-sticker"><%= image_tag 'new-green2x.png' %></div>
+            
+            <div class='card-section'>
+              <a :href="'/library/' + resource.id" alt="link to resource">
+              <h6>{{resource.title}}</h6>
+              <div class="text-justify" v-html="$options.filters.truncate(resource.short_summary, 200)"></div>
+              <br />
+              <span><i><small><b>Added:</b> {{resource.published_at | timing}}</small></i></span>
+              <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
+              </a>
+            </div>
          
           </div>
         </div>

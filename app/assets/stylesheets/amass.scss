@@ -59,7 +59,9 @@ input[type="search"] {
 }
 
 // body containers
-
+#app {
+	background: #F7F7F7;
+}
 #main-container {
 	height: 100%;
 	min-height: 800px;
@@ -420,30 +422,6 @@ a.footer-item:hover {
 	font-size: 20px;
 }
 
-// resource library card image holders
-
-.image-holder {
-	background: $light-gray;
-	color: $white;
-	padding-bottom: 100%;
-	font-size: 90px;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	position: relative;
-}
-
-.image-holder img {
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-
-.image-holder i {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-}
 
 .iframe-head {
 	border-top: 0.5px solid $light-gray;

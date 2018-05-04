@@ -9,13 +9,50 @@
 
 .library-items .card {
 	border: 0px;
+	overflow: visible;
 }
 
-.library-items .card-section {
-	border-bottom: 1px solid $lens-shift-gray;
-	border-left: 1px solid $lens-shift-gray;
-	border-right: 1px solid $lens-shift-gray;
+// resource library card image holders
+
+.card-image-holder {
+	background: $light-gray;
+	color: $white;
+	height: 250px;
+	font-size: 90px;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	position: relative;
 }
+
+.card-image-holder::before {
+	content: '';
+	position: absolute;
+	background: $white;
+	height: 100px;
+	width: 104%;
+	top: 88%;
+	left: -15px;
+	-webkit-transform: rotate(7deg);
+    -moz-transform: rotate(7deg);
+    -o-transform: rotate(7deg);
+    -ms-transform: rotate(7deg);
+    transform: rotate(7deg);
+	z-index: 2;
+}
+
+.card-image-holder img {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.card-image-holder i {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
 
 .wrap-infinite {
 	max-height: 150px;
@@ -40,12 +77,53 @@
 	color: $lens-shift-orange;
 }
 
+
 .card-section p {
 	font-size: 14px;
 }
 
 .resource-card a {
 	color: $black !important;
+}
+
+.resource-card {
+	position: relative;
+	z-index: 1;
+}
+
+.resource-card .card-section {
+	overflow: visible;
+	background: $white;
+}
+
+.resource-card .card-section::after {
+	z-index: -1;
+	position: absolute;
+	content: "";
+	bottom: 15px;
+	right: 8px; //10px
+	left: auto;
+	width: 50%;
+	top: 80%;
+	max-width:300px;
+	background: #777;
+	-webkit-box-shadow: 0 15px 10px #777;
+	-moz-box-shadow: 0 15px 10px #777;
+	box-shadow: 0 15px 10px #777;
+	-webkit-transform: rotate(3deg);
+	-moz-transform: rotate(3deg);
+	-o-transform: rotate(3deg);
+	-ms-transform: rotate(3deg);
+	transform: rotate(3deg);
+}
+
+.new-sticker {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 205px;
+	right: 10px;
+	z-index: 2;
 }
 
 .content-container {

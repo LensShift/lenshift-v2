@@ -2,6 +2,7 @@
 import _ from 'lodash';
 import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
+import moment from 'moment';
 
 export default {
   name: 'resourceList',
@@ -23,6 +24,13 @@ export default {
     }
   },
   methods: {
+    newResource: function(resource_date) {
+      if (moment(Date.now()).diff(resource_date, "days") >= 7) {
+        return false
+      } else {
+        return true
+      }
+    },
     infiniteHandler($state) {
       this.page += 1
       // console.log(this.page)
