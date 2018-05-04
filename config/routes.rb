@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   get '/contact', to: "static_pages#contact", as: :contact
 
   namespace :fellow do
-    resources :lens_shifters, only: [:index]
+    resources :lens_shifters, only: [:index] do
+      collection do 
+        get :export_csv
+      end
+    end
     resources :resource_items do
         get :get_article
       collection do
