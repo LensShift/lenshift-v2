@@ -17,4 +17,8 @@ class Fellow::LensShiftersController < ApplicationController
 
 		send_data lens_shifter_profiles.to_csv, filename: "lens-shifter-profiles-#{Date.today}.csv"
 	end
+
+	def show
+		@lens_shifter = LensShifter.find_by_id(params[:id])
+	end
 end

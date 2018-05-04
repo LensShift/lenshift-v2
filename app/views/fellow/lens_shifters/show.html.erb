@@ -1,0 +1,20 @@
+<div class="grid-x align-center">
+	<div class="cell small-6 medium-6 large-6">
+		<%= link_to 'Back to users', fellow_lens_shifters_path %>
+		<div class="profile-avatar profile-avatar-padding"><%= image_tag @lens_shifter.profile.avatar.thumb.url if @lens_shifter.profile.present? %></div><br /><br />
+		<h3><%= @lens_shifter.full_name %></h3>
+
+		<b>Email: </b><%= @lens_shifter.email %><br />
+
+		<b>Gender: </b><%= @lens_shifter.profile.gender %><br />
+
+		<b>Location: </b><%= @lens_shifter.profile.location %><br />
+
+		<b>Sector: </b><%= @lens_shifter.profile.sector %><br />
+
+		<b>Referral: </b><%= @lens_shifter.profile.referral %><br />
+
+		<b>Comment: </b><br /><%= @lens_shifter.profile.comment %><br />
+	</div>
+</div>
+
