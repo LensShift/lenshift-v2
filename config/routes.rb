@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :team_members, only: [:index]
+
   resource :dashboard, only: [:show]
 
   root 'static_pages#home'
@@ -28,6 +30,8 @@ Rails.application.routes.draw do
         get :export_profile_csv
       end
     end
+
+    resources :team_members
     resources :resource_items do
         get :get_article
       collection do

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Team Members</h1>
+
+<table>
+  <thead>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Function</th>
+        <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team_members.each do |team_member| %>
+      <tr>
+        <td><%= team_member.name %></td>
+        <td><%= team_member.role %></td>
+        <td><%= team_member.function %></td>
+        <td><%= link_to 'Edit', edit_fellow_team_member_path(team_member) %></td>
+        <td><%= link_to 'Destroy', fellow_team_member_path(team_member), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fellow Team Member', new_fellow_team_member_path %>

@@ -4,9 +4,9 @@
 @import "./settings";
 
 .guide-container {
-	height: 250px;
-	border: 8px solid $lens-shift-gray;
-	background: $white;
+	max-height: 250px;
+	border-bottom: 1px solid $medium-gray;
+	background: $background-gray;
 	color: $lens-shift-gray;
 	margin-bottom: 25px;
 	padding: 25px 25px;

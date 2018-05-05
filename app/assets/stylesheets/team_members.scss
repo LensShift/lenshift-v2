@@ -1,0 +1,40 @@
+// Place all the styles related to the team_members controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./settings";
+
+.team-grid-container {
+	position: relative;
+	cursor: pointer;
+}
+
+.team-grid-container img {
+	position: relative;
+	z-index: 1;
+}
+
+.member-heading {
+	visibility: hidden;
+	position: absolute;
+	width: 80%;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	
+	color: $white;
+}
+
+.team-grid-container:hover {
+	opacity: 0.8;
+	transition: all 0.2s;
+}
+
+.team-grid-container:hover .member-heading {
+	visibility: visible;
+}
+
+.profile-heading{
+	margin-top: 65px;
+}

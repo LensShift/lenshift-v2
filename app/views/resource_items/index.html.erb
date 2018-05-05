@@ -8,14 +8,14 @@
         site: 'LensShift',
       } %>
   
-  <div class="row align-center">
-    <div class="column small-12 medium-7 large-9">
+  <div class="grid-x align-center">
+    <div class="cell small-12 medium-7 large-9">
       <h1>Library</h1>
     </div>
-    <div class="small-4 medium-2 large-1 column">
+    <div class="small-4 medium-2 large-1 cell sort-label">
       <label for="sort_by" class="text-right middle">sort by:</label>
     </div>
-    <div class="small-8 medium-3 large-2 column">
+    <div class="small-8 medium-3 large-2 cell">
       <select id="sort_by" v-model="sortBy">
         <option disabled value="">options</option>
         <option value="title">title</option>
@@ -23,7 +23,7 @@
         <option value="estimated_reading_time">reading time</option>
       </select>
     </div>
-    <div class="column small-12 medium-12 large-12">
+    <div class="cell small-12 medium-12 large-12">
       <p class="lead">Below you’ll  find LensShift-curated resources, which when opened, reveal our summary of the resource and a link to, or iframe containing, the original content at the bottom. Resourced material includes articles, videos, podcasts, speeches, academic papers, blogs, etc.</p>
       <div v-if="currentTag"><b>Resources with the tag:</b>  <span class="label primary">{{currentTag}}</span><br />
       <%= link_to 'show all', resource_items_path %></div>
@@ -31,34 +31,31 @@
     </div>
   </div>
 
-  <div class="row align-center">
-    
-    <div class="column small-12 medium-12 large-12">
-      <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 library-items">  
-        <div class="cell" v-for="resource in sortedResources">
-          
-          <div class='card resource-card'>
-            <div class="card-image-holder">
-              <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
-              <i v-if="!resource.image.url" :class="'fa fa-' + icons[resource.resource_type]"></i>
-            </div>
-
-            <div v-if="newResource(resource.published_at)" class="new-sticker"><%= image_tag 'new-green2x.png' %></div>
-            
-            <div class='card-section'>
-              <a :href="'/library/' + resource.id" alt="link to resource">
-              <h6>{{resource.title}}</h6>
-              <div class="text-justify" v-html="$options.filters.truncate(resource.short_summary, 200)"></div>
-              <br />
-              <span><i><small><b>Added:</b> {{resource.published_at | timing}}</small></i></span>
-              <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
-              </a>
-            </div>
-         
-          </div>
+  <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 library-items">  
+    <div class="cell" v-for="resource in sortedResources">
+      
+      <div class='card resource-card'>
+        <div class="card-image-holder">
+          <img v-if="resource.image.url" :src="resource.image.thumb.url" alt="resource thumbnail" />
+          <i v-if="!resource.image.url" :class="'fa fa-' + icons[resource.resource_type]"></i>
         </div>
+
+        <div v-if="newResource(resource.published_at)" class="new-sticker"><%= image_tag 'new-green2x.png' %></div>
+        
+        <div class='card-section'>
+          <a :href="'/library/' + resource.id" alt="link to resource">
+          <h6>{{resource.title}}</h6>
+          <div class="text-justify" v-html="$options.filters.truncate(resource.short_summary, 200)"></div>
+          <br />
+          <span><i><small><b>Added:</b> {{resource.published_at | timing}}</small></i></span>
+          <span class="type-icon"><i :class="'fa fa-' + icons[resource.resource_type]"></i></span>
+          </a>
+        </div>
+     
       </div>
     </div>
+  
+
   </div>
   <infinite-loading v-on:infinite="infiniteHandler" id="infini" force-use-infinite-wrapper="true" :spinner="'waveDots'" :distance="100"></infinite-loading>
 </div>

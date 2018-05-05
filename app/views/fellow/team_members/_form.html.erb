@@ -1,0 +1,27 @@
+<team-form inline-template>
+<%= simple_form_for [:fellow, @team_member] do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+  	<%= f.input :name %>
+  	<%= f.input :role %>
+  	<%= f.input :function %>
+  	<%= f.input :avatar %>
+  	<%= image_tag f.object.avatar.thumb %>
+  	<%= f.simple_fields_for :info, OpenStruct.new(@team_member.info) do |inf| %>
+  		<%= inf.input :biography, as: :text, input_html: {'rows' => '5'} %>
+  		<%= inf.input :why, as: :text, label: 'Why LensShift?', input_html: {'rows' => '5'} %>
+  		<b>Three Places You Call Home</b>
+  		<%= inf.input :home_1, label: '1', input_html: {'v-model': 'location1', 'v-on:keydown.tab': "getLatLong('location1')", value: inf.object.home_1} %>
+  		<%= inf.input :home_1_lat_long, input_html: {'v-model': 'location1LatLong'} %>
+  		<%= inf.input :home_2, label: '2', input_html: {'v-model': 'location2', 'v-on:keydown.tab': "getLatLong('location2')"}%>
+  		<%= inf.input :home_2_lat_long, input_html: {'v-model': 'location2LatLong'}%>
+  		<%= inf.input :home_3, label: '3', input_html: {'v-model': 'location3', 'v-on:keydown.tab': "getLatLong('location3')"} %>
+  		<%= inf.input :home_3_lat_long, input_html: {'v-model': 'location3LatLong'} %>
+  	<% end %>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+</team-form>

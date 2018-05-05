@@ -28,6 +28,8 @@ import contactForm from '../components/contactForm'
 import blogsList from '../components/blogsList'
 import blogForm from '../components/blogForm'
 import photoList from '../components/photoList'
+import teamForm from '../components/teamForm'
+import teamMemberList from '../components/teamMemberList'
 import moment from 'moment';
 
 
@@ -83,7 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'contact-form': contactForm,
       'blogs-list': blogsList,
       'blog-form': blogForm,
-      'photo-list': photoList
+      'photo-list': photoList,
+      'team-form': teamForm,
+      'team-member-list': teamMemberList
   	},
     created() {
       // console.log('I am created', document.body)

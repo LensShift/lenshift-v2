@@ -1,0 +1,15 @@
+<team-member-list inline-template>
+	<div>
+		<h1>Team</h1>
+		<div class="grid-x small-up-1 medium-up-3 large-up-4">
+			<div class="cell team-grid-container" v-for="member in teamMembers" v-on:click="showProfile(member)">
+				<img :src="member.avatar.thumb.url" />
+				<div class="member-heading">
+					<h5>{{member.name}}</h5>
+					<span>{{member.role}}</span>
+				</div>
+			</div>
+		</div>
+		<team-profile v-if="showModal" :member="member" v-on:close="showModal = false"></team-profile>
+	</div>
+</team-member-list>
