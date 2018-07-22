@@ -1,0 +1,30 @@
+<stream-preview inline-template>
+	<div class="row">
+		<%  set_meta_tags og: {
+				title: @page_title,
+				url: stream_url(@stream_id),
+				image: @stream_image_url
+			}, twitter: {
+				card: @page_title,
+				site: 'LensShift',
+			}, image_src: @stream_image_url %>
+	    <div class="column small-12 medium-12 large-12">
+	    	<h1>{{stream.title}}</h1>
+	    	<p class="lesson-paragraph">{{stream.description}}</p>
+	    
+		</div>		
+	   	<div class="column small-12 medium-12 large-12">
+    		<div class="tabs">
+    			<div v-for="(lesson, index) in lessons" :class="['tabs-hover','tabs-title', activeLessonIndex === index ? 'lesson-is-active' : '' ]" :id="'tab' + index" v-on:click="showLesson(lesson, index, lesson.id)"><strong><small>Lesson {{index + 1}}</small></strong></div>
+    		</div>
+    		<br />
+    		<h4 v-if="currentLesson">Lesson: {{currentLesson.title}}</h4>
+	    	<div class='lesson-glance'>
+
+	    		<h5>At a Glance</h5>
+				<p v-if="currentLesson" class="lesson-paragraph"> {{currentLesson.analysis}}</p>
+			</div>
+    		
+    	</div>
+    </div>
+</stream-preview>

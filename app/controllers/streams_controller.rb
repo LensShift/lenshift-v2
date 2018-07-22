@@ -42,10 +42,29 @@ class StreamsController < ApplicationController
   end
 
   def preview
-    stream = Stream.friendly.find(params[:id]).select(:title, :description, :guiding_questions, :estimated_reading_time, :image)
+    stream = Stream.friendly.find(params[:id]).select(:title, :description, :guiding_questions, :tag_list, :estimated_reading_time, :image)
+    # SEO meta tags
+    @page_title = stream.title
+    @page_description = stream.description
+    @page_keywords = stream.tag_list
+    @stream_id = stream.id
+    @stream_image_url = stream.image_url
+
     gon.stream = stream
+    lessons = stream.lessons.order(:row_order)
+
+    gon.lessonsCount = lessons.size
+    resourcesCount = 0
+    
+    stream.lessons.each do |lesson|
+      resourcesCount += lesson.resource_items.size
+    end
+
+    gon.resourcesCount = resourcesCount
+
     if request.path != stream_path(stream)
       redirect_to stream, status: :moved_permanently
     end
   end
+
 end

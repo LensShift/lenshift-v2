@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :resource_items, path: 'library', only: [:index, :show]
   resources :streams, only: [:index, :show] do
     resources :lessons, only: [:show]
+    get '/preview', to: 'stream#preview', as: :preview
   end
   resources :guides, only: [:index]
 

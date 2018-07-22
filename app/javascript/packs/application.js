@@ -16,6 +16,7 @@ import resourceList from '../components/resourceList'
 import streamNew from '../components/streamNew'
 import streamFellowShow from '../components/streamFellowShow'
 import streamShow from '../components/streamShow'
+import streamPreview from '../components/streamPreview'
 import streamList from '../components/streamList'
 import sideMenu from '../components/sideMenu'
 import streamEdit from '../components/streamEdit'
@@ -30,6 +31,7 @@ import blogForm from '../components/blogForm'
 import photoList from '../components/photoList'
 import teamForm from '../components/teamForm'
 import teamMemberList from '../components/teamMemberList'
+// import * as VueGoogleMaps from 'vue2-google-maps'
 import moment from 'moment';
 
 
@@ -42,6 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
   Vue.filter('truncate', function(text, stop, clamp) {
     return text.slice(0, stop) + (stop < text.length ? clamp || '...' : '')
   })
+
+  // Vue.use(VueGoogleMaps, {
+  // load: {
+  //   key: 
+    
+  // })
 
   var draggable = require('vuedraggable')
   Vue.use(draggable);

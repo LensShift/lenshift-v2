@@ -50,7 +50,7 @@ export default {
     }
   },
   created () {
-    console.log(gon)
+    // console.log(gon)
     // this.currentLesson = this.stream.lessons[0]
     this.currentResource = this.resources[0]
 
