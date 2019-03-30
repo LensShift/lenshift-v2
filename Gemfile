@@ -45,7 +45,7 @@ gem 'simple_form'
 
 gem 'gon'
 
-gem 'devise'
+gem "devise", ">= 4.6.0"
 
 gem 'acts-as-taggable-on', '~> 5.0'
 
