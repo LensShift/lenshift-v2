@@ -8,6 +8,7 @@
 		<%= f.input :title, input_html: {'v-model': "pageTitle"} %>
 		<%= f.input :image %>
 		<%= f.input :show_image %>
+		<%= f.input :placement_list, collection: ['feature 1', 'feature 2', 'feature 3', 'feature 4'], label: 'Home Feature Placement', hint: "leave blank if not for home feature section" %>
 		<%= image_tag f.object.image_url if f.object.image? %>
 		<%= f.input :content, as: :hidden, input_html: {'v-model': "pageContent"} %>
 		<b>Content:</b>

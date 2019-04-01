@@ -5,4 +5,6 @@ class StaticPage < ApplicationRecord
 	
 	extend FriendlyId
 	friendly_id :title, use: [:slugged, :history]
+
+	acts_as_taggable_on :placements
 end

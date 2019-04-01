@@ -29,11 +29,11 @@
           </draggable>
         </table>
 
-      <div class="row" v-if="!currentLesson">
+      <div class="row" v-if="">
         <div class="column small-12 medium-6 large-6">
           <label>Add Resource Items</label>
           <draggable :list="newResourceList" :options="{group: 'resources', ghostClass: 'ghost', chosenClass: 'chosen'}" class="resource-destination-window" ref="newList">
-            <div v-for="resource in newResourceList" :key="resource.id" class="draggable-resource-item-destination small" :id="resource.id"><small><b>Google Doc id:</b> {{resource.google_doc_id}}<br />{{resource.title}}</small></div>
+            <div v-for="resource in newResourceList" :key="resource.id" class="draggable-resource-item-destination small" :id="resource.id"><small><b>Google Doc id:</b> {{resource.resource_item.google_doc_id}}<br />{{resource.resource_item.title}}</small></div>
           </draggable>
         </div>
         <div class="column small-12 medium-6 large-6">

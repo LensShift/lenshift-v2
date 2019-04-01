@@ -45,7 +45,7 @@ class Fellow::StaticPagesController < ApplicationController
 	private
 
 	def static_page_params
-		params.require(:static_page).permit(:title, :content, :image, :show_image)
+		params.require(:static_page).permit(:title, :content, :image, :show_image, :placement_list)
 	end
 
 	def set_page

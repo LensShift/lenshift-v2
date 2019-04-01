@@ -10,13 +10,15 @@ export default {
 	data: function () {
     	return {
       		pageTitle: null,
-      		pageContent: null
+      		pageContent: null,
+          placement_list: null,
     	}
   	},
   	created () {
   		if (gon.page !== null && gon.page !== undefined) {
   			this.pageTitle = gon.page.title
   			this.pageContent = gon.page.content
+        this.placement_list = gon.page.placement_list
   		}
   	}
 }
