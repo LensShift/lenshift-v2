@@ -65,23 +65,22 @@
 		<hr />
 		<div class="row feature-row align-center align-top">
 			<% if StaticPage.tagged_with("feature 3").present? %>
-			<div class="column small-12 medium-6 large-6 feature-column align-center">
-				<h4><%= StaticPage.tagged_with("feature 3").first.title.html_safe %></h4>
-				<p>
-					<%= StaticPage.tagged_with("feature 3").first.content.html_safe %>
-				</p>
-			</div>
+				<div class="column small-12 medium-6 large-6 feature-column align-center">
+					<h4><%= StaticPage.tagged_with("feature 3").first.title.html_safe %></h4>
+					<p>
+						<%= StaticPage.tagged_with("feature 3").first.content.html_safe %>
+					</p>
+				</div>
 			<% end %>
-			<div class="column small-12 medium-6 large-6 feature-column align-center">
-				<% if StaticPage.tagged_with("feature 4").present? %>
-			<div class="column small-12 medium-6 large-6 feature-column align-center">
-				<h4><%= StaticPage.tagged_with("feature 4").first.title.html_safe %></h4>
-				<p>
-					<%= StaticPage.tagged_with("feature 4").first.content.html_safe %>
-				</p>
-			</div>
+			<% if StaticPage.tagged_with("feature 4").present? %>
+				<div class="column small-12 medium-6 large-6 feature-column align-center">
+		
+					<h4><%= StaticPage.tagged_with("feature 4").first.title.html_safe %></h4>
+					<p>
+						<%= StaticPage.tagged_with("feature 4").first.content.html_safe %>
+					</p>
+				</div>
 			<% end %>
-			</div>
 		</div>
 	</div>
 </div>
