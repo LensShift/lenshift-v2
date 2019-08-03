@@ -2,7 +2,7 @@ class LensShifters::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :one_user_registered?, only: [:new, :create]
-
+  invisible_captcha only: :new, honeypot: :subtitle, on_spam: :your_spam_callback_method
   # GET /resource/sign_up
   # def new
   #   super
@@ -36,6 +36,12 @@ class LensShifters::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
+  private
+
+  def your_spam_callback_method
+    redirect_to root_path
+  end
 
   protected
 
