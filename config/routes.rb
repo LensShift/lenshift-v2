@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   namespace :fellow do
     resources :lens_shifters, only: [:index, :show] do
-      collection do 
+      collection do
         get :export_csv
         get :export_profile_csv
       end
@@ -54,7 +54,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :lens_shifters, controllers: {
-    registrations: "lens_shifters/registrations"
+    registrations: "lens_shifters/registrations",
+    sessions: "lens_shifters/sessions"
   }
 
   resources :static_pages, path: '/', only: [:show]
