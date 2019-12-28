@@ -55,6 +55,7 @@
       "required": true
     }
   },
+  // removed 
   "addons": [
     "heroku-postgresql",
     "sendgrid"
