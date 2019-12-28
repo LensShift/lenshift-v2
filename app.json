@@ -55,6 +55,24 @@
       "required": true
     }
   },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "Standard-1X"
+    },
+    "frontend": {
+      "quantity": 1,
+      "size": "Standard-1X"
+    },
+    "backend": {
+      "quantity": 1,
+      "size": "Standard-1X"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "Standard-1X"
+    }
+  },
   "addons": [
     "heroku-postgresql",
     "sendgrid"
