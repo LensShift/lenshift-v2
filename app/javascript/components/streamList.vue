@@ -5,12 +5,19 @@ export default {
   data: function () {
     return {
       streams: JSON.parse(gon.streams),
-      sortBy: null
+      sortBy: null,
+      search: ''
     }
   },
   computed: {
     sortedStreams: function() {
       return _.orderBy(this.streams, this.sortBy)
+    },
+    searchedStreams: function() {
+      // could I use _.filter instead? what would be the difference?
+      return this.streams.filter((stream) => {
+        return stream.title.match(this.search);
+      });
     }
   },
   methods: {

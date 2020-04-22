@@ -8,9 +8,21 @@
 				site: 'LensShift'
 			} %>
 		<div class="grid-x align-center">
-    		<div class="cell small-12 medium-7 large-9">
+		<%# recalculate small and medium for below div %>
+    		<div class="cell small-12 medium-7 large-6">
 				<h1>Streams</h1>
 			</div>
+
+			<%# recalculate small and medium for below div %>
+			<div class="cell large-1">
+				<label for="search" class="text-right middle">search: </label>
+			</div>
+
+			<%# recalculate small and medium for below div %>
+			<div class="cell large-2">
+				<input type="text" id="search" v-model="search">
+			</div>
+			<%# recalculate small and medium for below div? %>
 			<div class="small-4 medium-2 large-1 cell sort-label">
       			<label for="sort_by" class="text-right middle">sort by:</label>
     		</div>
@@ -27,10 +39,8 @@
 		    </div>
 		</div>
 
-
 		<div class="grid-x align-center">
-	    	<div v-for="stream in sortedStreams" class="cell small-12 medium-12 large-12 stream-block grid-x">
-	 
+			<div v-for="stream in searchedStreams" class="cell small-12 medium-12 large-12 stream-block grid-x">
 	    		<div class="cell small-12 small-order-2 medium-8 medium-order-1 large-8 large-order-1 stream-overview">
 		    		<h4><a :href="'/streams/' + stream.id" alt="stream link">{{stream.title}}</a></h4>
 		    		<span v-for="tag in stream.tags" class="label lens-shift-turquoise label-margin-right">{{tag.name}}</span>
@@ -47,6 +57,28 @@
 	    			</div>
 	    			<button class="button syllabus-button" type="button" :data-toggle="'syllabus-dropdown' + stream.id" v-on:click="syllabusShow(stream.id)"><small>Syllabus</small></button>
 	    		</div>
+	    	</div>
+
+
+
+		<%# <div class="grid-x align-center">
+	    	<div v-for="stream in sortedStreams" class="cell small-12 medium-12 large-12 stream-block grid-x">	 
+	    		<div class="cell small-12 small-order-2 medium-8 medium-order-1 large-8 large-order-1 stream-overview">
+		    		<h4><a :href="'/streams/' + stream.id" alt="stream link">{{stream.title}}</a></h4>
+		    		<span v-for="tag in stream.tags" class="label lens-shift-turquoise label-margin-right">{{tag.name}}</span>
+		    		<div class="stream-desc-window"><a :href="'/streams/' + stream.id" alt="stream link">{{stream.description}}</a></div>
+	    		</div>
+	    		<div class="cell small-12 small-order-1 medium-4 medium-order-2 large-4 large-order-2">
+	    			<div :ref="'streamImage' + stream.id" class="stream-thumbnail" style="display:block;">
+	    				<img :src="stream.image.thumb.url" alt="stream image" />	
+	    			</div>
+	    			<div :ref="'streamFrame' + stream.id" class="stream-side-frame" :id="'syllabus-dropdown' + stream.id" style="display:none;">
+    					<ul>
+    						<li v-for="(lesson, index) in stream.lessons">Lesson {{index + 1}}: {{lesson.title}}</li>
+    					</ul>
+	    			</div>
+	    			<button class="button syllabus-button" type="button" :data-toggle="'syllabus-dropdown' + stream.id" v-on:click="syllabusShow(stream.id)"><small>Syllabus</small></button>
+	    		</div> %>
 	    		
 	    	</div>
 
