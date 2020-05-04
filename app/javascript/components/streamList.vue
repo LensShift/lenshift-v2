@@ -16,7 +16,8 @@ export default {
     searchedStreams: function() {
       // could I use _.filter instead? what would be the difference?
       return this.streams.filter((stream) => {
-        return stream.title.match(this.search);
+        return stream.title.toLowerCase().match(this.search.toLowerCase());
+        // return stream.tag_list.match(this.search);
       });
     }
   },

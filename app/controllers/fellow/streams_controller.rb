@@ -6,6 +6,12 @@ class Fellow::StreamsController < ApplicationController
   # GET /fellow/streams.json
   def index
     @streams = Stream.all
+    if params[:search]
+      @streams = Stream.search(:title).order(:google_doc_id)
+    # else
+      # @streams = Stream.tagged_with(:tag_list).order(:google_doc_id)
+    else
+      @streams = Stream.all
   end
 
   # GET /fellow/streams/new
