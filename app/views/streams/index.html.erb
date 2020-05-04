@@ -8,22 +8,16 @@
 				site: 'LensShift'
 			} %>
 		<div class="grid-x align-center">
-		<%# recalculate small and medium for below div %>
-    		<div class="cell small-12 medium-7 large-6">
+    		<div class="cell small-12 medium-12 large-6">
 				<h1>Streams</h1>
 			</div>
-
-			<%# recalculate small and medium for below div %>
-			<div class="cell large-1">
-				<label for="search" class="text-right middle">search: </label>
+			<div class="small-4 medium-3 large-1 cell search-label">
+				<label for="search" class="text-right middle">search:</label>
 			</div>
-
-			<%# recalculate small and medium for below div %>
-			<div class="cell large-2">
+			<div class="small-8 medium-3 large-2 cell">
 				<input type="text" id="search" v-model="search">
 			</div>
-			<%# recalculate small and medium for below div? %>
-			<div class="small-4 medium-2 large-1 cell sort-label">
+			<div class="small-4 medium-3 large-1 cell sort-label">
       			<label for="sort_by" class="text-right middle">sort by:</label>
     		</div>
 			<div class="small-8 medium-3 large-2 cell">
@@ -40,7 +34,9 @@
 		</div>
 
 		<div class="grid-x align-center">
-			<div v-for="stream in searchedStreams" class="cell small-12 medium-12 large-12 stream-block grid-x">
+		<%# if performing a search, v-for="stream in searchedStreams"; if sorting streams, v-for="stream in sortedStreams" %>
+			<%# <div v-for="stream in searchedStreams" class="cell small-12 medium-12 large-12 stream-block grid-x"> %>
+			<div v-for="stream in sortedStreams" class="cell small-12 medium-12 large-12 stream-block grid-x">	 
 	    		<div class="cell small-12 small-order-2 medium-8 medium-order-1 large-8 large-order-1 stream-overview">
 		    		<h4><a :href="'/streams/' + stream.id" alt="stream link">{{stream.title}}</a></h4>
 		    		<span v-for="tag in stream.tags" class="label lens-shift-turquoise label-margin-right">{{tag.name}}</span>
