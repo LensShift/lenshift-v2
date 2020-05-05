@@ -91,7 +91,7 @@ class Fellow::StreamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def stream_params
       params.require(:stream).permit(:title, :description, :estimated_reading_time, :guiding_questions, :published_at,
-        :tags, :tag_list, :slug, :image, :lens_shifter_id, lessons_attributes: [:id, :tittle, :_destroy, :row_order, :analysis, :_destroy, :row_order_position])
+        :tags, :tag_list, :slug, :image, :lens_shifter_id, lessons_attributes: [:id, :title, :_destroy, :row_order, :analysis, :_destroy, :row_order_position])
     end
 
     def render_errors(errors)
