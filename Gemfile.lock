@@ -123,7 +123,7 @@ GEM
       sprockets-es6 (>= 0.9.0)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    geocoder (1.4.5)
+    geocoder (1.6.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gon (6.2.0)
