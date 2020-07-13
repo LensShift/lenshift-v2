@@ -24,8 +24,8 @@
       <ul class="menu hide-for-large navbar-small">
         <li><%= link_to image_tag('lensshift_beta_logo_black.png', alt:'lensShift logo', class: 'logo'), root_path %></li>
         
-        <% if lens_shifter_signed_in? && current_lens_shifter.profile.avatar.present? %>
-          <li class="link"><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
+        <% if lens_shifter_signed_in? && current_lens_shifter.profile&.avatar.present? %>
+          <li class="link"><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile&.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
         
         <% elsif lens_shifter_signed_in? %>
           <li class="link">
@@ -53,8 +53,8 @@
     <div class="top-bar-right show-for-large">
       <ul class="menu">
         <% if lens_shifter_signed_in? %>
-          <% if current_lens_shifter.profile.avatar.present? %>
-            <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
+          <% if current_lens_shifter.profile&.avatar.present? %>
+            <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile&.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
           <% else %>
             <li>
               <%= link_to dashboard_path do %>
