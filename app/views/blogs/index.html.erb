@@ -19,7 +19,7 @@
 					<%= link_to blog_path(blog) do %>
 					<div>
 						<h3><%= blog.title %></h3>
-						<%= truncate(blog.content.html_safe, length: 400, escape: false) %>
+						<%#= truncate(blog.content.html_safe, length: 400, escape: false) %>
 						<%= blog.published_at.strftime("%m/%d/%Y") if !blog.published_at.nil? %>
 					</div>
 					<% end %>
