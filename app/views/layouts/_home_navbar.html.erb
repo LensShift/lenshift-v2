@@ -17,7 +17,7 @@
   <div class="top-bar-right show-for-large">
     <ul class="menu">
       <% if lens_shifter_signed_in? %>
-        <% if current_lens_shifter.profile.avatar.present? %>
+        <% if current_lens_shifter.profile&.avatar.present? %>
           <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
         <% else %>
           <li>
@@ -36,7 +36,7 @@
 
   <div class="top-bar-right hide-for-large">
     <ul class="menu align-right">
-      <% if lens_shifter_signed_in? && current_lens_shifter.profile.avatar.present? %>
+      <% if lens_shifter_signed_in? && current_lens_shifter.profile&.avatar.present? %>
         <li><div class="avatar"><%= link_to image_tag(current_lens_shifter.profile.avatar.url(:avatar), :alt => 'profile image', :title => current_lens_shifter.full_name), dashboard_path %></div></li>
         <li><i class="fa fa-bars menu-hamburger" v-on:click="showMenu = true"></i></li>
       

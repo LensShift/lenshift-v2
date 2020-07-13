@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
     if current_lens_shifter.profile.present?
       @profile = current_lens_shifter.profile
     else
-      @profile = Profile.create(lens_shifter: current_lens_shifter)
+      @profile = Profile.new(lens_shifter: current_lens_shifter)
     end
     gon.profile = @profile
   end

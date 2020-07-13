@@ -3,8 +3,8 @@
 
   <div class="form-inputs">
     <div class="row">
-      <%= f.input :first_name, wrapper_html: {class: 'column small-12 medium-6 large-6'} %>
-      <%= f.input :last_name, wrapper_html: {class: 'column small-12 medium-6 large-6'} %>
+      <%= f.input :first_name, required: true, wrapper_html: {class: 'column small-12 medium-6 large-6'} %>
+      <%= f.input :last_name, required: true, wrapper_html: {class: 'column small-12 medium-6 large-6'} %>
     </div>
     <%= f.input :birthdate, as: :date, html5: true %>
 

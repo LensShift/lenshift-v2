@@ -1,7 +1,7 @@
 <div class="grid-x align-center">
 	<div class="cell small-6 medium-6 large-6">
 		<%= link_to 'Back to users', fellow_lens_shifters_path %>
-		<div class="profile-avatar profile-avatar-padding"><%= image_tag @lens_shifter.profile.avatar.thumb.url if @lens_shifter.profile.avatar.present? %></div><br /><br />
+		<div class="profile-avatar profile-avatar-padding"><%= image_tag @lens_shifter.profile.avatar.thumb.url if @lens_shifter.profile&.avatar.present? %></div><br /><br />
 		<h3><%= @lens_shifter.full_name %></h3>
 
 		<b>Email: </b><%= @lens_shifter.email %><br />

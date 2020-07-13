@@ -1,7 +1,7 @@
 class LensShifters::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :one_user_registered?, only: [:new, :create]
+  # before_action :one_user_registered?, only: [:new, :create]
   invisible_captcha only: [:create, :update], honeypot: :subtitle, on_spam: :your_spam_callback_method
 
   # GET /resource/sign_up
@@ -60,13 +60,13 @@ class LensShifters::RegistrationsController < Devise::RegistrationsController
     new_profile_path
   end
 
-  def one_user_registered?
-    if((LensShifter.count == 500) & (lens_shifter_signed_in?))
-      redirect_to resource_items_path
-    elsif LensShifter.count == 500
-      redirect_to home_path
-    end
-  end
+  # def one_user_registered?
+  #   if((LensShifter.count == 500) & (lens_shifter_signed_in?))
+  #     redirect_to resource_items_path
+  #   elsif LensShifter.count == 500
+  #     redirect_to home_path
+  #   end
+  # end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

@@ -3,6 +3,8 @@ class Profile < ApplicationRecord
   geocoded_by :location
   after_validation :geocode
   mount_uploader :avatar, ImageUploader
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   SECTORS = ['accommodation & food services',
       'administrative & support services',
