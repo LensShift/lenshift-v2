@@ -1,24 +1,24 @@
-# README
+# LensShift
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LensShift is a platform that facilitates learning, critical reflection and discourse on social change.
 
-Things you may want to cover:
+**Current platform includes the following features:**
 
-* Ruby version
+- Content management system for articles
+- Content management system for customized course syllabus
+- User management system
+- User stream content
+- Blog pages
 
-* System dependencies
+## Stack
 
-* Configuration
+This system is build with the following stack:
 
-* Database creation
+- Ruby on Rails
+- VueJS
+- PostgreSQL
 
-* Database initialization
 
-* How to run the test suite
+## Author
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+WeiHsi Hu
