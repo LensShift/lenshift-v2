@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :guide do
-    title "MyString"
-    description "MyText"
-    image "MyString"
-    file "MyString"
+    title { "MyString" }
+    description { "MyText" }
+    image { "MyString" }
+    file { "MyString" }
     lens_shifter
-    slug "MyString"
+    slug { "MyString" }
   end
 end

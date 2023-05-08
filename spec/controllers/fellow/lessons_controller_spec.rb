@@ -33,7 +33,7 @@ RSpec.describe Fellow::LessonsController, type: :controller do
 
       expect(json['title']).to eq('Title Updated')
       expect(json['analysis']).to eq('Analysis Updated')
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 

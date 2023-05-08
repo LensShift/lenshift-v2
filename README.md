@@ -1,6 +1,6 @@
 # LensShift
 
-LensShift is a platform that facilitates learning, critical reflection and discourse on social change.
+LensShift is a platform that facilitates learning, critical reflection and discourse on social change. It is currently launched on [LensShift.org](https://www.lensshift.org)
 
 **Current platform includes the following features:**
 

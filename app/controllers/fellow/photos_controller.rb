@@ -17,8 +17,8 @@ class Fellow::PhotosController < ApplicationController
 
 	def update
 		photo = Photo.find(params[:id])
-		if photo.update_attributes(photo_params)
-			render json: photo, status: :success
+		if photo.update(photo_params)
+			render json: photo, status: :ok
 		else
 			render json: render_errors(photo.errors), status: :unprocessable_entity
 		end

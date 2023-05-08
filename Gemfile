@@ -5,12 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.4.4'
+ruby '2.7.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 6.0'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -36,13 +36,13 @@ gem 'jbuilder', '~> 2.5'
 
 # gem 'jquery-rails'
 
-gem 'webpacker'
+gem 'jsbundling-rails'
 
 gem 'foreman'
 
 gem 'foundation-rails', '~>6.4.1.2'
 
-gem 'simple_form'
+gem 'simple_form', '~> 5.2.0'
 
 gem 'gon'
 
@@ -88,11 +88,14 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails'
   gem 'factory_bot_rails'
 end
 
 group :development do
+  # Mail deliveries
+  gem "letter_opener"
+
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

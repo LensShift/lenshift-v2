@@ -51,8 +51,8 @@ class Fellow::StreamsController < ApplicationController
         if Rails.env.production?
           RestClient.patch("https://lensshift-drive.firebaseio.com/streams/#{@stream.id}.json", gon.stream)
         end
-        format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}), status: :success }
-        format.html { render :edit, status: :success, notice: 'Stream was successfully updated.' }
+        format.json { render json: @stream.to_json(include: {lessons: {include: :resource_items}}), status: :ok }
+        format.html { render :edit, status: :ok, notice: 'Stream was successfully updated.' }
       else
         format.json { render json: render_errors(@stream.errors), status: :unprocessable_entity }
         format.html { render :edit, notice: @stream.errors.messages, status: :unprocessable_entity}
