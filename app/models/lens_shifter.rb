@@ -11,8 +11,10 @@ class LensShifter < ApplicationRecord
   has_many :static_pages
   has_many :blogs
 
+  after_create :create_profile
+
   def full_name
-  	self.profile.nil? ? self.email : "#{self.profile.first_name} #{self.profile.last_name}" 
+    self.profile.nil? ? self.email : "#{self.profile.first_name} #{self.profile.last_name}"
   end
 
   def self.to_csv
@@ -22,5 +24,9 @@ class LensShifter < ApplicationRecord
         csv << item.attributes.values_at(*column_names)
       end
     end
+  end
+
+  def create_profile
+    Profile.create() # TODO: to complete
   end
 end
