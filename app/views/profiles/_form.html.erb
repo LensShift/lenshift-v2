@@ -25,7 +25,7 @@
     <%= f.input :sector, as: :select, collection: Profile::SECTORS %>
     <%= f.input :referral, as: :check_boxes, collection: Profile::REFERRERS, label: "How did you hear about us?" %>
     <%= f.input :comment %>
-    <%= f.input :avatar, label: 'Upload Profile Image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
+    <%= f.input :avatar, label: 'Upload Profile Image', as: :image_preview, input_html: { preview_version: :thumb } %>
     <%= f.input :contact_consent, label: "Keep me updated about LensShift by subscribing me to LensShift's newsletter" %>
   </div>
   <div class="form-actions">

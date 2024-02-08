@@ -8,7 +8,7 @@ end
 ruby File.read(".ruby-version").chomp
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0'
+gem 'rails', '7.0.8'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -42,45 +42,45 @@ gem 'foreman'
 
 gem 'foundation-rails', '~>6.4.1.2'
 
-gem 'simple_form', '~> 5.2.0'
+gem 'gon', '~> 6.4.0'
 
-gem 'gon'
+gem "devise", "~> 4.9.0"
 
-gem "devise", ">= 4.6.0"
-
-gem 'acts-as-taggable-on', '~> 5.0'
+gem 'acts-as-taggable-on', '~> 10.0.0'
 
 gem 'figaro'
 
-gem 'geocoder'
+gem 'geocoder', '~> 1.8.1'
 
-gem 'kaminari'
+gem 'kaminari', '~> 1.2.2'
 
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id', '~> 5.5.0'
 
-gem 'google_drive'
+gem 'google_drive', '~> 3.0.7'
 
 gem 'archieml'
 
 gem 'carrierwave-aws'
 
-gem "mini_magick"
+gem 'mini_magick', '~> 4.12.0'
 
-gem 'simple_form_fancy_uploads'
+# Form
+gem 'simple_form', '~> 5.2.0'
+gem 'simple_form_fancy_uploads', '0.5.0'
 
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0'
 
-gem 'rest-client'
+gem 'rest-client', '~> 2.1.0'
 
-gem 'open_uri_redirections'
+gem 'open_uri_redirections', '~> 0.2.1'
 
-gem 'ranked-model'
+gem 'ranked-model', '~> 0.4.8'
 
 gem 'gtm_rails'
 
 gem 'meta-tags'
 
-gem 'invisible_captcha'
+gem 'invisible_captcha', '~> 2.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -94,11 +94,11 @@ end
 
 group :development do
   # Mail deliveries
-  gem "letter_opener"
+  gem "letter_opener", '~> 1.8.1'
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '~> 3.8.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
