@@ -8,6 +8,9 @@ const mode =
 module.exports = {
   mode,
   devtool: "source-map",
+  optimization: {
+    moduleIds: 'deterministic',
+  },
   entry: {
     application: "./app/javascript/application.js"
   },
