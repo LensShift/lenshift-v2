@@ -74,7 +74,7 @@
       </small>
       current image: {{image}}
       <%= f.input :remote_image_url, input_html: {} %>
-      <%= f.input :image, label: 'Upload image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
+      <%= f.input :image, label: 'Upload image', as: :image_preview, input_html: { preview_version: :thumb } %>
       <div>
         <img v-if="image" :src="image" alt="image-preview" />
       </div>

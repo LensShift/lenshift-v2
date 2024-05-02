@@ -10,58 +10,58 @@
 
 				<% if !@article.nil? && !@article.doc.nil? %>
 					<span>Resource will be shown in iframe if it is not a video/podcast, select to override...</span>
-    				<%= f.input :no_iframe, label: "Do not show in iframe" %>
-    			<% end %>
+						<%= f.input :no_iframe, label: "Do not show in iframe" %>
+					<% end %>
 
 				<%= f.input :published_at, label: 'Publish Date (on LensShift)', as: :date, html5: true, input_html: {value: @parsed_file['date_published(leave_blank)']} %>
 
 
 				<%= f.input :short_summary, as: :hidden, input_html: {'v-model': 'shortSummary', class: 'short-summary-text'} %>
-			    <label>Short Summary <small><i>(This heading will not show)</i></small></label>
-			    <div class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</div>
-			    <medium-editor :text="shortSummary" data-source="shortSummary" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
-			    <br class="vertical-spacer">
+					<label>Short Summary <small><i>(This heading will not show)</i></small></label>
+					<div class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</div>
+					<medium-editor :text="shortSummary" data-source="shortSummary" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+					<br class="vertical-spacer">
 
-			    <%= f.input :tag_list, label: "tags (This heading will not show)", input_html: {value: @parsed_file['tags'].to_s} %>
+					<%= f.input :tag_list, label: "tags (This heading will not show)", input_html: {value: @parsed_file['tags'].to_s} %>
 
-			    <table class="unstriped">
-			      <tr>
-			          <th class="horizontal-table-head"><small>Type</small></th>
-			          <td><%= f.input :resource_type, as: :select, label: false, collection: ResourceItem::RESOURCE_TYPE.map {|k, v| k }, selected: @parsed_file['type'].downcase, input_html: {'v-model': 'resourceType', 'ref': "resource_type" , class: "table-input"} %></td>
-			      </tr>
-			      <tr v-if="resourceType === 'video' || resourceType === 'podcast'">
-			      	<th class="horizontal-table-head"><small>Embed Code</small></th>
-			      	<td><%= f.input :video_embed, label: false, input_html: {class: "table-input"} %></td>
-			      </tr>
-			      <tr>
-			          <th class="horizontal-table-head"><small>Reading Time</small></th>
-			          <td><%= f.input :estimated_reading_time, label: false, input_html: {value: @parsed_file['estimated_reading_time(minutes)'].gsub(/[^0-9]/, ''), class: "table-input"} %></td>
-			      </tr>
-			      <tr>
-			          <th class="horizontal-table-head"><small>Author</small></th>
-			          <td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_s.downcase, class: "table-input"} %></td>
-			      </tr>
-			      <tr>
-			          <th class="horizontal-table-head"><small>Article Date</small></th>
-			          <td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: date_validation(@parsed_file['article_date']) , class: "table-input"} %>
-			          </td>
-			      </tr>
-			      <tr>
-			          <th class="horizontal-table-head"><small>Source</small></th>
-			          <td><small><%= @parsed_file['link'].match("((.*?\/.*?){2})\/") %></small></td>
-			      </tr>
+					<table class="unstriped">
+						<tr>
+								<th class="horizontal-table-head"><small>Type</small></th>
+								<td><%= f.input :resource_type, as: :select, label: false, collection: ResourceItem::RESOURCE_TYPE.map {|k, v| k }, selected: @parsed_file['type'].downcase, input_html: {'v-model': 'resourceType', 'ref': "resource_type" , class: "table-input"} %></td>
+						</tr>
+						<tr v-if="resourceType === 'video' || resourceType === 'podcast'">
+							<th class="horizontal-table-head"><small>Embed Code</small></th>
+							<td><%= f.input :video_embed, label: false, input_html: {class: "table-input"} %></td>
+						</tr>
+						<tr>
+								<th class="horizontal-table-head"><small>Reading Time</small></th>
+								<td><%= f.input :estimated_reading_time, label: false, input_html: {value: @parsed_file['estimated_reading_time(minutes)'].gsub(/[^0-9]/, ''), class: "table-input"} %></td>
+						</tr>
+						<tr>
+								<th class="horizontal-table-head"><small>Author</small></th>
+								<td><%= f.input :author_list, label: false, input_html: {value: @parsed_file['author/creator'].to_s.downcase, class: "table-input"} %></td>
+						</tr>
+						<tr>
+								<th class="horizontal-table-head"><small>Article Date</small></th>
+								<td><%= f.input :article_date, label: false, as: :date, html5: true, input_html: {value: date_validation(@parsed_file['article_date']) , class: "table-input"} %>
+								</td>
+						</tr>
+						<tr>
+								<th class="horizontal-table-head"><small>Source</small></th>
+								<td><small><%= @parsed_file['link'].match("((.*?\/.*?){2})\/") %></small></td>
+						</tr>
 				</table>
-    	
-			    <div class="grid-x grid-padding-x">
-				    <div class="cell small-12 medium-6 large-4">
-				    	<%= f.input :google_doc_id, label: 'Google doc index', input_html: {value: @file.title.gsub(/[^0-9]/, '')} %>
+			
+					<div class="grid-x grid-padding-x">
+						<div class="cell small-12 medium-6 large-4">
+							<%= f.input :google_doc_id, label: 'Google doc index', input_html: {value: @file.title.gsub(/[^0-9]/, '')} %>
 					</div>
-				    <div class="cell small-12 medium-6 large-4">
-				    	<%= f.association :lens_shifter, as: :select, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, label_html: {class: 'warning'}, input_html: {'v-model': 'lensShifter'} %>
+						<div class="cell small-12 medium-6 large-4">
+							<%= f.association :lens_shifter, as: :select, label: 'LensShifter (required)', label_method: :full_name, value_method: :id, include_blank: true, label_html: {class: 'warning'}, input_html: {'v-model': 'lensShifter'} %>
 					</div>
-				    <div class="cell small-12 medium-6 large-4">
-				    	<%= f.input :feature, label: "feature me" %>
-				    </div>
+						<div class="cell small-12 medium-6 large-4">
+							<%= f.input :feature, label: "feature me" %>
+						</div>
 				</div>	
 			</div>
 		
@@ -79,21 +79,21 @@
 				</small>
 				<%= f.input :remote_image_url, input_html: {'v-model': 'image'} %>
 				<div class="preview-frame">
-				<%= f.input :image, label: 'Upload image', as: :image_preview, input_html: {preview_url: :image_url, preview_version: :thumb} %>
+				<%= f.input :image, label: 'Upload image', as: :image_preview, input_html: { preview_version: :thumb } %>
 				</div>
 				<div>
 					<img v-if="image" :src="image" alt="image-preview" />
 				</div>
 			</div>
-	 	</div>
+		</div>
 		<div class="small-12 medium-12 large-12 cell">
 			<table>
 				<thead><tr><th>Key Takeaways <span class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</span></th></tr></thead>
 				<tbody>
 					<tr>
 						<td>
-			   				<%= f.input :key_takeaways, as: :hidden, input_html: {'v-model': 'keyTakeaways', class: 'short-summary-text'} %>
-			   				<medium-editor :text="keyTakeaways" data-source="keyTakeaways" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+								<%= f.input :key_takeaways, as: :hidden, input_html: {'v-model': 'keyTakeaways', class: 'short-summary-text'} %>
+								<medium-editor :text="keyTakeaways" data-source="keyTakeaways" :options="shortOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 						</td>
 					</tr>
 				</tbody>
@@ -104,8 +104,8 @@
 		<div class="small-12 medium-12 large-12 cell analysis-content">
 			<label>Analysis Content <small><i>(This heading will not show)</i></small></label>
 			<div class="label success">I have a built-in style editor, click on the text below to start editing, & highlight any text to see style options.</div>
-		    <%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
-		    <medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
+				<%= f.input :analysis_content, as: :hidden, input_html: {'v-model': 'analysisContent', class: 'long-summary-text'} %>
+				<medium-editor :text="analysisContent" data-source="analysisContent" :options="longOptions" custom-tag="div" v-on:edit="applyChanges"></medium-editor>
 		</div>
 		
 		<% if !@article.nil? %>
@@ -114,9 +114,9 @@
 			<%= f.input :article_content, as: :hidden, input_html: {'value': @article.doc.nil? ? '' : @article.doc } %>
 		<% end %>
 		<small v-if="lensShifter === null" class="warning"><i> LensShifter field cannot be empty</i></small>
-	    <div class="button-group">
-	    	<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>
-	    	<input type="submit" name="commit" value="Create Resource item" data-disable-with="Create Resource item" class="button" :disabled="lensShifter === null">
+			<div class="button-group">
+				<%= link_to 'Cancel', import_google_fellow_resource_items_path, class: 'warning button' %>
+				<input type="submit" name="commit" value="Create Resource item" data-disable-with="Create Resource item" class="button" :disabled="lensShifter === null">
 		</div>
 
 	<% end %>
@@ -126,7 +126,7 @@
 			<div class="column small-12 medium-10 large-10">
 				<h3>Article:</h3>
 					<small>click on any image to add the image link to the remote image link field</small>
-		    		<div class="article-preview">
+						<div class="article-preview">
 						<h3 class="text-center"><%= @article.title %></h3>
 						<p><%= @article.description %></p>
 						<div class="grid-x grid-margin-x">

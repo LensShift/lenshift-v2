@@ -50,14 +50,14 @@ RSpec.describe Fellow::StreamsController, type: :controller do
     it "returns a success response" do
       
       get :index
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
       get :new
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe Fellow::StreamsController, type: :controller do
     it "returns a success response" do
       stream = FactoryBot.create(:stream)
       get :edit, params: {id: stream.to_param}
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 

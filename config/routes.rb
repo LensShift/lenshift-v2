@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   devise_scope :lens_shifter do
-    root 'resources_items#index'
+    root 'resources_items#index', as: :lens_shifter_root
   end
 
   resources :blogs, only: [:index, :show]

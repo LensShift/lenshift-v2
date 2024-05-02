@@ -12,7 +12,7 @@ class Fellow::BlogsController < ApplicationController
 	def update
 		# return render json: @blog, errors: "You can't. You didn't create the blog", status: :unprocessable_entity if @blog.lens_shifter != current_lens_shifter
 
-		if @blog.update_attributes(blog_params)
+		if @blog.update(blog_params)
 			# flash[:notice] = "Well done!, you have updated the blog"
 			render json: @blog, status: :ok
 		else
@@ -24,9 +24,9 @@ class Fellow::BlogsController < ApplicationController
 	def create
 		@blog = current_lens_shifter.blogs.create(blog_params)
 		if @blog.valid?
-			render json: blog, status: :created
+			render json: @blog, status: :created
 		else
-			render json: render_errors(blog.errors), status: :unprocessable_entity
+			render json: render_errors(@blog.errors), status: :unprocessable_entity
 		end
 	end
 

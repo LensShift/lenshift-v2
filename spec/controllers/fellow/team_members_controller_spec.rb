@@ -28,12 +28,13 @@ RSpec.describe Fellow::TeamMembersController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Fellow::TeamMember. As you add validations to Fellow::TeamMember, be sure to
   # adjust the attributes here as well.
+  let(:team_member) { FactoryBot.create(:team_member) }
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.attributes_for(:team_member)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    FactoryBot.attributes_for(:team_member, name: nil)
   }
 
   # This should return the minimal set of values that should be in the session
@@ -41,55 +42,57 @@ RSpec.describe Fellow::TeamMembersController, type: :controller do
   # Fellow::TeamMembersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    @user = FactoryBot.create(:fellow)
+    sign_in @user
+  end
+
   describe "GET #index" do
     it "returns a success response" do
-      team_member = Fellow::TeamMember.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #show" do
     it "returns a success response" do
-      team_member = Fellow::TeamMember.create! valid_attributes
       get :show, params: {id: team_member.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
       get :new, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      team_member = Fellow::TeamMember.create! valid_attributes
       get :edit, params: {id: team_member.to_param}, session: valid_session
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Fellow::TeamMember" do
+      it "creates a new TeamMember" do
         expect {
-          post :create, params: {fellow_team_member: valid_attributes}, session: valid_session
-        }.to change(Fellow::TeamMember, :count).by(1)
+          post :create, params: { team_member: valid_attributes }, session: valid_session
+        }.to change(TeamMember, :count).by(1)
       end
 
       it "redirects to the created fellow_team_member" do
-        post :create, params: {fellow_team_member: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Fellow::TeamMember.last)
+        post :create, params: { team_member: valid_attributes }, session: valid_session
+        expect(response).to redirect_to(fellow_team_members_path)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {fellow_team_member: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+        post :create, params: { team_member: invalid_attributes }, session: valid_session
+        expect(response).to have_http_status(:success)
       end
     end
   end
@@ -101,38 +104,37 @@ RSpec.describe Fellow::TeamMembersController, type: :controller do
       }
 
       it "updates the requested fellow_team_member" do
-        team_member = Fellow::TeamMember.create! valid_attributes
-        put :update, params: {id: team_member.to_param, fellow_team_member: new_attributes}, session: valid_session
+
+        put :update, params: { id: team_member.to_param, team_member: new_attributes }, session: valid_session
         team_member.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the fellow_team_member" do
-        team_member = Fellow::TeamMember.create! valid_attributes
-        put :update, params: {id: team_member.to_param, fellow_team_member: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(team_member)
+
+        put :update, params: {id: team_member.to_param, team_member: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(fellow_team_members_path)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        team_member = Fellow::TeamMember.create! valid_attributes
-        put :update, params: {id: team_member.to_param, fellow_team_member: invalid_attributes}, session: valid_session
-        expect(response).to be_success
+
+        put :update, params: { id: team_member.to_param, team_member: invalid_attributes }, session: valid_session
+        expect(response).to have_http_status(:success)
       end
     end
   end
 
   describe "DELETE #destroy" do
     it "destroys the requested fellow_team_member" do
-      team_member = Fellow::TeamMember.create! valid_attributes
+      team_member
       expect {
-        delete :destroy, params: {id: team_member.to_param}, session: valid_session
-      }.to change(Fellow::TeamMember, :count).by(-1)
+        delete :destroy, params: { id: team_member.to_param }, session: valid_session
+      }.to change(TeamMember, :count).by(-1)
     end
 
     it "redirects to the fellow_team_members list" do
-      team_member = Fellow::TeamMember.create! valid_attributes
       delete :destroy, params: {id: team_member.to_param}, session: valid_session
       expect(response).to redirect_to(fellow_team_members_url)
     end

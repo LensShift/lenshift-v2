@@ -2,15 +2,14 @@ class StreamsController < ApplicationController
   before_action :authenticate_lens_shifter!, only: [:show]
 
   def index
-
     @page_title = 'Streams'
     @page_description = 'These structured Streams walk LensShifters through 15-20 resources from the Library to unpack topics fundamental to challenging mainstream narratives.' 
     @page_keywords = 'learn, stream, guided, curated, social impact'
-  	gon.streams = Stream.published_before(Time.zone.now).to_json({include: {lessons: { only: [:title]}}})
+    gon.streams = Stream.published_before(Time.zone.now).to_json({include: {lessons: { only: [:title]}}})
   end
 
   def show
-  	stream = Stream.friendly.find(params[:id])
+    stream = Stream.friendly.find(params[:id])
 
     # SEO meta tags
     @page_title = stream.title
@@ -36,7 +35,7 @@ class StreamsController < ApplicationController
     gon.resourcesCount = resourcesCount
 
 
-  	if request.path != stream_path(stream)
+    if request.path != stream_path(stream)
       redirect_to stream, status: :moved_permanently
     end
   end

@@ -8,36 +8,36 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import Vue from 'vue/dist/vue.esm'
-import App from '../app.vue'
-import lensShifterProfileForm from '../components/lensShifterProfileForm'
-import resourceDocForm from '../components/resourceDocForm'
-import resourceItemForm from '../components/resourceItemForm'
-import resourceList from '../components/resourceList'
-import streamNew from '../components/streamNew'
-import streamFellowShow from '../components/streamFellowShow'
-import streamShow from '../components/streamShow'
-import streamPreview from '../components/streamPreview'
-import streamList from '../components/streamList'
-import sideMenu from '../components/sideMenu'
-import streamEdit from '../components/streamEdit'
-import resourceFellowList from '../components/resourceFellowList'
-import streamFellowList from '../components/streamFellowList'
-import staticPageForm from '../components/staticPageForm'
-import dashboard from '../components/dashboard'
-import profileForm from '../components/profileForm'
-import contactForm from '../components/contactForm'
-import blogsList from '../components/blogsList'
-import blogForm from '../components/blogForm'
-import photoList from '../components/photoList'
-import teamForm from '../components/teamForm'
-import teamMemberList from '../components/teamMemberList'
+import App from './app.vue'
+import lensShifterProfileForm from './components/lensShifterProfileForm'
+import resourceDocForm from './components/resourceDocForm'
+import resourceItemForm from './components/resourceItemForm'
+import resourceList from './components/resourceList'
+import streamNew from './components/streamNew'
+import streamFellowShow from './components/streamFellowShow'
+import streamShow from './components/streamShow'
+import streamPreview from './components/streamPreview'
+import streamList from './components/streamList'
+import sideMenu from './components/sideMenu'
+import streamEdit from './components/streamEdit'
+import resourceFellowList from './components/resourceFellowList'
+import streamFellowList from './components/streamFellowList'
+import staticPageForm from './components/staticPageForm'
+import dashboard from './components/dashboard'
+import profileForm from './components/profileForm'
+import contactForm from './components/contactForm'
+import blogsList from './components/blogsList'
+import blogForm from './components/blogForm'
+import photoList from './components/photoList'
+import teamForm from './components/teamForm'
+import teamMemberList from './components/teamMemberList'
 // import * as VueGoogleMaps from 'vue2-google-maps'
 import moment from 'moment';
 
 
 document.addEventListener('DOMContentLoaded', () => {
   // document.body.appendChild(document.createElement('app'))
-  
+
   // Vue.component('app-navbar', navbar)
   // Vue.component('app-footer', footer)
 
@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Vue.use(VueGoogleMaps, {
   // load: {
-  //   key: 
-    
+  //   key:
+
   // })
 
   var draggable = require('vuedraggable')
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var velocity = require('velocity-animate');
 
   Vue.filter('timing', function(value) {
-    var a = moment(value) 
+    var a = moment(value)
 
     if (moment(Date.now()).diff(a, "days") >= 7) {
       return moment(value).format("MM-DD-YYYY")
@@ -67,14 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   const app = new Vue({
-  	el: '#app',
+    el: '#app',
     data() {
       return {
         scrollPosition: 0,
         navPosition: ''
       }
     },
-  	components: {
+    components: {
       'lens-shifter-profile-form': lensShifterProfileForm,
       'resource-doc-form': resourceDocForm,
       'resource-item-form': resourceItemForm,
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'photo-list': photoList,
       'team-form': teamForm,
       'team-member-list': teamMemberList
-  	},
+    },
     created() {
       // console.log('I am created', document.body)
       window.onscroll = function(e) {
@@ -111,15 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('ls-top-bar').classList.remove('nav-up')
           }
         }
-      
+
         this.scrollPosition = currentScrollPosition;
       }
-      
+
     },
     destroyed() {
       document.body.removeEventListener('scroll', this.handleScroll);
     }
-  	// render: h => h(App)
+    // render: h => h(App)
   })
 
   console.log(app)

@@ -1,4 +1,5 @@
 class Fellow::TeamMembersController < ApplicationController
+  before_action :authenticate_fellow!
   before_action :set_team_member, only: [:show, :edit, :update, :destroy]
 
   # GET /fellow/team_members
